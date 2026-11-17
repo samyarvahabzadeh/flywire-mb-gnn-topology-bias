@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-11-17T19:55:36.823960+00:00",
+  "product": "connections",
+  "dataset": "fafb",
+  "snapshot": "783",
+  "http_status": 404,
+  "content_type": "application/json",
+  "route": [
+    {
+      "status": 404,
+      "url": "https://codex.flywire.ai/api/download_resource"
+    }
+  ],
+  "error_text": "{\"error\":\"Download resource 'connections' is not available for dataset 'fafb'.\"}",
+  "catalogue_response": {
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8"
+  }
+}

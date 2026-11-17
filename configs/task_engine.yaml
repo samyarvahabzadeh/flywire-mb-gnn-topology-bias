@@ -1,0 +1,56 @@
+version: task_v1
+dataset: fafb
+snapshot: '783'
+source_manifest: data/graphs/mb_bilateral_v783/MANIFEST.json
+checkpoint_seconds: 900
+seeds_file: configs/seeds.txt
+decision_ids: [W1-010, W1-P06, W1-P07, W1-P08, W1-P09]
+task:
+  n_odors: 8
+  trials_max: 2000
+  cs_plus: [0, 2, 4, 6]
+  cs_minus: [1, 3, 5, 7]
+  odor_pairs: [[0, 1], [2, 3], [4, 5], [6, 7]]
+  trial_order: seed_shuffled_balanced_blocks
+cs_encoding:
+  kc_sparsity: 0.05
+  active_count_rule: nearest_integer
+  odor_sets: configs/odor_sets.json
+  bit_generator: PCG64
+  odor_seed_stream: 0
+  schedule_seed_stream: 1
+plasticity:
+  rule: anti_hebbian_depression
+  equation: delta_w = -eta * pre * post * d
+  eta: 0.05
+  d_us: 1.0
+  d_no_us: 0.0
+  dan_representation: global_scalar_v1
+  eligibility: instantaneous
+  w_init:
+    distribution: uniform
+    low: 0.8
+    high: 1.0
+    assignment: seed_and_root_id_pair_hash
+  w_bounds: [0.0, 1.0]
+  post_activity: weighted_sum_divided_by_structural_kc_indegree
+readout:
+  contrast: mean_avoidance_minus_mean_approach
+  normalization: fixed_affine_half_shift
+  mapping_status: PROPOSED
+  avoidance_nt: [GLUT]
+  approach_nt: [ACH, GABA]
+  unknown_nt: exclude_from_readout_keep_in_graph
+  frozen_membership: configs/mbon_readout.json
+  evidence: https://cdn.elifesciences.org/articles/04580/elife-04580-v1.pdf
+  discrimination: balanced_cs_target_score_after_each_trial
+  criterion: 0.8
+  consecutive_trials: 20
+  trial_cap_status: right_censored_not_automatically_excluded
+fairness:
+  policy: identical_scientific_config_seeds_odors_readout_and_initialization_rule
+  permitted_condition_difference: topology_only
+  require_identical_node_ids_roles_and_annotations: true
+osf:
+  preregistration_file: PREREGISTRATION.md
+  require_registered_before_biological_learning: true

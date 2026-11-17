@@ -1,0 +1,306 @@
+{
+  "status": "PASS",
+  "scope": "bilateral",
+  "threshold": 5,
+  "checks": {
+    "whole_brain_count": true,
+    "bilateral_kc_count": true,
+    "all_groups_nonempty": true,
+    "sparse_csr": true,
+    "threshold_ge_5": true,
+    "all_selected_nodes_retained": true
+  },
+  "whole_brain_neurons": 139255,
+  "mb_neurons": 6235,
+  "mb_roles": {
+    "KC": 5177,
+    "PN": 685,
+    "MBON": 96,
+    "DAN": 277
+  },
+  "mb_edges": 89769,
+  "side_counts": [
+    {
+      "role": "DAN",
+      "side": "left",
+      "len": 143
+    },
+    {
+      "role": "DAN",
+      "side": "right",
+      "len": 134
+    },
+    {
+      "role": "KC",
+      "side": "left",
+      "len": 2580
+    },
+    {
+      "role": "KC",
+      "side": "right",
+      "len": 2597
+    },
+    {
+      "role": "MBON",
+      "side": "left",
+      "len": 48
+    },
+    {
+      "role": "MBON",
+      "side": "right",
+      "len": 48
+    },
+    {
+      "role": "PN",
+      "side": "left",
+      "len": 341
+    },
+    {
+      "role": "PN",
+      "side": "right",
+      "len": 344
+    }
+  ],
+  "csr_bytes": 1102172,
+  "pn_kc_convergence": {
+    "definition": "unique ALPN sources per KC at pair-total synapse threshold 5",
+    "minimum": 0,
+    "maximum": 10,
+    "mean": 4.307127680123624,
+    "median": 5.0,
+    "zero_input_kcs": 427,
+    "histogram": [
+      {
+        "pn_sources": 0,
+        "kc_count": 427
+      },
+      {
+        "pn_sources": 1,
+        "kc_count": 187
+      },
+      {
+        "pn_sources": 2,
+        "kc_count": 350
+      },
+      {
+        "pn_sources": 3,
+        "kc_count": 469
+      },
+      {
+        "pn_sources": 4,
+        "kc_count": 927
+      },
+      {
+        "pn_sources": 5,
+        "kc_count": 1283
+      },
+      {
+        "pn_sources": 6,
+        "kc_count": 1002
+      },
+      {
+        "pn_sources": 7,
+        "kc_count": 413
+      },
+      {
+        "pn_sources": 8,
+        "kc_count": 96
+      },
+      {
+        "pn_sources": 9,
+        "kc_count": 20
+      },
+      {
+        "pn_sources": 10,
+        "kc_count": 3
+      }
+    ],
+    "biological_acceptance": "numerical reference bounds not supplied; report for human verification"
+  },
+  "nt_sign_policy": "not assigned; raw predicted NT retained",
+  "model_metrics_computed": false,
+  "dan_prefix_candidates": 323,
+  "dan_excluded_by_nt": 46,
+  "dan_excluded_types": [
+    {
+      "primary_type": "PAM01",
+      "nt_type": "",
+      "len": 13
+    },
+    {
+      "primary_type": "PAM02",
+      "nt_type": "",
+      "len": 3
+    },
+    {
+      "primary_type": "PAM03",
+      "nt_type": "",
+      "len": 9
+    },
+    {
+      "primary_type": "PAM04",
+      "nt_type": "",
+      "len": 9
+    },
+    {
+      "primary_type": "PAM05",
+      "nt_type": "",
+      "len": 1
+    },
+    {
+      "primary_type": "PAM08",
+      "nt_type": "",
+      "len": 2
+    },
+    {
+      "primary_type": "PAM13",
+      "nt_type": "",
+      "len": 3
+    },
+    {
+      "primary_type": "PAM14",
+      "nt_type": "",
+      "len": 6
+    }
+  ],
+  "dan_selected_types": [
+    {
+      "primary_type": "PAM01",
+      "count": 28
+    },
+    {
+      "primary_type": "PAM02",
+      "count": 13
+    },
+    {
+      "primary_type": "PAM03",
+      "count": 1
+    },
+    {
+      "primary_type": "PAM04",
+      "count": 23
+    },
+    {
+      "primary_type": "PAM05",
+      "count": 20
+    },
+    {
+      "primary_type": "PAM06",
+      "count": 30
+    },
+    {
+      "primary_type": "PAM07",
+      "count": 18
+    },
+    {
+      "primary_type": "PAM08",
+      "count": 43
+    },
+    {
+      "primary_type": "PAM09",
+      "count": 9
+    },
+    {
+      "primary_type": "PAM10",
+      "count": 15
+    },
+    {
+      "primary_type": "PAM11",
+      "count": 16
+    },
+    {
+      "primary_type": "PAM12",
+      "count": 23
+    },
+    {
+      "primary_type": "PAM13",
+      "count": 9
+    },
+    {
+      "primary_type": "PAM14",
+      "count": 10
+    },
+    {
+      "primary_type": "PAM15",
+      "count": 3
+    },
+    {
+      "primary_type": "PPL101",
+      "count": 2
+    },
+    {
+      "primary_type": "PPL102",
+      "count": 2
+    },
+    {
+      "primary_type": "PPL103",
+      "count": 2
+    },
+    {
+      "primary_type": "PPL104",
+      "count": 2
+    },
+    {
+      "primary_type": "PPL105",
+      "count": 2
+    },
+    {
+      "primary_type": "PPL106",
+      "count": 2
+    },
+    {
+      "primary_type": "PPL107",
+      "count": 2
+    },
+    {
+      "primary_type": "PPL108",
+      "count": 2
+    }
+  ],
+  "selection_config": {
+    "dataset": "fafb",
+    "snapshot": "783",
+    "run_id": "mb_bilateral_v783",
+    "checkpoint_seconds": 900,
+    "approval": {
+      "reviewed_by": "researcher, explicit chat instructions",
+      "reviewed_at": "2026-11-17",
+      "decision_ids": [
+        "W1-007",
+        "W1-008"
+      ]
+    },
+    "source_manifest": "data/graphs/source_full/MANIFEST.json",
+    "scope": "bilateral",
+    "threshold": 5,
+    "roles": {
+      "KC": {
+        "class_equals": "Kenyon_Cell"
+      },
+      "PN": {
+        "class_equals": "ALPN"
+      },
+      "MBON": {
+        "class_equals": "MBON"
+      },
+      "DAN": {
+        "type_column": "primary_type",
+        "starts_with": [
+          "PAM",
+          "PPL1"
+        ],
+        "nt_column": "nt_type",
+        "nt_equals": "DA"
+      }
+    },
+    "sanity": {
+      "whole_brain_expected": 139255,
+      "kc_minimum": 4400,
+      "kc_maximum": 5500,
+      "pn_kc_convergence": "report_distribution_for_human_verification"
+    },
+    "edge_sign_policy": "pending_human_mapping"
+  },
+  "source_manifest_sha256": "4aa2b80ffb7856ad905236a43e1d5ee5c81e6acbcf07857d392ea28102a29388",
+  "builder_sha256": "4dbce61daa49b0a61442ed394bd66f829112d37ba8b1df5a132ccb30008a081f"
+}

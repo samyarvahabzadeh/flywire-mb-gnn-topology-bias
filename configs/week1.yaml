@@ -1,0 +1,91 @@
+dataset: fafb
+snapshot: '783'
+checkpoint_seconds: 900
+minimum_free_bytes: 2147483648
+arrow_block_bytes: 8388608
+products:
+  connections:
+    remote_product: connections_princeton
+  consolidated_cell_types:
+    remote_product: consolidated_cell_types
+  neurons:
+    remote_product: neurons
+  classification:
+    remote_product: classification
+approval:
+  reviewed_by: Researcher instruction W1-004/W1-006; scope=lossless ingestion and
+    full source graph only
+  reviewed_at: '2026-11-17'
+  decision_ids:
+  - W1-003
+  - W1-004
+  - W1-006
+  inventory_sha256: ad5eef07929ff928735f6af3809968dac23829af4fe665656e110779c53492df
+  scope: Lossless ingestion and unsigned full source graph. MB labels/signs/bounds
+    remain pending.
+schema:
+  connections:
+    header:
+    - pre_root_id
+    - post_root_id
+    - neuropil
+    - syn_count
+    - nt_type
+  consolidated_cell_types:
+    header:
+    - root_id
+    - primary_type
+    - additional_type(s)
+  neurons:
+    header:
+    - root_id
+    - group
+    - nt_type
+    - nt_type_score
+    - da_avg
+    - ser_avg
+    - gaba_avg
+    - glut_avg
+    - ach_avg
+    - oct_avg
+  classification:
+    header:
+    - root_id
+    - flow
+    - super_class
+    - class
+    - sub_class
+    - hemilineage
+    - side
+    - nerve
+node_universe:
+  product: neurons
+  id_column: root_id
+node_attributes: {}
+edge_columns:
+  pre: pre_root_id
+  post: post_root_id
+  weight: syn_count
+roles:
+  KC: []
+  MBON: []
+  DAN: []
+  PN: []
+nt_signs: {}
+graph:
+  threshold: 5
+  aggregation: sum_by_directed_pair
+  self_loops: retain
+sanity:
+  whole_brain_neurons:
+    anchor: 139000
+    minimum: null
+    maximum: null
+  kc_neurons:
+    anchor: 2200
+    minimum: null
+    maximum: null
+  pn_kc_convergence:
+    minimum: null
+    maximum: null
+    statistic: null

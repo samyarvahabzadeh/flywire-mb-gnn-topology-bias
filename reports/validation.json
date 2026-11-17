@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "scope": "SYNTHETIC_ENGINEERING_TESTS_ONLY",
+  "checks": [
+    {
+      "command": [
+        "D:\\icss\\acc2\\flywire-mb-gnn-topology-bias\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "src",
+        "tests",
+        "scripts"
+      ],
+      "exit_code": 0,
+      "log": "logs/validation_0.log",
+      "completed_at": "2026-11-17T20:04:08.590158+00:00"
+    },
+    {
+      "command": [
+        "D:\\icss\\acc2\\flywire-mb-gnn-topology-bias\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "src",
+        "tests",
+        "scripts"
+      ],
+      "exit_code": 0,
+      "log": "logs/validation_1.log",
+      "completed_at": "2026-11-17T20:04:08.772778+00:00"
+    },
+    {
+      "command": [
+        "D:\\icss\\acc2\\flywire-mb-gnn-topology-bias\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "-q",
+        "--tb=short",
+        "--basetemp",
+        "D:\\icss\\acc2\\flywire-mb-gnn-topology-bias\\.tmp\\validation-tests",
+        "--junitxml",
+        "D:\\icss\\acc2\\flywire-mb-gnn-topology-bias\\reports\\engineering_tests.xml"
+      ],
+      "exit_code": 0,
+      "log": "logs/validation_2.log",
+      "completed_at": "2026-11-17T20:04:24.872681+00:00"
+    }
+  ],
+  "provenance": {
+    "git_commit": "dcbb90f4bc2546dd99d497aa40dc5f3734b79488",
+    "config_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "source_sha256": "7da71cf72d80434ec80c09d5753e2e826533836597106408166098a3babbdc07",
+    "source_files": {
+      "configs/week1.yaml": "d50246c846ff27144f7a94098287af0dc0569c4e557f0a55236e4b74fb8faf3c",
+      "src/mbtopology/__init__.py": "9dce1df6bf64cf4e2165194e579e2ec5723782c4860c14f2c6515535c963b5c1",
+      "src/mbtopology/cli.py": "1dc2935bed25ec193dc14bf6f55408b12fa7eb59e57cb40dec1f1e8ef93d7cd3",
+      "src/mbtopology/graph.py": "d5d32d788461ad0809264ed319f805fa614ed04a2889864202478f360f57ae26",
+      "src/mbtopology/ingest.py": "cbf7f3c77001afb9eeb214d6583feffaa8458490cbef5499ae346da7d9884825",
+      "src/mbtopology/runtime.py": "936ef478823da6ee0bd093aed0470f0bcc3883bfc9a3ada25ffe676ee82c298e",
+      "src/mbtopology/toy.py": "4052afe59b6c889ec6f9671ebe86e4ed255078555aea6baa427d605a5ce90ba1",
+      "src/week1.py": "71d5d3859f404108c2c5b9d25886ec83edf93df3af95c9e74766f3a25c0e9987"
+    },
+    "packages": {
+      "polars": "2.1.0",
+      "pyarrow": "26.0.1",
+      "scipy": "1.17.1",
+      "numpy": "2.4.6",
+      "torch": "2.15.0+cpu",
+      "torch-geometric": "2.8.1"
+    }
+  },
+  "model_metrics_computed": false
+}

@@ -1,0 +1,17 @@
+{
+  "created_at": "2026-11-17T19:37:55.685246+00:00",
+  "python": "3.11.15",
+  "executable": "D:\\icss\\acc2\\flywire-mb-gnn-topology-bias\\.venv\\Scripts\\python.exe",
+  "packages": {
+    "polars": "2.1.0",
+    "pyarrow": "26.0.1",
+    "scipy": "1.17.1",
+    "torch": "2.15.0+cpu",
+    "torch-geometric": "2.8.1",
+    "networkx": "3.6.1",
+    "matplotlib": "3.11.2"
+  },
+  "data_root": "D:\\icss\\acc2\\flywire-mb-gnn-topology-bias",
+  "free_disk_bytes": 24485376000,
+  "model_metrics_computed": false
+}

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "fixture": "SYNTHETIC_UNIT_TEST_ONLY",
+  "n_odors": 3,
+  "checks": [
+    "zero US leaves weights unchanged",
+    "only active synapse changes",
+    "sparse checkpoint round trip"
+  ],
+  "scope": "algebra and checkpoint plumbing; biological task engine remains unapproved",
+  "model_metrics_computed": false
+}

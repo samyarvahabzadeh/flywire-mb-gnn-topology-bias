@@ -11,3 +11,13 @@ wandb/
 results/*.parquet
 .ipynb_checkpoints/
 .DS_Store
+.local/
+.cache/
+.tmp/
+.python/
+logs/
+.pytest_cache/
+*.egg-info/
+*.partial
+dist/
+pytest-cache-files-*/

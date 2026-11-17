@@ -1,0 +1,393 @@
+{
+  "created_at": "2026-11-17T20:11:05.079969+00:00",
+  "status": "INCOMPLETE",
+  "blockers": [
+    "real graph sanity checks have not passed",
+    "completed graph manifest is missing"
+  ],
+  "data_artifacts": {
+    "raw/consolidated_cell_types": {
+      "path": "data/raw/consolidated_cell_types.csv.gz",
+      "bytes": 901707,
+      "sha256": "8aba246d71dc40361677493629972ce3883048c3d02010adc42bda22962a1a2d",
+      "recorded_at": "2026-11-17T19:43:57.104570+00:00",
+      "remote_product": "consolidated_cell_types",
+      "etag": "\"18cc628156bede3129c0e19d14cf52d6\"",
+      "last_modified": "Tue, 24 Feb 2026 14:59:50 GMT",
+      "total_bytes": 901707,
+      "resolved_resource": "https://storage.googleapis.com/flywire-data/codex/data/fafb/783/consolidated_cell_types.csv.gz",
+      "dataset": "fafb",
+      "snapshot": "783",
+      "checksum_scope": "local bytes; no publisher SHA supplied"
+    },
+    "raw/neurons": {
+      "path": "data/raw/neurons.csv.gz",
+      "bytes": 1679884,
+      "sha256": "6a6b3759e635f0f35a677d169052362131ec61d95f55919298b55c43fce4e719",
+      "recorded_at": "2026-11-17T19:52:33.773621+00:00",
+      "remote_product": "neurons",
+      "etag": "\"f60333e9e4124160b9b203b1712a6f91\"",
+      "last_modified": "Thu, 05 Dec 2024 19:54:06 GMT",
+      "total_bytes": 1679884,
+      "resolved_resource": "https://storage.googleapis.com/flywire-data/codex/data/fafb/783/neurons.csv.gz",
+      "dataset": "fafb",
+      "snapshot": "783",
+      "checksum_scope": "local bytes; no publisher SHA supplied"
+    },
+    "raw/classification": {
+      "path": "data/raw/classification.csv.gz",
+      "bytes": 934402,
+      "sha256": "e946b552f4056dfc977707be0674609832c3f64332a22d69dc0d9615e7aae663",
+      "recorded_at": "2026-11-17T19:52:56.837655+00:00",
+      "remote_product": "classification",
+      "etag": "\"701c0faf054ceddb460bea4e87d6a624\"",
+      "last_modified": "Tue, 24 Feb 2026 15:00:05 GMT",
+      "total_bytes": 934402,
+      "resolved_resource": "https://storage.googleapis.com/flywire-data/codex/data/fafb/783/classification.csv.gz",
+      "dataset": "fafb",
+      "snapshot": "783",
+      "checksum_scope": "local bytes; no publisher SHA supplied"
+    },
+    "raw/connections": {
+      "path": "data/raw/connections.csv.gz",
+      "bytes": 68456801,
+      "sha256": "445f996bf6c4b1803b9ba186189138a3061ff8623aa94c0abcf38af30a5bd48b",
+      "recorded_at": "2026-11-17T19:59:05.623695+00:00",
+      "remote_product": "connections_princeton",
+      "etag": "\"5e5101c6ffc17d7e300541d8f71842c1\"",
+      "last_modified": "Tue, 08 Jul 2025 14:11:08 GMT",
+      "total_bytes": 68456801,
+      "resolved_resource": "https://storage.googleapis.com/flywire-data/codex/data/fafb/783/connections_princeton.csv.gz",
+      "dataset": "fafb",
+      "snapshot": "783",
+      "checksum_scope": "local bytes; no publisher SHA supplied"
+    },
+    "parquet/connections": {
+      "raw_sha256": "445f996bf6c4b1803b9ba186189138a3061ff8623aa94c0abcf38af30a5bd48b",
+      "shards": [
+        {
+          "path": "data/parquet/connections/part-000000.parquet",
+          "bytes": 1238807,
+          "sha256": "7477ffcb18134b96ec51b5e536b8e97bb7fdf4daa0a3f482bb585ff702e83ec5",
+          "recorded_at": "2026-11-17T20:02:54.158131+00:00",
+          "rows": 164675
+        },
+        {
+          "path": "data/parquet/connections/part-000001.parquet",
+          "bytes": 1520640,
+          "sha256": "0f65b1b21404cc559d34df6ef4b1391f9e99c599cdae7dd7af70e717cee383df",
+          "recorded_at": "2026-11-17T20:02:54.287134+00:00",
+          "rows": 163627
+        },
+        {
+          "path": "data/parquet/connections/part-000002.parquet",
+          "bytes": 1658819,
+          "sha256": "dd5b38d08760f259f997d6618c4dcba2e02f0f833947ed68a2b326eb797029e8",
+          "recorded_at": "2026-11-17T20:02:54.395124+00:00",
+          "rows": 163864
+        },
+        {
+          "path": "data/parquet/connections/part-000003.parquet",
+          "bytes": 1526713,
+          "sha256": "12494ee1fa8f4aab3827ef20c47d675314e443be228af84c7ed497a41b61f01b",
+          "recorded_at": "2026-11-17T20:02:54.492211+00:00",
+          "rows": 163631
+        },
+        {
+          "path": "data/parquet/connections/part-000004.parquet",
+          "bytes": 1654955,
+          "sha256": "4c867caf67934ceeac2d15835bbaa85871384c42b4fbe90e8b620a3cc75ce63a",
+          "recorded_at": "2026-11-17T20:02:54.580855+00:00",
+          "rows": 163869
+        },
+        {
+          "path": "data/parquet/connections/part-000005.parquet",
+          "bytes": 1521764,
+          "sha256": "e8de009bdbb85640e0063e02ebdadf2181c4e201e47f9fd10232102bcf01f79c",
+          "recorded_at": "2026-11-17T20:02:54.676864+00:00",
+          "rows": 163646
+        },
+        {
+          "path": "data/parquet/connections/part-000006.parquet",
+          "bytes": 1662688,
+          "sha256": "dde695eb6ff6fdee4b3ff265e11901663f79a7b25731e79940228b72fb7b3e04",
+          "recorded_at": "2026-11-17T20:02:54.767119+00:00",
+          "rows": 163866
+        },
+        {
+          "path": "data/parquet/connections/part-000007.parquet",
+          "bytes": 1519480,
+          "sha256": "11ff788c7f42bc67e0aa2156db95eeed22aab0dabc2983e1b1eafba9afe7e839",
+          "recorded_at": "2026-11-17T20:02:54.862844+00:00",
+          "rows": 163631
+        },
+        {
+          "path": "data/parquet/connections/part-000008.parquet",
+          "bytes": 1658506,
+          "sha256": "0f607b1d46c2ca7ba0a54593243b53b3bb59a5cec0bfd2cf979369f6e7546fa5",
+          "recorded_at": "2026-11-17T20:02:54.947540+00:00",
+          "rows": 163860
+        },
+        {
+          "path": "data/parquet/connections/part-000009.parquet",
+          "bytes": 1522234,
+          "sha256": "80a848bd58dae0bbd909bf19fbcb750cca30d741fedda97d11b792305ce9fe1d",
+          "recorded_at": "2026-11-17T20:02:55.041284+00:00",
+          "rows": 163636
+        },
+        {
+          "path": "data/parquet/connections/part-000010.parquet",
+          "bytes": 1661223,
+          "sha256": "48931bee89129475e742c1520baab96753f6a01bb2228637902a50360fb466fd",
+          "recorded_at": "2026-11-17T20:02:55.149321+00:00",
+          "rows": 163855
+        },
+        {
+          "path": "data/parquet/connections/part-000011.parquet",
+          "bytes": 1493195,
+          "sha256": "324a3a7c418bfafeac755d13ed2956c6ced5dd784ee8f0246ec3de273da15ac9",
+          "recorded_at": "2026-11-17T20:02:55.256622+00:00",
+          "rows": 163644
+        },
+        {
+          "path": "data/parquet/connections/part-000012.parquet",
+          "bytes": 1649965,
+          "sha256": "29e19a97cbbe2f5fa47cb10e049fc95132b1f1716f7e32bbeba0c1d4427f378c",
+          "recorded_at": "2026-11-17T20:02:55.359331+00:00",
+          "rows": 163858
+        },
+        {
+          "path": "data/parquet/connections/part-000013.parquet",
+          "bytes": 1525924,
+          "sha256": "cce3c50a463678b75230b57d0e0753ced952c87c71ee7f32e8a15445aee61e77",
+          "recorded_at": "2026-11-17T20:02:55.498894+00:00",
+          "rows": 163633
+        },
+        {
+          "path": "data/parquet/connections/part-000014.parquet",
+          "bytes": 1657295,
+          "sha256": "ca53438da062c2316d9316d8423c8cafa1383325083bbd0e6c31fd28befc7af4",
+          "recorded_at": "2026-11-17T20:02:55.590894+00:00",
+          "rows": 163859
+        },
+        {
+          "path": "data/parquet/connections/part-000015.parquet",
+          "bytes": 1521200,
+          "sha256": "b1d411c860206afc5ec78905eb19b946c64f81b094f716bf76f5d6aa1c2433da",
+          "recorded_at": "2026-11-17T20:02:55.671897+00:00",
+          "rows": 163642
+        },
+        {
+          "path": "data/parquet/connections/part-000016.parquet",
+          "bytes": 1658545,
+          "sha256": "9a52dacc12e8f86e9458bea4e19fbc1021143c1c1b18e5864021d794e623ae9d",
+          "recorded_at": "2026-11-17T20:02:55.716895+00:00",
+          "rows": 163868
+        },
+        {
+          "path": "data/parquet/connections/part-000017.parquet",
+          "bytes": 1523903,
+          "sha256": "e9faa877da3fec9031e959cd3d07aad8a9033f0506dff72d22843ea0cae5cc51",
+          "recorded_at": "2026-11-17T20:02:55.777899+00:00",
+          "rows": 163626
+        },
+        {
+          "path": "data/parquet/connections/part-000018.parquet",
+          "bytes": 1668489,
+          "sha256": "bc3b50c19b690e718515d46c100ff5ba1fec12b03551755c9e1dac16dc45d550",
+          "recorded_at": "2026-11-17T20:02:55.826642+00:00",
+          "rows": 163884
+        },
+        {
+          "path": "data/parquet/connections/part-000019.parquet",
+          "bytes": 1524230,
+          "sha256": "10ec285913f80100c75df4edc561d1759a504a6519d8d709303c00378afa6512",
+          "recorded_at": "2026-11-17T20:02:55.881998+00:00",
+          "rows": 163643
+        },
+        {
+          "path": "data/parquet/connections/part-000020.parquet",
+          "bytes": 1665299,
+          "sha256": "1af28306de9b95a96a0acd61c3f655a41e25d70880f643984d40a1bb786b7cad",
+          "recorded_at": "2026-11-17T20:02:55.940998+00:00",
+          "rows": 163865
+        },
+        {
+          "path": "data/parquet/connections/part-000021.parquet",
+          "bytes": 1522938,
+          "sha256": "85becf67eda14d65c877b7c260a995b27109c35279ad029de924c9ac14fa4c0b",
+          "recorded_at": "2026-11-17T20:02:56.002486+00:00",
+          "rows": 163642
+        },
+        {
+          "path": "data/parquet/connections/part-000022.parquet",
+          "bytes": 1660076,
+          "sha256": "ee7ac7cfea629de257ff32731e18cb00a39c4964827f48aab6ae1a7706171dec",
+          "recorded_at": "2026-11-17T20:02:56.057084+00:00",
+          "rows": 163868
+        },
+        {
+          "path": "data/parquet/connections/part-000023.parquet",
+          "bytes": 1525332,
+          "sha256": "4e5d769b298d7310293bc166ec73c193542cb032ea0d53836f107b40dcba1ac8",
+          "recorded_at": "2026-11-17T20:02:56.127286+00:00",
+          "rows": 163633
+        },
+        {
+          "path": "data/parquet/connections/part-000024.parquet",
+          "bytes": 1669408,
+          "sha256": "4e10a7ef96e84fdf3af68745c52244efd3a5168e6bd6cb5afaa3ca87df93d9ca",
+          "recorded_at": "2026-11-17T20:02:56.177428+00:00",
+          "rows": 163864
+        },
+        {
+          "path": "data/parquet/connections/part-000025.parquet",
+          "bytes": 1528175,
+          "sha256": "a66af4e8684fdcfe763f2f03747e5db4f523234e60053d99a8934f4e27aefa68",
+          "recorded_at": "2026-11-17T20:02:56.239065+00:00",
+          "rows": 163637
+        },
+        {
+          "path": "data/parquet/connections/part-000026.parquet",
+          "bytes": 1666989,
+          "sha256": "6116c0f67b4339e8a9b8f60ace4ee41fbf963fd9869909019b61bd36d99f70a3",
+          "recorded_at": "2026-11-17T20:02:56.287062+00:00",
+          "rows": 163856
+        },
+        {
+          "path": "data/parquet/connections/part-000027.parquet",
+          "bytes": 1531884,
+          "sha256": "c4893a2ef17e0a7e800376ede04a7e8524b422ea1cd5ba1b559557f3dc089513",
+          "recorded_at": "2026-11-17T20:02:56.351860+00:00",
+          "rows": 163650
+        },
+        {
+          "path": "data/parquet/connections/part-000028.parquet",
+          "bytes": 1672616,
+          "sha256": "e933dcff6e9009aaccd72b5d313399202ee72593ec1b3570d202afcd0784efd4",
+          "recorded_at": "2026-11-17T20:02:56.399860+00:00",
+          "rows": 163856
+        },
+        {
+          "path": "data/parquet/connections/part-000029.parquet",
+          "bytes": 1541540,
+          "sha256": "bed91b8e76ba8f77aa9e9d53b1a7876a8eab08a5070aa2f823955e8909d7cf87",
+          "recorded_at": "2026-11-17T20:02:56.456661+00:00",
+          "rows": 163642
+        },
+        {
+          "path": "data/parquet/connections/part-000030.parquet",
+          "bytes": 1666967,
+          "sha256": "7292494077f44c8af88588d6c65095fce87ea7d51f47376c4cce3ab60a406fb5",
+          "recorded_at": "2026-11-17T20:02:56.507336+00:00",
+          "rows": 163845
+        },
+        {
+          "path": "data/parquet/connections/part-000031.parquet",
+          "bytes": 1537470,
+          "sha256": "33e27c97e3d0ba04944a5d51aa6cf7998a6df254b237c7378e1b8f069313682b",
+          "recorded_at": "2026-11-17T20:02:56.571130+00:00",
+          "rows": 163634
+        },
+        {
+          "path": "data/parquet/connections/part-000032.parquet",
+          "bytes": 996182,
+          "sha256": "7153af7505a77632984ae79c1a32c1ca730b7291064231afbb3e054f49448ce6",
+          "recorded_at": "2026-11-17T20:02:56.614428+00:00",
+          "rows": 101637
+        }
+      ],
+      "rows": 5342446,
+      "bytes": 51553451,
+      "sha256": "454d19f21a65d50c84506221accf3ded54f2bf1303f15accad1da1b5a9e45563",
+      "checksum_scope": "ordered shard records",
+      "created_at": "2026-11-17T20:02:56.620719+00:00",
+      "conversion_signature": "df98c4dc51eaf9d2c4f91c5d2098fa5040ded8eef66ce15d6622b32910887b89"
+    },
+    "parquet/consolidated_cell_types": {
+      "raw_sha256": "8aba246d71dc40361677493629972ce3883048c3d02010adc42bda22962a1a2d",
+      "shards": [
+        {
+          "path": "data/parquet/consolidated_cell_types/part-000000.parquet",
+          "bytes": 839546,
+          "sha256": "e5f85538cd3e08f3cc68b61195f34b468f0f64d61b079ef6655528616088232b",
+          "recorded_at": "2026-11-17T20:02:56.738142+00:00",
+          "rows": 138327
+        }
+      ],
+      "rows": 138327,
+      "bytes": 839546,
+      "sha256": "535863857beccd5aa476fc48e56dd55e182188811defbf91d055b334f94fa7f0",
+      "checksum_scope": "ordered shard records",
+      "created_at": "2026-11-17T20:02:56.744150+00:00",
+      "conversion_signature": "cd0e754513b14ac2d665bb56de2427aeda1188a142e80449f7ed90ca3f79939f"
+    },
+    "parquet/neurons": {
+      "raw_sha256": "6a6b3759e635f0f35a677d169052362131ec61d95f55919298b55c43fce4e719",
+      "shards": [
+        {
+          "path": "data/parquet/neurons/part-000000.parquet",
+          "bytes": 1367388,
+          "sha256": "73bb80503ed1a2ffc04686e1deb46729a8fab21c4a5f55b4f972b708cf75abf9",
+          "recorded_at": "2026-11-17T20:02:56.929476+00:00",
+          "rows": 135285
+        },
+        {
+          "path": "data/parquet/neurons/part-000001.parquet",
+          "bytes": 44143,
+          "sha256": "a2e68fdacec9ca5a3d60a3b43b8eeb5ce299b775523ea5f0cbd7dfdb198ec744",
+          "recorded_at": "2026-11-17T20:02:56.974837+00:00",
+          "rows": 3970
+        }
+      ],
+      "rows": 139255,
+      "bytes": 1411531,
+      "sha256": "e8dfaa71b9bdc26f32056dd9edad70d6e1e6b2eeed0e65ad12489c17a6cd21fc",
+      "checksum_scope": "ordered shard records",
+      "created_at": "2026-11-17T20:02:56.978831+00:00",
+      "conversion_signature": "5f35dd0823b374a4beb99ee4cb51b5fc3de7e9009db1291d36952b77aacdeb9b"
+    },
+    "parquet/classification": {
+      "raw_sha256": "e946b552f4056dfc977707be0674609832c3f64332a22d69dc0d9615e7aae663",
+      "shards": [
+        {
+          "path": "data/parquet/classification/part-000000.parquet",
+          "bytes": 721762,
+          "sha256": "4d98e25ef808bfd4fa0a046a6959a44686269c46c23259c8624af84cc10fc888",
+          "recorded_at": "2026-11-17T20:02:57.140094+00:00",
+          "rows": 116928
+        },
+        {
+          "path": "data/parquet/classification/part-000001.parquet",
+          "bytes": 139693,
+          "sha256": "81f43a6f7d27c30938837cc2888ccfa0fd7917c8e51f864967093fe8089279b7",
+          "recorded_at": "2026-11-17T20:02:57.169195+00:00",
+          "rows": 22327
+        }
+      ],
+      "rows": 139255,
+      "bytes": 861455,
+      "sha256": "25b2b1b7d719c0c54e17685a6c61b7dcd6d06ce2797de955f4abaf4d9a3bffad",
+      "checksum_scope": "ordered shard records",
+      "created_at": "2026-11-17T20:02:57.175047+00:00",
+      "conversion_signature": "9e956bcf321fd3f0bd9b2c16531b1e50a2e96b2c5454032927f55f3bcb7e94c0"
+    }
+  },
+  "sanity": null,
+  "toy_sanity": {
+    "status": "PASS",
+    "fixture": "SYNTHETIC_UNIT_TEST_ONLY",
+    "n_odors": 3,
+    "checks": [
+      "zero US leaves weights unchanged",
+      "only active synapse changes",
+      "sparse checkpoint round trip"
+    ],
+    "scope": "algebra and checkpoint plumbing; biological task engine remains unapproved",
+    "model_metrics_computed": false
+  },
+  "downloaded_raw_bytes": 71972794,
+  "parquet_bytes": 54665983,
+  "decisions_sha256": "d57a3c2e4c4dd9f24daec8547b040555c45ce4183373104cd5adcf74dba2e78f",
+  "model_metrics_computed": false
+}

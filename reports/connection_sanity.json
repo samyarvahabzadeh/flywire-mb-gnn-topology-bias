@@ -1,0 +1,23 @@
+{
+  "dataset": "fafb",
+  "snapshot": "783",
+  "remote_product": "connections_princeton",
+  "raw_sha256": "445f996bf6c4b1803b9ba186189138a3061ff8623aa94c0abcf38af30a5bd48b",
+  "header": [
+    "pre_root_id",
+    "post_root_id",
+    "neuropil",
+    "syn_count",
+    "nt_type"
+  ],
+  "rows": 5342446,
+  "unique_pre_root_id": 137518,
+  "unique_post_root_id": 130183,
+  "unique_endpoint_union": 138584,
+  "rows_syn_count_ge_5": 3754052,
+  "v630_reference": 2613129,
+  "difference_from_v630": 1140923,
+  "difference_percent": 43.66118167147508,
+  "status": "OBSERVED_NO_EXACT_V783_TOLERANCE_SUPPLIED",
+  "scope": "raw rows before pair aggregation; not a model metric"
+}

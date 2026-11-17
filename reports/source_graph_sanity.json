@@ -1,0 +1,60 @@
+{
+  "status": "SOURCE_GRAPH_BUILT_MB_SEMANTICS_PENDING",
+  "neurons": 139255,
+  "directed_pairs_syn_count_ge_5": 3732460,
+  "raw_rows_syn_count_ge_5": 3754052,
+  "pair_count_difference_from_v630_anchor": 1119331,
+  "csr_bytes": 45346544,
+  "self_loops": 0,
+  "isolated_neurons": 671,
+  "direction": "row=pre, column=post",
+  "threshold": 5,
+  "node_annotations": [
+    "node_index",
+    "root_id",
+    "group",
+    "nt_type",
+    "nt_type_score",
+    "da_avg",
+    "ser_avg",
+    "gaba_avg",
+    "glut_avg",
+    "ach_avg",
+    "oct_avg",
+    "primary_type",
+    "additional_type(s)",
+    "flow",
+    "super_class",
+    "class",
+    "sub_class",
+    "hemilineage",
+    "side",
+    "nerve"
+  ],
+  "edge_sign": "PENDING_HUMAN_NT_SIGN_POLICY",
+  "whole_brain_anchor": "approximately 139000; actual count reported without resizing",
+  "model_metrics_computed": false,
+  "provenance": {
+    "git_commit": "dcbb90f4bc2546dd99d497aa40dc5f3734b79488",
+    "config_sha256": "274b9b3753610b007ef58bfc5d2498d9b8a50d88d9b26cae8b1a52eaf681f6c1",
+    "source_sha256": "7da71cf72d80434ec80c09d5753e2e826533836597106408166098a3babbdc07",
+    "source_files": {
+      "configs/week1.yaml": "d50246c846ff27144f7a94098287af0dc0569c4e557f0a55236e4b74fb8faf3c",
+      "src/mbtopology/__init__.py": "9dce1df6bf64cf4e2165194e579e2ec5723782c4860c14f2c6515535c963b5c1",
+      "src/mbtopology/cli.py": "1dc2935bed25ec193dc14bf6f55408b12fa7eb59e57cb40dec1f1e8ef93d7cd3",
+      "src/mbtopology/graph.py": "d5d32d788461ad0809264ed319f805fa614ed04a2889864202478f360f57ae26",
+      "src/mbtopology/ingest.py": "cbf7f3c77001afb9eeb214d6583feffaa8458490cbef5499ae346da7d9884825",
+      "src/mbtopology/runtime.py": "936ef478823da6ee0bd093aed0470f0bcc3883bfc9a3ada25ffe676ee82c298e",
+      "src/mbtopology/toy.py": "4052afe59b6c889ec6f9671ebe86e4ed255078555aea6baa427d605a5ce90ba1",
+      "src/week1.py": "71d5d3859f404108c2c5b9d25886ec83edf93df3af95c9e74766f3a25c0e9987"
+    },
+    "packages": {
+      "polars": "2.1.0",
+      "pyarrow": "26.0.1",
+      "scipy": "1.17.1",
+      "numpy": "2.4.6",
+      "torch": "2.15.0+cpu",
+      "torch-geometric": "2.8.1"
+    }
+  }
+}

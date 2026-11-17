@@ -1,0 +1,18 @@
+fixture: SYNTHETIC_ENGINEERING_TEST_ONLY
+seed: 0
+n_odors: 3
+cs_plus: [0]
+cs_minus: [1, 2]
+schedule: [1, 0, 2, 0]
+weights_shape: [3, 2]
+all_synthetic_kc_mbon_pairs_present: true
+odor_patterns: one_hot
+avoidance_mbon_indices: [0]
+approach_mbon_indices: [1]
+eta: 0.05
+w_init: [0.8, 1.0]
+w_bounds: [0.0, 1.0]
+eligibility: instantaneous
+d_us: 1.0
+d_no_us: 0.0
+scientific_results: false

@@ -1,0 +1,26 @@
+dataset: fafb
+snapshot: '783'
+run_id: mb_bilateral_v783
+checkpoint_seconds: 900
+approval:
+  reviewed_by: researcher, explicit chat instructions
+  reviewed_at: '2026-11-17'
+  decision_ids: [W1-007, W1-008]
+source_manifest: data/graphs/source_full/MANIFEST.json
+scope: bilateral
+threshold: 5
+roles:
+  KC: {class_equals: Kenyon_Cell}
+  PN: {class_equals: ALPN}
+  MBON: {class_equals: MBON}
+  DAN:
+    type_column: primary_type
+    starts_with: [PAM, PPL1]
+    nt_column: nt_type
+    nt_equals: DA
+sanity:
+  whole_brain_expected: 139255
+  kc_minimum: 4400
+  kc_maximum: 5500
+  pn_kc_convergence: report_distribution_for_human_verification
+edge_sign_policy: pending_human_mapping

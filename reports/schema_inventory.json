@@ -1,0 +1,248 @@
+{
+  "dataset": "fafb",
+  "snapshot": "783",
+  "products": {
+    "connections": {
+      "header": [
+        "pre_root_id",
+        "post_root_id",
+        "neuropil",
+        "syn_count",
+        "nt_type"
+      ],
+      "raw_examples": [
+        [
+          "720575940625363947",
+          "720575940623224444",
+          "ME_L",
+          "12",
+          "GABA"
+        ],
+        [
+          "720575940630432382",
+          "720575940618518557",
+          "ME_L",
+          "67",
+          "ACH"
+        ],
+        [
+          "720575940627314521",
+          "720575940626337738",
+          "ME_L",
+          "10",
+          "GABA"
+        ],
+        [
+          "720575940620280405",
+          "720575940620204726",
+          "ME_L",
+          "15",
+          "ACH"
+        ],
+        [
+          "720575940636942447",
+          "720575940613789411",
+          "LA_L",
+          "1",
+          "GLUT"
+        ]
+      ],
+      "raw_sha256": "445f996bf6c4b1803b9ba186189138a3061ff8623aa94c0abcf38af30a5bd48b",
+      "bytes": 68456801,
+      "remote_product": "connections_princeton",
+      "resolved_resource": "https://storage.googleapis.com/flywire-data/codex/data/fafb/783/connections_princeton.csv.gz",
+      "raw_format": "gzip CSV; untyped text fields"
+    },
+    "consolidated_cell_types": {
+      "header": [
+        "root_id",
+        "primary_type",
+        "additional_type(s)"
+      ],
+      "raw_examples": [
+        [
+          "720575940599457990",
+          "T4b",
+          ""
+        ],
+        [
+          "720575940599763910",
+          "T5b",
+          ""
+        ],
+        [
+          "720575940600623020",
+          "Dm3q",
+          ""
+        ],
+        [
+          "720575940602564320",
+          "KCg-m",
+          ""
+        ],
+        [
+          "720575940602720940",
+          "JO-CA",
+          ""
+        ]
+      ],
+      "raw_sha256": "8aba246d71dc40361677493629972ce3883048c3d02010adc42bda22962a1a2d",
+      "bytes": 901707,
+      "remote_product": "consolidated_cell_types",
+      "resolved_resource": "https://storage.googleapis.com/flywire-data/codex/data/fafb/783/consolidated_cell_types.csv.gz",
+      "raw_format": "gzip CSV; untyped text fields"
+    },
+    "neurons": {
+      "header": [
+        "root_id",
+        "group",
+        "nt_type",
+        "nt_type_score",
+        "da_avg",
+        "ser_avg",
+        "gaba_avg",
+        "glut_avg",
+        "ach_avg",
+        "oct_avg"
+      ],
+      "raw_examples": [
+        [
+          "720575940596125868",
+          "LO.LOP",
+          "ACH",
+          "0.57",
+          "0.03",
+          "0.0",
+          "0.05",
+          "0.28",
+          "0.57",
+          "0.07"
+        ],
+        [
+          "720575940597856265",
+          "ME",
+          "ACH",
+          "0.85",
+          "0.01",
+          "0.0",
+          "0.03",
+          "0.04",
+          "0.85",
+          "0.07"
+        ],
+        [
+          "720575940597944841",
+          "ME.LO",
+          "ACH",
+          "0.82",
+          "0.02",
+          "0.0",
+          "0.01",
+          "0.05",
+          "0.82",
+          "0.09"
+        ],
+        [
+          "720575940598267657",
+          "ME",
+          "GABA",
+          "0.74",
+          "0.01",
+          "0.01",
+          "0.74",
+          "0.19",
+          "0.03",
+          "0.02"
+        ],
+        [
+          "720575940599333574",
+          "ME",
+          "ACH",
+          "0.61",
+          "0.02",
+          "0.0",
+          "0.13",
+          "0.13",
+          "0.61",
+          "0.11"
+        ]
+      ],
+      "raw_sha256": "6a6b3759e635f0f35a677d169052362131ec61d95f55919298b55c43fce4e719",
+      "bytes": 1679884,
+      "remote_product": "neurons",
+      "resolved_resource": "https://storage.googleapis.com/flywire-data/codex/data/fafb/783/neurons.csv.gz",
+      "raw_format": "gzip CSV; untyped text fields"
+    },
+    "classification": {
+      "header": [
+        "root_id",
+        "flow",
+        "super_class",
+        "class",
+        "sub_class",
+        "hemilineage",
+        "side",
+        "nerve"
+      ],
+      "raw_examples": [
+        [
+          "720575940599457990",
+          "intrinsic",
+          "optic",
+          "optic_lobe_intrinsic",
+          "t4_neuron",
+          "",
+          "right",
+          ""
+        ],
+        [
+          "720575940599763910",
+          "intrinsic",
+          "optic",
+          "optic_lobe_intrinsic",
+          "t5_neuron",
+          "",
+          "right",
+          ""
+        ],
+        [
+          "720575940600623020",
+          "intrinsic",
+          "optic",
+          "optic_lobe_intrinsic",
+          "distal_medulla",
+          "",
+          "right",
+          ""
+        ],
+        [
+          "720575940602309600",
+          "afferent",
+          "sensory_ascending",
+          "AN",
+          "SA_DMT_DMetaN",
+          "",
+          "right",
+          "CV"
+        ],
+        [
+          "720575940602564320",
+          "intrinsic",
+          "central",
+          "Kenyon_Cell",
+          "KCg",
+          "MBp4",
+          "right",
+          ""
+        ]
+      ],
+      "raw_sha256": "e946b552f4056dfc977707be0674609832c3f64332a22d69dc0d9615e7aae663",
+      "bytes": 934402,
+      "remote_product": "classification",
+      "resolved_resource": "https://storage.googleapis.com/flywire-data/codex/data/fafb/783/classification.csv.gz",
+      "raw_format": "gzip CSV; untyped text fields"
+    }
+  },
+  "missing_products": [],
+  "status": "COMPLETE"
+}
