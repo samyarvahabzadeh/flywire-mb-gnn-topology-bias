@@ -1,0 +1,21 @@
+{
+  "status": "PREPARED_NO_BIOLOGICAL_LEARNING_RUN",
+  "n_seeds": 30,
+  "n_odors": 8,
+  "kc_count": 5177,
+  "active_kcs_per_odor": 259,
+  "actual_active_fraction": 0.050028974309445626,
+  "readout_group_counts": {
+    "avoidance": 23,
+    "approach": 68,
+    "excluded_unknown": 5
+  },
+  "plastic_kc_mbon_edges": 26937,
+  "mbons_without_kc_inputs": 12,
+  "canonical_node_identity_sha256": "70c4cefd250d2186e52a62db601ff72e388664f481ab9147adc8df25e4218d9b",
+  "task_config_sha256": "c1ffe1c952ad9a94658adaea59334149f476d40dd3126a943209207419fb9a0e",
+  "odor_sets_sha256": "e05c41ffc0f4bc91376fb87d3296d1e33ecea224cae9b3cb658ad9681bb4a6a1",
+  "readout_sha256": "52e359c1b948e48fcea66a021c9c96307973074da6d135bd2a9245e0a73a1bea",
+  "seeds_sha256": "28578fd11254edba90213ffe4e58237e3784002e4a8ade08ac862ac05d67552b",
+  "model_metrics_computed": false
+}

@@ -10,8 +10,9 @@
 
 ## Active phase
 
-A. Complete task engine, frozen odor sets/readout identities, resumable state and toy tests.
-B. Implement GCN/GAT and directed degree-preserving null variants with invariant tests.
+A. COMPLETE: locked v1 task engine, frozen 30-seed/eight-odor sets, MBON readout identities,
+resumable weight/trial state and passing three-odor toy execution. No biological learning run.
+B. ACTIVE: implement GCN/GAT and directed degree-preserving null variants with invariant tests.
 C. Implement one-command 30-seed runner, parquet + git/config manifests, strict OSF gate.
 
 ## PROPOSED decisions
@@ -30,5 +31,8 @@ have been inspected.
 
 ## Validation
 
-Previous full suite: 17 passed. New MB selection test passed; a real-data Polars Object
-casting bug was fixed with a leading-unselected-node regression case (pending full rerun).
+Full suite: 23 passed. Real MB hard checks PASS. Task preparation created 30 frozen
+eight-odor sets (259 active KCs/odor); PROPOSED readout has 23 avoidance, 68 approach
+and 5 unassigned MBONs. Twelve MBONs have no KC inputs under threshold=5; retained
+with the predeclared zero-input output rule. Three-odor task mechanics/checkpoint test PASS.
+PREREGISTRATION remains unchanged; no model learning curves or biological scores inspected.

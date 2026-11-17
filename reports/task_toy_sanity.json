@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "fixture": "SYNTHETIC_ENGINEERING_TEST_ONLY",
+  "n_odors": 3,
+  "checks": [
+    "CS- leaves weights unchanged",
+    "US depresses only active KC synapses",
+    "weights remain in bounds",
+    "resumed state equals uninterrupted state",
+    "no model metrics or learning curve computed"
+  ],
+  "model_metrics_computed": false
+}

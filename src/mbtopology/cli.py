@@ -8,7 +8,7 @@ import shutil
 import sys
 from pathlib import Path
 
-from . import graph, ingest, mb_subset, toy
+from . import graph, ingest, mb_subset, task_engine, task_inputs, task_toy, toy
 from .runtime import (
     Exclusive,
     Fail,
@@ -122,6 +122,9 @@ def main(argv=None):
             "profile",
             "full-graph",
             "mb-subset",
+            "task-prepare",
+            "task-toy",
+            "task-run",
         ),
     )
     parser.add_argument("--root", type=Path, default=Path.cwd())
@@ -129,6 +132,8 @@ def main(argv=None):
     parser.add_argument("--product", action="append")
     parser.add_argument("--token-file", type=Path)
     parser.add_argument("--selection-config", type=Path)
+    parser.add_argument("--task-config", type=Path)
+    parser.add_argument("--seed", type=int, default=0)
     args = parser.parse_args(argv)
     root = args.root.resolve()
     config_path = args.config or root / "configs" / "week1.yaml"
@@ -179,6 +184,27 @@ def main(argv=None):
                 result = mb_subset.build(
                     root, args.selection_config or root / "configs/mb_bilateral.yaml", run
                 )
+            elif args.command == "task-prepare":
+                task_config = task_inputs.load_task(
+                    args.task_config or root / "configs/task_engine.yaml"
+                )
+                result = task_inputs.prepare(root, task_config, run)
+            elif args.command == "task-toy":
+                task_config = task_inputs.load_task(
+                    args.task_config or root / "configs/task_engine.yaml"
+                )
+                result = task_toy.run_toy(root, task_config, run)
+            elif args.command == "task-run":
+                task_config = task_inputs.load_task(
+                    args.task_config or root / "configs/task_engine.yaml"
+                )
+                engine = task_engine.run_biological(root, task_config, args.seed, run)
+                result = {
+                    "status": "COMPLETE",
+                    "trials": engine.state.cursor,
+                    "trials_to_criterion": engine.state.reached_at,
+                    "right_censored": engine.state.reached_at is None,
+                }
             elif args.command == "toy":
                 result = toy.toy_check(root, run)
             else:

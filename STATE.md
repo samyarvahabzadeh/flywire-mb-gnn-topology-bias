@@ -6,10 +6,12 @@ The real bilateral MB graph has been built and passed structural/count checks:
 data/graphs/mb_bilateral_v783/MANIFEST.json; reports/mb_sanity.json.
 KC=5177, PN=685, MBON=96, DAN=277, edges=89769.
 
-Current work: task_engine.yaml and task_toy.yaml exist; scientific engine implementation
-is not yet written. Implement sparse anti-Hebbian engine, deterministic frozen odors,
-OSF gate and resumable toy execution first. Then GCN/GAT, two directed null variants,
-and the 30-seed runner. Do not execute biological learning or real-vs-null comparisons.
+Phase A complete: task_inputs.py, task_engine.py and task_toy.py implemented; configs/
+odor_sets.json and mbon_readout.json frozen. Real input preparation and synthetic toy
+command completed; 23 tests passed. Read reports/task_inputs.json and task_toy_sanity.json.
+Next: implement GCN/GAT with matched parameter budgets, two degree-preserving directed
+null variants, and the 30-seed runner. Do not execute biological learning or real-vs-null
+comparisons. User locked task v1 and authorized PROPOSED defaults (weekly human veto).
 
 First resume command (validates current code only):
 
