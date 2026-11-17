@@ -1,5 +1,9 @@
 # Week-one progress — 2026-11-17 (Asia/Tehran)
 
+> Historical checkpoint, superseded on 2026-11-18 by the researcher's bilateral MB
+> approval and the completed overnight code phases. Current report: OVERNIGHT_REPORT.md;
+> current structural checks: mb_sanity.json; current progress: ../STATUS.md.
+
 Status: **full-source ingestion and sparse graph complete; MB selection and scientific
 acceptance remain incomplete pending human semantic decisions**. No model was trained,
 no learning curve or performance metric was inspected, and no hypothesis test was run.

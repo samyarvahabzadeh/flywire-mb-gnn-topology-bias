@@ -8,7 +8,7 @@ import pytest
 import yaml
 
 from mbtopology import task_engine, task_inputs, task_toy
-from mbtopology.runtime import Fail, read_json
+from mbtopology.runtime import Fail, atomic_json, fingerprint, read_json, sha256
 
 ROOT = Path(__file__).parents[1]
 
@@ -108,3 +108,27 @@ def test_osf_gate_precedes_biological_graph_loading(tmp_path, monkeypatch):
         task_engine.from_frozen(tmp_path, config, 0)
     with pytest.raises(Fail, match="OSF gate"):
         task_engine.run_biological(tmp_path, config, 0, None)
+
+
+def test_registration_evidence_binds_exact_task_and_bundle(tmp_path):
+    config, _ = configs()
+    document = tmp_path / "PREREGISTRATION.md"
+    document.write_text(
+        "Status: REGISTERED — SYNTHETIC UNIT FIXTURE\nOSF DOI: 10.17605/OSF.IO/TESTFIXTURE\n",
+        encoding="utf-8",
+    )
+    evidence = {
+        "osf_doi": "10.17605/OSF.IO/TESTFIXTURE",
+        "registered_at": "SYNTHETIC_FIXTURE_ONLY",
+        "preregistration_sha256": sha256(document),
+        "task_config_sha256": fingerprint(config),
+        "bundle_sha256": "SYNTHETIC_BUNDLE_ONLY",
+    }
+    atomic_json(tmp_path / "configs/osf_registration.json", evidence)
+    assert task_inputs.require_registered(tmp_path, config, "SYNTHETIC_BUNDLE_ONLY") == evidence
+    with pytest.raises(Fail, match="bundle differs"):
+        task_inputs.require_registered(tmp_path, config, "CHANGED_FIXTURE_BUNDLE")
+    changed = copy.deepcopy(config)
+    changed["plasticity"]["eta"] = 0.1
+    with pytest.raises(Fail, match="task configuration differs"):
+        task_inputs.require_registered(tmp_path, changed, "SYNTHETIC_BUNDLE_ONLY")

@@ -194,7 +194,7 @@ def prepare(root, config, run):
     return report
 
 
-def require_registered(root, config):
+def require_registered(root, config, bundle_sha256=None):
     root = Path(root)
     path = root / config["osf"]["preregistration_file"]
     text = path.read_text(encoding="utf-8")
@@ -221,4 +221,13 @@ def require_registered(root, config):
         and evidence.get("registered_at"),
         "OSF gate: local registration evidence and exact preregistration hash are required",
     )
+    require(
+        evidence.get("task_config_sha256") == fingerprint(config),
+        "OSF gate: task configuration differs from registered evidence",
+    )
+    if bundle_sha256 is not None:
+        require(
+            evidence.get("bundle_sha256") == bundle_sha256,
+            "OSF gate: scientific/code bundle differs from registered evidence",
+        )
     return evidence

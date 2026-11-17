@@ -8,6 +8,8 @@ import shutil
 import sys
 from pathlib import Path
 
+import yaml
+
 from . import graph, ingest, mb_subset, task_engine, task_inputs, task_toy, toy
 from .runtime import (
     Exclusive,
@@ -50,12 +52,25 @@ def environment(root):
     return report
 
 
-def status_report(root, config):
+def status_report(root, config, selection_path=None):
     root = Path(root)
     manifest = read_json(root / "data" / "MANIFEST.json", {"artifacts": {}})
-    sanity = read_json(root / "reports" / "sanity.json")
-    toy_result = read_json(root / "reports" / "toy_sanity.json")
-    graph_manifest = read_json(root / "data" / "graphs" / "MANIFEST.json")
+    selection_path = selection_path or root / "configs/mb_bilateral.yaml"
+    selection = (
+        yaml.safe_load(Path(selection_path).read_text(encoding="utf-8"))
+        if Path(selection_path).exists()
+        else None
+    )
+    graph_path = (
+        root / "data/graphs" / selection["run_id"] / "MANIFEST.json"
+        if selection
+        else root / "data/graphs/MANIFEST.json"
+    )
+    sanity = read_json(root / ("reports/mb_sanity.json" if selection else "reports/sanity.json"))
+    toy_result = read_json(root / "reports/task_toy_sanity.json") or read_json(
+        root / "reports/toy_sanity.json"
+    )
+    graph_manifest = read_json(graph_path)
     blockers = []
     for product in config["products"]:
         if f"raw/{product}" not in manifest["artifacts"]:
@@ -76,16 +91,33 @@ def status_report(root, config):
     if not graph_manifest or graph_manifest.get("status") != "PASS":
         blockers.append("completed graph manifest is missing")
     else:
-        if graph_manifest["provenance"]["config_sha256"] != fingerprint(config):
+        same_config = (
+            fingerprint(graph_manifest["config"]) == fingerprint(selection)
+            if selection
+            else graph_manifest["provenance"]["config_sha256"] == fingerprint(config)
+        )
+        if not same_config:
             blockers.append("graph config differs from current config")
         for key, item in graph_manifest["artifacts"].items():
             path = root / item["path"]
             if not path.exists() or sha256(path) != item["sha256"]:
                 blockers.append(f"graph checksum/missing-file failure for {key}")
     complete = not blockers
+    scientific_gate = "registration not checked"
+    if (root / "configs/task_engine.yaml").exists():
+        try:
+            task_inputs.require_registered(
+                root, task_inputs.load_task(root / "configs/task_engine.yaml")
+            )
+            scientific_gate = "registration evidence present"
+        except Fail as exc:
+            scientific_gate = str(exc)
     result = {
         "created_at": now(),
         "status": "PASS" if complete else "INCOMPLETE",
+        "scope": "WEEK1_ENGINEERING_SANITY_AND_SYNTHETIC_TOY_ONLY",
+        "scientific_execution_gate": scientific_gate,
+        "graph_manifest": graph_path.relative_to(root).as_posix(),
         "blockers": blockers,
         "data_artifacts": manifest["artifacts"],
         "sanity": sanity,
@@ -177,7 +209,12 @@ def main(argv=None):
             elif args.command == "profile":
                 result = ingest.connection_profile(root, config, run)
             elif args.command == "graph":
-                result = graph.build_graph(root, config, run)
+                selection_path = args.selection_config or root / "configs/mb_bilateral.yaml"
+                result = (
+                    mb_subset.build(root, selection_path, run)
+                    if selection_path.exists()
+                    else graph.build_graph(root, config, run)
+                )
             elif args.command == "full-graph":
                 result = graph.build_full_source(root, config, run)
             elif args.command == "mb-subset":
@@ -208,7 +245,7 @@ def main(argv=None):
             elif args.command == "toy":
                 result = toy.toy_check(root, run)
             else:
-                result = status_report(root, config)
+                result = status_report(root, config, args.selection_config)
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
     except Fail as exc:

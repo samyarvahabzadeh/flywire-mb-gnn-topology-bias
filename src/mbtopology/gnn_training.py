@@ -204,7 +204,7 @@ def train_loop(
 
 def run_registered(root, bundle, run_config, graph_manifest, device, progress, deadline):
     task_config, model_config, null_config = bundle["task"], bundle["models"], bundle["nulls"]
-    require_registered(root, task_config)
+    require_registered(root, task_config, bundle["bundle_sha256"])
     seed = run_config["seed"]
     random.seed(seed)
     np.random.seed(seed)

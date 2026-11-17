@@ -17,7 +17,8 @@ degree-preserving swap chains A/B, RNG/state checkpoints and synthetic invariant
 C. IMPLEMENTED AND TESTED: one-command 30-seed runner, per-run YAML and parquet +
 git/config/source/graph manifests; strict OSF gate, model/optimizer/RNG checkpoints,
 partial-trial safety, immutable plans, session-yield and verified completed-result reuse.
-Final real-data operation pending: plan-only generation, with zero model execution.
+Plan-only generation completed once; the final audited code bundle is being re-planned
+after the reporting/registration-hash safeguards. Zero model execution.
 
 ## PROPOSED decisions
 
@@ -31,11 +32,11 @@ have been inspected.
 - PREREGISTRATION is DRAFT: real biological learning and comparative runs remain disabled.
 - No changes to PREREGISTRATION.md, dense adjacency, new datasets or account actions tonight.
 - PN->KC distribution is reported; biological interpretation remains with the researcher.
-- E/I mapping for the sign-preserving null will be an explicit PROPOSED policy, not an inferred fact.
+- E/I and valence surrogate maps are explicitly PROPOSED and subject to weekly veto.
 
 ## Validation
 
-Full suite: 36 passed. Real MB hard checks PASS. Task preparation created 30 frozen
+Full suite: 38 passed. Real MB hard checks PASS. Task preparation created 30 frozen
 eight-odor sets (259 active KCs/odor); PROPOSED readout has 23 avoidance, 68 approach
 and 5 unassigned MBONs. Twelve MBONs have no KC inputs under threshold=5; retained
 with the predeclared zero-input output rule. Three-odor task mechanics/checkpoint test PASS.
@@ -45,3 +46,5 @@ architecture budgets, exact nodewise signed degree and bitwise resumed null RNG 
 No real null graph or real-vs-null model run was generated.
 Runner tests also verified 3660 unique planned jobs, per-run YAML immutability, orphan
 result recovery, result mismatch refusal, and a one-button OSF gate before graph loading.
+Registration evidence is hash-bound to the exact task configuration and scientific/code
+bundle; changed parameters cannot silently reuse a registration record.

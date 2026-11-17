@@ -31,8 +31,10 @@ the exact plan, and update the registration metadata themselves. This overnight 
 does not edit PREREGISTRATION.md or perform any account action.
 
 The gate expects a REGISTERED status and a valid OSF registration DOI in that document,
-plus `configs/osf_registration.json` containing the same `osf_doi`, `registered_at`, and
-the exact current file's `preregistration_sha256`. No such evidence is created tonight.
+plus `configs/osf_registration.json` containing the same `osf_doi`, `registered_at`,
+the exact current file's `preregistration_sha256`, `task_config_sha256` from task_inputs.json,
+and the accepted `bundle_sha256` from experiment_plan.json. The bundle also binds the
+environment lock and implementation files. No such evidence is created tonight.
 
 Once registration is complete, double-click `RUN_EXPERIMENT.cmd` on Windows, or execute:
 

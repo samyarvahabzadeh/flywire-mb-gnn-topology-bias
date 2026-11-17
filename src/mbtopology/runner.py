@@ -109,6 +109,9 @@ def load_bundle(root, experiment_path):
         "source_manifest_sha256": sha256(root / task["source_manifest"]),
         "parameter_budget": models.parameter_budget(model_config),
     }
+    bundle["environment_lock"] = {
+        name: sha256(root / name) for name in ("uv.lock", "pyproject.toml")
+    }
     bundle["bundle_sha256"] = fingerprint(bundle)
     return bundle
 
@@ -189,7 +192,7 @@ def make_plan(root, bundle, progress=None):
         },
     )
     try:
-        require_registered(root, bundle["task"])
+        require_registered(root, bundle["task"], bundle["bundle_sha256"])
         gate = "registration_evidence_present"
     except Fail as exc:
         gate = str(exc)
@@ -291,7 +294,7 @@ def execution_environment(root, bundle):
 
 def execute(root, bundle, frame, progress):
     root = Path(root)
-    registration = require_registered(root, bundle["task"])
+    registration = require_registered(root, bundle["task"], bundle["bundle_sha256"])
     os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
     torch.use_deterministic_algorithms(bundle["experiment"]["deterministic_algorithms"])
     device, environment = execution_environment(root, bundle)

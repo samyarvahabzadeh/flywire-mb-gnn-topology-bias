@@ -8,7 +8,7 @@ import pytest
 import torch
 import yaml
 
-from mbtopology import experiment_io, gnn_training, models, runner, task_inputs
+from mbtopology import cli, experiment_io, gnn_training, models, runner, task_inputs
 from mbtopology.runtime import Fail, read_json, sha256
 
 ROOT = Path(__file__).parents[1]
@@ -170,3 +170,35 @@ def test_one_button_execution_gate_cannot_load_graphs_or_train(tmp_path, monkeyp
     assert runner.main(["--execute", "--root", str(tmp_path)]) == 2
     assert "OSF gate" in capsys.readouterr().out
     assert prereg.read_bytes() == original and not (tmp_path / "results").exists()
+
+
+def test_week1_report_reads_approved_bilateral_artifacts(tmp_path):
+    from mbtopology.runtime import atomic_json
+
+    config = {"products": {}, "approval": {"reviewed_by": "SYNTHETIC_TEST_ONLY"}}
+    selection = {"run_id": "SYNTHETIC_MB", "scope": "bilateral"}
+    (tmp_path / "configs").mkdir()
+    (tmp_path / "configs/mb_bilateral.yaml").write_text(yaml.safe_dump(selection))
+    (tmp_path / "DECISIONS.md").write_text("SYNTHETIC_TEST_ONLY")
+    artifact = tmp_path / "data/fixture.bin"
+    artifact.parent.mkdir()
+    artifact.write_bytes(b"SYNTHETIC_ARTIFACT_ONLY")
+    atomic_json(
+        tmp_path / "data/graphs/SYNTHETIC_MB/MANIFEST.json",
+        {
+            "status": "PASS",
+            "config": selection,
+            "artifacts": {"fixture": {"path": "data/fixture.bin", "sha256": sha256(artifact)}},
+        },
+    )
+    atomic_json(
+        tmp_path / "reports/mb_sanity.json", {"status": "PASS", "scope": "SYNTHETIC_TEST_ONLY"}
+    )
+    atomic_json(
+        tmp_path / "reports/task_toy_sanity.json",
+        {"status": "PASS", "scope": "SYNTHETIC_TEST_ONLY"},
+    )
+    assert cli.status_report(tmp_path, config)["status"] == "PASS"
+    selection["scope"] = "changed_fixture"
+    (tmp_path / "configs/mb_bilateral.yaml").write_text(yaml.safe_dump(selection))
+    assert cli.status_report(tmp_path, config)["status"] == "INCOMPLETE"
