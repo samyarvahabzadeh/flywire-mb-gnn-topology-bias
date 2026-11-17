@@ -1,0 +1,16 @@
+version: experiment_v1
+dataset: fafb
+snapshot: '783'
+task_config: configs/task_engine.yaml
+models_config: configs/models.yaml
+nulls_config: configs/nulls.yaml
+run_matrix: fully_crossed_30_task_seeds_by_61_graphs_by_2_architectures
+results_dir: results
+plans_dir: plans
+run_configs_dir: configs/runs
+checkpoint_seconds: 900
+session_hours: 11.5
+require_osf: true
+deterministic_algorithms: true
+precision: float32
+decision_ids: [W2-P05, W2-P06]

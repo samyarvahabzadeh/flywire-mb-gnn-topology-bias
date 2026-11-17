@@ -14,7 +14,10 @@ A. COMPLETE: locked v1 task engine, frozen 30-seed/eight-odor sets, MBON readout
 resumable weight/trial state and passing three-odor toy execution. No biological learning run.
 B. COMPLETE: signed/magnitude-aware GCN/GAT, parameter-budget validation, exact directed
 degree-preserving swap chains A/B, RNG/state checkpoints and synthetic invariant tests.
-C. ACTIVE: one-command 30-seed runner, parquet + git/config manifests, strict OSF gate.
+C. IMPLEMENTED AND TESTED: one-command 30-seed runner, per-run YAML and parquet +
+git/config/source/graph manifests; strict OSF gate, model/optimizer/RNG checkpoints,
+partial-trial safety, immutable plans, session-yield and verified completed-result reuse.
+Final real-data operation pending: plan-only generation, with zero model execution.
 
 ## PROPOSED decisions
 
@@ -32,7 +35,7 @@ have been inspected.
 
 ## Validation
 
-Full suite: 31 passed. Real MB hard checks PASS. Task preparation created 30 frozen
+Full suite: 36 passed. Real MB hard checks PASS. Task preparation created 30 frozen
 eight-odor sets (259 active KCs/odor); PROPOSED readout has 23 avoidance, 68 approach
 and 5 unassigned MBONs. Twelve MBONs have no KC inputs under threshold=5; retained
 with the predeclared zero-input output rule. Three-odor task mechanics/checkpoint test PASS.
@@ -40,3 +43,5 @@ PREREGISTRATION remains unchanged; no model learning curves or biological scores
 Phase B validated synthetic forward/backward, identical seeded initialization, <=5%
 architecture budgets, exact nodewise signed degree and bitwise resumed null RNG trajectory.
 No real null graph or real-vs-null model run was generated.
+Runner tests also verified 3660 unique planned jobs, per-run YAML immutability, orphan
+result recovery, result mismatch refusal, and a one-button OSF gate before graph loading.

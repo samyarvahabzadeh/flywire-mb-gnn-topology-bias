@@ -91,6 +91,7 @@ def provenance(root, config):
         if p.is_file()
         and "__pycache__" not in p.parts
         and not any(part.endswith(".egg-info") for part in p.parts)
+        and p.relative_to(root).parts[:2] != ("configs", "runs")
     )
     sources = {p.relative_to(root).as_posix(): sha256(p) for p in files}
     try:

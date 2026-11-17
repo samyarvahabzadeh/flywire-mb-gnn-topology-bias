@@ -21,3 +21,6 @@ logs/
 *.partial
 dist/
 pytest-cache-files-*/
+plans/
+configs/runs/
+results/**

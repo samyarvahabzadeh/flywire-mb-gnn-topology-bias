@@ -31,6 +31,23 @@ def load_task(path):
         "CS labels must partition eight odors",
     )
     require(0 < config["cs_encoding"]["kc_sparsity"] <= 1, "invalid KC sparsity")
+    require(
+        config["cs_encoding"]["active_count_rule"] == "nearest_integer"
+        and config["cs_encoding"]["bit_generator"] == "PCG64",
+        "unsupported frozen odor encoding policy",
+    )
+    require(
+        config["plasticity"]["w_init"]["distribution"] == "uniform"
+        and config["plasticity"]["w_init"]["assignment"] == "seed_and_root_id_pair_hash"
+        and config["plasticity"]["post_activity"]
+        == "weighted_sum_divided_by_structural_kc_indegree",
+        "unsupported v1 initialization/activity policy",
+    )
+    require(
+        config["readout"]["normalization"] == "fixed_affine_half_shift"
+        and config["readout"]["discrimination"] == "balanced_cs_target_score_after_each_trial",
+        "unsupported frozen readout/scoring policy",
+    )
     return config
 
 
