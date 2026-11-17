@@ -14,7 +14,7 @@
       ],
       "exit_code": 0,
       "log": "logs/validation_0.log",
-      "completed_at": "2026-11-17T20:39:49.744636+00:00"
+      "completed_at": "2026-11-17T20:52:42.720493+00:00"
     },
     {
       "command": [
@@ -29,7 +29,7 @@
       ],
       "exit_code": 0,
       "log": "logs/validation_1.log",
-      "completed_at": "2026-11-17T20:39:49.908289+00:00"
+      "completed_at": "2026-11-17T20:52:42.865224+00:00"
     },
     {
       "command": [
@@ -45,16 +45,20 @@
       ],
       "exit_code": 0,
       "log": "logs/validation_2.log",
-      "completed_at": "2026-11-17T20:40:03.217450+00:00"
+      "completed_at": "2026-11-17T20:52:59.863628+00:00"
     }
   ],
   "provenance": {
-    "git_commit": "6361584bde86579b0c93559f4fcb4f498e64865a",
+    "git_commit": "b29afca14629d5241f2e4a60f691a6f1752ff343",
     "config_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-    "source_sha256": "2b70567c2288b66686b33e475a9799adb67fc572c61e2424692f932bbe08baf1",
+    "source_sha256": "ff5345ee204e516572bd70db47b37c0893b0c49b73589392f81052ec1c4bcb6d",
     "source_files": {
       "configs/mb_bilateral.yaml": "2bc22ef64db02ddf3f9402a4eb2d28bf8eadbeebe2e0cf0c381b3fc5e30b32e8",
-      "configs/seeds.txt": "aa2a825a4b21d8a3a98535ec490c903c34af63e22c6b6860d9b691463f495864",
+      "configs/mbon_readout.json": "52e359c1b948e48fcea66a021c9c96307973074da6d135bd2a9245e0a73a1bea",
+      "configs/models.yaml": "c73533298b12444cb250bc0d4741f041dacbe8b76590e7daca88b81a3b045bf8",
+      "configs/nulls.yaml": "aad5010d592ddecfdd0da0dab1c35bcf392f02645a7249c100ddb41d33f1e786",
+      "configs/odor_sets.json": "e05c41ffc0f4bc91376fb87d3296d1e33ecea224cae9b3cb658ad9681bb4a6a1",
+      "configs/seeds.txt": "28578fd11254edba90213ffe4e58237e3784002e4a8ade08ac862ac05d67552b",
       "configs/task_engine.yaml": "62c6bf2e3c00d2a44e4e0cd207d7ec7ffd10c15c299367493d6d7069a8199dd4",
       "configs/task_toy.yaml": "f4ae757ed82c7ccb362935955a769d5ad4a639f6f6ec408caf8813d84f589c07",
       "configs/week1.yaml": "d50246c846ff27144f7a94098287af0dc0569c4e557f0a55236e4b74fb8faf3c",
@@ -63,6 +67,8 @@
       "src/mbtopology/graph.py": "d5d32d788461ad0809264ed319f805fa614ed04a2889864202478f360f57ae26",
       "src/mbtopology/ingest.py": "cbf7f3c77001afb9eeb214d6583feffaa8458490cbef5499ae346da7d9884825",
       "src/mbtopology/mb_subset.py": "4dbce61daa49b0a61442ed394bd66f829112d37ba8b1df5a132ccb30008a081f",
+      "src/mbtopology/models.py": "0ae891742637f713853a58a906ac491f5fe1481dd20c49b703a844dd2b62d990",
+      "src/mbtopology/nulls.py": "6f985bb7835ef48851f17d8785a78893fc8ab32b528b2c4b179bbe3f5aaa7b7b",
       "src/mbtopology/runtime.py": "936ef478823da6ee0bd093aed0470f0bcc3883bfc9a3ada25ffe676ee82c298e",
       "src/mbtopology/task_engine.py": "0e7c261057bc2d4c4038bc31e0a0876264da17537a6d3b9252fc16cef21e6b34",
       "src/mbtopology/task_inputs.py": "231712cce6430207863feb09425640c399fd9d02c6185ee1eba09dc4857499f2",

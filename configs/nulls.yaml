@@ -1,0 +1,24 @@
+version: nulls_v1
+status: PROPOSED
+variants: [A, B]
+instances_per_variant: 30
+seed_list: configs/seeds.txt
+accepted_swaps_per_edge: 10
+max_attempts_per_accepted_swap: 100
+allow_self_loops: false
+allow_parallel_edges: false
+weight_transport: retain_weight_and_sign_with_presynaptic_edge_slot
+variant_A: preserve_exact_per_node_in_out_degree
+variant_B: preserve_exact_per_node_in_out_degree_within_each_sign_class
+unknown_sign_label: 0
+unknown_sign_message_multiplier: 1
+nt_signs:
+  ACH: 1
+  GABA: -1
+  GLUT: -1
+  DA: 0
+  SER: 0
+  OCT: 0
+  '': 0
+checkpoint_seconds: 900
+decision_ids: [W2-P03, W2-P04]

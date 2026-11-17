@@ -12,8 +12,9 @@
 
 A. COMPLETE: locked v1 task engine, frozen 30-seed/eight-odor sets, MBON readout identities,
 resumable weight/trial state and passing three-odor toy execution. No biological learning run.
-B. ACTIVE: implement GCN/GAT and directed degree-preserving null variants with invariant tests.
-C. Implement one-command 30-seed runner, parquet + git/config manifests, strict OSF gate.
+B. COMPLETE: signed/magnitude-aware GCN/GAT, parameter-budget validation, exact directed
+degree-preserving swap chains A/B, RNG/state checkpoints and synthetic invariant tests.
+C. ACTIVE: one-command 30-seed runner, parquet + git/config manifests, strict OSF gate.
 
 ## PROPOSED decisions
 
@@ -31,8 +32,11 @@ have been inspected.
 
 ## Validation
 
-Full suite: 23 passed. Real MB hard checks PASS. Task preparation created 30 frozen
+Full suite: 31 passed. Real MB hard checks PASS. Task preparation created 30 frozen
 eight-odor sets (259 active KCs/odor); PROPOSED readout has 23 avoidance, 68 approach
 and 5 unassigned MBONs. Twelve MBONs have no KC inputs under threshold=5; retained
 with the predeclared zero-input output rule. Three-odor task mechanics/checkpoint test PASS.
 PREREGISTRATION remains unchanged; no model learning curves or biological scores inspected.
+Phase B validated synthetic forward/backward, identical seeded initialization, <=5%
+architecture budgets, exact nodewise signed degree and bitwise resumed null RNG trajectory.
+No real null graph or real-vs-null model run was generated.

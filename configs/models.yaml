@@ -1,0 +1,24 @@
+version: models_v1
+status: PROPOSED
+architectures: [GCN, GAT]
+input_features: [KC_one_hot, PN_one_hot, MBON_one_hot, DAN_one_hot, KC_odor_drive]
+hidden_width: 128
+message_passing_depth: 2
+input_projection: true
+gat_heads: 4
+dropout: 0.0
+model_self_loop_weight: 1.0
+parameter_budget_relative_tolerance: 0.05
+optimizer:
+  name: Adam
+  learning_rate: 0.001
+  weight_decay: 0.0
+loss: binary_cross_entropy_on_fixed_valence_readout
+training_target: CS_plus_1_CS_minus_0
+us_as_input_feature: false
+edge_weight_policy: task_initialized_KC_MBON_else_source_synapse_count
+plasticity_integration: anti_hebbian_baseline_separate_GNN_fixed_edges_gradient_parameters
+probe_all_odors_after_each_trial: true
+device: auto
+checkpoint_seconds: 900
+decision_ids: [W2-P01, W2-P02]

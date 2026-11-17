@@ -1,0 +1,25 @@
+{
+  "scope": "SYNTHETIC_ENGINEERING_ONLY",
+  "parameter_budget": {
+    "counts": {
+      "GCN": 33921,
+      "GAT": 35201
+    },
+    "relative_difference": 0.03773473659385042,
+    "status": "PASS"
+  },
+  "null_variants": [
+    "A",
+    "B"
+  ],
+  "real_null_graphs_generated": 0,
+  "biological_model_runs": 0,
+  "checks": [
+    "synthetic forward/backward finite",
+    "seed initialization equality",
+    "exact per-node in/out degree",
+    "exact per-node signed degree for B",
+    "edge weight multiset unchanged",
+    "null RNG checkpoint bitwise resume"
+  ]
+}

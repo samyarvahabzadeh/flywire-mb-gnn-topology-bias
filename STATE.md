@@ -9,8 +9,9 @@ KC=5177, PN=685, MBON=96, DAN=277, edges=89769.
 Phase A complete: task_inputs.py, task_engine.py and task_toy.py implemented; configs/
 odor_sets.json and mbon_readout.json frozen. Real input preparation and synthetic toy
 command completed; 23 tests passed. Read reports/task_inputs.json and task_toy_sanity.json.
-Next: implement GCN/GAT with matched parameter budgets, two degree-preserving directed
-null variants, and the 30-seed runner. Do not execute biological learning or real-vs-null
+Phase B complete: models.py and nulls.py plus synthetic invariant/backward tests.
+Full suite now 31 passed. Next implement the one-command 30-seed runner and its model/
+optimizer/RNG checkpoints, per-run YAML and parquet manifests. Do not execute biological learning or real-vs-null
 comparisons. User locked task v1 and authorized PROPOSED defaults (weekly human veto).
 
 First resume command (validates current code only):
