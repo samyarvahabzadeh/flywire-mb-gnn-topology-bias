@@ -1,0 +1,24 @@
+{
+  "status": "PLAN_READY",
+  "planned_runs": 3660,
+  "seeds": 30,
+  "real_graphs": 1,
+  "null_graphs_per_variant": 30,
+  "architectures": [
+    "GCN",
+    "GAT"
+  ],
+  "parameter_budget": {
+    "counts": {
+      "GCN": 33921,
+      "GAT": 35201
+    },
+    "relative_difference": 0.03773473659385042,
+    "status": "PASS"
+  },
+  "bundle_sha256": "d418a415d07f03d1a019c95b2c952cf424bf327355eb5631bc5af38953d3d876",
+  "plan_path": "plans/d418a415d07f/plan.parquet",
+  "osf_gate": "FAIL: OSF gate: PREREGISTRATION is not registered; biological learning/comparisons are prohibited",
+  "executes_models": false,
+  "model_metrics_computed": false
+}
