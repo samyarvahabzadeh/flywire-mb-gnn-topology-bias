@@ -16,3 +16,16 @@ before scientific execution. Fetch the tag in a new Git checkout with
 
 Decision W3-P03 uses the public GitHub tag as the timestamped record. An OSF DOI is
 not a prerequisite under this decision.
+
+## Phase-2B amendment evidence
+
+- [GitHub annotated tag v1.1-prereg-amendment](https://github.com/samyarvahabzadeh/flywire-mb-gnn-topology-bias/tree/v1.1-prereg-amendment)
+- Tagged commit: `48e8f07cf6c2ee7702f8a4f535ff609c7e0e6dcd`
+- Annotated tag object: `c1f90a1961878982ef9e1334916b948e372d9573`
+- Tagger timestamp: `2026-11-18T21:25:23+03:30` (`2026-11-18T17:55:23Z`)
+- Public ref verified without credentials at `2026-11-18T17:56:06Z`.
+- SHA-256 of the tagged `AMENDMENT-01.md` Git blob (LF): `16ce4683a7664df610e84bca273010acb547f01aae71721b121a3e2c92b1dad9`
+
+The tag records the intervention selected by the phase-2B pilot. The original
+v1.0 bytes and the confirmatory runner and configurations remain in place.
+The main sweep is on hold pending separate researcher authorization.

@@ -2,10 +2,12 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
-Latest decision: the exploratory paired-cue pilot on seeds 1337 and 2026 failed
-its four-run criterion gate. See `results/paired_pilot/ab08efe09953/REPORT.md`.
-The amendment and post-amendment rate grid were not triggered. Keep the main
-sweep on hold. The proposed robustness injector is isolated from frozen training.
+Latest decision: phase 2A failed and phase 2B passed its four-run core gate.
+GraphSAGE-max passed B on both seeds as a supplemental check. Phase 2C was not
+triggered. See `results/phase2_pilot/0a368cfc455e/REPORT.md`, AMENDMENT-01.md
+and REGISTRATION_EVIDENCE.md. The public amendment tag records B's method.
+Keep the main sweep on hold. No confirmatory implementation, timing grid, or noise
+protocol was changed by the phase-2 pilot.
 
 Current research hold: the main sweep requires explicit researcher release after review
 of the seed-0 probe report and the three seed-1337 throughput measurements.
