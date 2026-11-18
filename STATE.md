@@ -2,13 +2,23 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+Phase 4 is complete. The real PN→KC binary pilot on seeds 1337 and 2026
+qualified GraphSAGE-max under the exploratory 2,000-trial rule. GCN and
+GraphSAGE-mean missed threshold. W3-S19 through W3-S21 document the protocol
+and decision. The main sweep remains on hold.
+
+First review command from the workspace root:
+`Get-Content -Encoding utf8 results/phase4_pilot/dac573617ca6/REPORT.md`.
+The matching Molab run directory contains the original Parquets and manifests.
+The launch log is `phase4-real-pn-pilot.log`.
+
 Phase 3 is complete. The real-graph held-out pilot from commit `afed8a6`
 exhausted 5,000 trials on all six jobs. W3-S18 records the failed gate.
 The v1.1 Ridge tag remains historical after the researcher's rejection.
 The cap and aggregator remain undecided. AMENDMENT-02 and its rate run
 require a qualifying pilot. The main sweep remains on hold.
 
-First review command from the workspace root:
+Phase-3 report:
 `Get-Content results/phase3_pilot/65106f95c81b/REPORT.md`.
 The matching Molab directory contains the original per-trial Parquets and
 manifests, and its launch log is `phase3-heldout-pilot.log`.

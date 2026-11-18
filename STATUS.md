@@ -1,5 +1,13 @@
 # Overnight status — 2026-11-18 (Asia/Tehran)
 
+## Phase-4 binary pilot with real PN→KC connections
+
+The six Molab runs completed and their manifests were verified. GraphSAGE-max
+passed on both pilot seeds. GCN and GraphSAGE-mean missed the threshold on both.
+See W3-S19 through W3-S21 and the local
+`results/phase4_pilot/dac573617ca6/REPORT.md` for held-out curves and exact
+per-trial KC counts. The main sweep awaits researcher approval.
+
 ## Phase-3 held-out pilot
 
 The phase-3 pilot did not qualify a cap or either GraphSAGE aggregator. The
