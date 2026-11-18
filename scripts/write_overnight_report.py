@@ -140,7 +140,15 @@ No automatic scientific exclusions or comparative statistics were run.
 PREREGISTRATION.md was not edited. Current SHA-256:
 `{sha256(root / "PREREGISTRATION.md")}`.
 All active files/data/cache/temporary work are on D. No new dataset or account action
-occurred during the overnight phases. The earlier Drive backup was not refreshed tonight.
+occurred during the original overnight phases. The researcher subsequently authorized
+Git origin pushes: codex/week1-night-build is published and subsequent 45-minute work
+checkpoints include both commit and push. The earlier Drive backup was not refreshed.
+
+Follow-up tests exercise the actual execute/results/cache path using temporary synthetic
+GCN/GAT fixtures and reject modified bundles that retain an old hash. The local DRAFT
+review packager also passed archive-scope tests. It packages the current code/configuration
+and planned jobs without dataset payloads or private files; it neither uploads nor
+registers OSF. Run `python scripts/prepare_osf_review.py` after `--plan` to build it.
 
 ## Local Git checkpoints
 

@@ -18,6 +18,19 @@ graphs, train biological models, produce learning curves or compare real/null re
 All scientific configuration, frozen inputs and implementation files contribute to the
 bundle hash. Changed inputs produce a separate plan; mismatched artifacts fail loudly.
 
+After generating the current plan, a local review archive can be prepared with:
+
+```powershell
+.venv\Scripts\python scripts/prepare_osf_review.py
+```
+
+The ZIP and its SHA-256 manifest are written under `dist/osf_review/<bundle>/`.
+It includes code, frozen configurations, structural checks, source manifests and all
+3660 run YAMLs. Dataset payloads, private files, learning outputs and live registration
+evidence are excluded. This command does not upload anything or register OSF. Its
+registration template is deliberately invalid until the researcher provides genuine
+registration details for the final accepted plan.
+
 The full crossed plan is 30 task/model seeds times (one real + 30 null-A + 30 null-B
 graphs) times GCN/GAT. Null graph instances are reused across seeds and architectures.
 The graph, role/NT annotations, frozen odor identities, readout groups and initialization

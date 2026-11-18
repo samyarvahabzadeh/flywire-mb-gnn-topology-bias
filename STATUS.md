@@ -41,7 +41,7 @@ null mixing budget, the fully crossed run matrix and deterministic/session execu
 
 ## Validation
 
-Full suite: 41 passed. Real MB hard checks PASS. Task preparation created 30 frozen
+Full suite: 43 passed. Real MB hard checks PASS. Task preparation created 30 frozen
 eight-odor sets (259 active KCs/odor); PROPOSED readout has 23 avoidance, 68 approach
 and 5 unassigned MBONs. Twelve MBONs have no KC inputs under threshold=5; retained
 with the predeclared zero-input output rule. Three-odor task mechanics/checkpoint test PASS.
@@ -57,6 +57,9 @@ Follow-up integration audit: the actual execute/results/cache path passed for te
 synthetic GCN/GAT fixtures. Mutable bundles are re-hashed before planning or execution;
 altering a model parameter while retaining an old hash now fails before model work.
 Production FlyWire execution remains zero. The code change requires a fresh plan hash.
+The local DRAFT review packager passed synthetic file-scope and archive tests. It
+excludes private files, raw/processed dataset payloads and live registration evidence.
+The archive will be built after regenerating the current immutable plan.
 
 ## Handoff
 

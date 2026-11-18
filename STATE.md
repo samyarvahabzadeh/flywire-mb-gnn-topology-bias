@@ -11,12 +11,13 @@ odor_sets.json and mbon_readout.json frozen. Real input preparation and syntheti
 command completed; 23 tests passed. Read reports/task_inputs.json and task_toy_sanity.json.
 Phase B complete: models.py and nulls.py plus synthetic invariant/backward tests.
 Phase C implementation now exists in runner.py, gnn_training.py and experiment_io.py;
-the latest synthetic suite PASSED (41 tests). All
+the latest synthetic suite PASSED (43 tests). All
 three authorized overnight phases are COMPLETE. Active plan is
 plans/d418a415d07f/plan.parquet, with 3660 verified per-run YAMLs under
 configs/runs/d418a415d07f/. This plan is now superseded by the follow-up bundle-integrity
 code change: regenerate --plan after the new code commit, then prepare the local OSF
-review package. The new GCN/GAT execute/cache integration tests use temporary explicitly
+review package with `python scripts/prepare_osf_review.py`. Its archive-scope tests pass.
+The new GCN/GAT execute/cache integration tests use temporary explicitly
 synthetic fixtures only. No biological results or real nulls were generated.
 Read reports/OVERNIGHT_REPORT.md and RUN_OVERNIGHT.md for the handoff.
 Do not execute biological learning or real-vs-null
