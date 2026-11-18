@@ -1,5 +1,39 @@
 # Prepared experiment code — 2026-11-18
 
+## Active protocol: v1.2 confirmatory sweep
+
+The active sweep is the 1,830-job GraphSAGE-max matrix in AMENDMENT-02.
+The historical commands below describe the earlier 3,660-job plan.
+
+The committed `configs/final_binary_sweep.json` fixes seeds 0 through 29,
+null instance IDs 0 through 29 in each variant, and all six named benchmark
+exclusions from `c3df5b2c7dfc`. The runner requires the adjudicated annotated
+`v1.2-prereg-amendment` ref and the tagged protocol hashes.
+
+From the Molab repository root, use the same authenticated Google Drive folder
+for every session. Enable the connection from the notebook's Remote storage
+panel. These are the plan-only, storage preflight, and execution modes:
+
+```bash
+PYTHONPATH=src:scripts python -u scripts/final_binary_sweep.py
+PYTHONPATH=src:scripts python -u scripts/final_binary_sweep.py --probe-storage --drive-prefix "$SWEEP_DRIVE_PREFIX"
+PYTHONPATH=src:scripts python -u scripts/final_binary_sweep.py --execute --drive-prefix "$SWEEP_DRIVE_PREFIX"
+```
+
+The execution mode requires verified write/read-back of a synthetic object
+before training. Each completed six-job batch has an immutable archive
+containing Parquets, job manifests, checkpoint pointers and model states.
+Its receipt is published only after verifying the stored archive bytes.
+Interrupted sessions resume with the same command and folder. The runner
+restores the graph bank and latest durable partial checkpoint as needed and
+skips only completed batch receipts. A controlled session stop requests a
+checkpoint by 11.5 hours.
+
+Use the `SWEEP` events for session progress, rate versus 163 jobs/hour, ETA,
+GPU health and retry counts. Final audit checks archive, Parquet and checkpoint
+hashes and records the aggregate censor count after all 1,830 job IDs are
+accounted for. The runner contains no comparative analysis.
+
 All commands run from `D:/icss/acc2/flywire-mb-gnn-topology-bias` or the equivalent
 persistent molab project directory. No new download or account action is required.
 

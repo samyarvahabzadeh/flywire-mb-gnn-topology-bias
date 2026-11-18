@@ -2,12 +2,20 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+The researcher released the v1.2 confirmatory sweep. The frozen plan lives in
+`configs/final_binary_sweep.json` (plan SHA-256
+`149776bcf90f9d2a9ce5455d1c6e9b2cf2b97f8f9e1d56d76b7828121f6ee23f`).
+The 1,830-job matrix and six benchmark exclusions are ready. Molab's GitHub
+dry-run lacks write access and its Remote storage list is empty. Await the
+researcher's Google Drive connection. Start with the storage preflight in
+RUN_OVERNIGHT.md before executing any confirmatory job.
+
 The locked real-only pilot passed at trials 968 and 879. Raw pilot results
 are under Molab `results/final_binary_pilot/fae650607b35/`. The public annotated
 `v1.2-prereg-amendment` was verified before the six-job engineering run, which
 is complete. Raw rate Parquets and manifests are in Molab
 `results/final_binary_rate/c3df5b2c7dfc/` and its notebook log is
-`final-binary-post-tag-rate.log`. The 1,830-job sweep remains on hold.
+`final-binary-post-tag-rate.log`.
 
 First review command from the workspace root:
 `Get-Content -Encoding utf8 results/final_binary_rate/c3df5b2c7dfc/REPORT.md`.

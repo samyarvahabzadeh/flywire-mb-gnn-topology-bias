@@ -1,5 +1,11 @@
 # Overnight status — 2026-11-18 (Asia/Tehran)
 
+## Authorized final sweep
+
+The researcher released the frozen v1.2 matrix. The runner and immutable
+batch receipt format are prepared. Confirmatory execution awaits a verified
+writable storage connection outside Molab. Completed jobs: 0/1,830.
+
 ## Final binary release pilot
 
 Both final real-only GraphSAGE-max runs met the rolling-mean rule before
@@ -8,7 +14,7 @@ replaces the historical Ridge method and is publicly frozen under
 `v1.2-prereg-amendment`. The six-job engineering batch completed after the
 tag, with exact early-stops and verified noise injection. See
 `results/final_binary_rate/c3df5b2c7dfc/REPORT.md` for the measured and
-full-cap Molab session estimates. The 1,830-job sweep awaits approval.
+full-cap Molab session estimates.
 
 ## Phase-4 binary pilot with real PN→KC connections
 
