@@ -1,5 +1,12 @@
 # Overnight status — 2026-11-18 (Asia/Tehran)
 
+## Phase-2 pilot decision
+
+A failed on both pilot seeds for GCN and GraphSAGE mean/max. B passed all six
+at 20 readout fits following 500 warm-up updates. C was not triggered. See
+`results/phase2_pilot/0a368cfc455e/REPORT.md` and AMENDMENT-01.md. The main
+sweep remains on hold.
+
 ## Paired-cue pilot
 
 All four real-graph pilots completed for seeds 1337 and 2026 with GCN and
