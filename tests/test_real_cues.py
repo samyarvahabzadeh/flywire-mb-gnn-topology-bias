@@ -3,7 +3,12 @@ import polars as pl
 import pytest
 from scipy import sparse
 
-from mbtopology.real_cues import check_projected_disjoint, cue_audit, project_cues
+from mbtopology.real_cues import (
+    check_projected_disjoint,
+    cue_audit,
+    project_cues,
+    robustness_drives,
+)
 
 
 def test_real_projection_and_true_indegree_are_distinct_from_synapse_count():
@@ -26,3 +31,26 @@ def test_real_projection_and_true_indegree_are_distinct_from_synapse_count():
     check_projected_disjoint(activity[:1], activity[1:])
     with pytest.raises(Exception, match="held-out KC drive duplicates"):
         check_projected_disjoint(activity, activity[:1])
+
+
+def test_positive_pn_noise_reaches_kcs_at_all_registered_levels():
+    config = {
+        "pairs_per_trial": 4,
+        "robustness": {"levels": [0.0, 0.1, 0.2, 0.3], "probe_trials": 3, "stream": 406},
+        "family_design": {
+            "layout_seed": 1337,
+            "pair_shared_pns": 16,
+            "family_specific_pns": 16,
+            "instance_variable_pns": 8,
+            "train_stream": 404,
+            "heldout_stream": 405,
+        },
+    }
+    adjacency = sparse.eye(96, dtype=np.int64, format="csr")
+    curves, audit = robustness_drives(adjacency, 1337, config)
+    assert list(curves) == [0.0, 0.1, 0.2, 0.3]
+    assert [values["pn_replacements_per_cue"] for values in audit.values()] == [0, 4, 8, 12]
+    assert all(np.all(matrix.getnnz(axis=1) == 40) for matrix in curves.values())
+    assert [values["projected_kc_rms_l2"] for values in audit.values()] == pytest.approx(
+        np.sqrt([0, 8, 16, 24])
+    )

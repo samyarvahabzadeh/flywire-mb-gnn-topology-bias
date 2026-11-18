@@ -7,6 +7,7 @@ import polars as pl
 from scipy import sparse
 
 from .cue_families import check_disjoint
+from .robustness_pilot import perturb_cue
 from .runtime import require
 
 
@@ -111,3 +112,50 @@ def cue_audit(patterns, root_ids, degree, weight, prefix):
         f"{prefix}_pn_kc_synapses": weights.tolist(),
         f"{prefix}_kc_indegree_histogram": histogram.reshape(trials, presentations, -1).tolist(),
     }
+
+
+def robustness_drives(adjacency, seed, config):
+    """Apply nested swaps in the real PN domain before projecting to KCs."""
+    scheme = config["robustness"]
+    levels = scheme["levels"]
+    require(levels == [0.0, 0.1, 0.2, 0.3], "unexpected binary robustness levels")
+    family = {**config["family_design"], "train_stream": scheme["stream"]}
+    (base, _), _, _ = binary_cues(
+        adjacency, seed, scheme["probe_trials"], config["pairs_per_trial"], family
+    )
+    connected_pns = np.flatnonzero(adjacency.getnnz(axis=1))
+    ordinal = np.searchsorted(connected_pns, base)
+    flat = ordinal.reshape(-1, ordinal.shape[-1])
+    drives = {}
+    audit = {}
+    for level in levels:
+        perturbed = np.stack(
+            [
+                perturb_cue(
+                    row,
+                    len(connected_pns),
+                    level,
+                    seed=seed,
+                    cue=scheme["stream"] * len(flat) + index,
+                )
+                for index, row in enumerate(flat)
+            ]
+        )
+        changed = np.array(
+            [
+                len(row) - np.intersect1d(row, changed_row).size
+                for row, changed_row in zip(flat, perturbed, strict=True)
+            ]
+        )
+        expected = int(np.floor(level * flat.shape[-1] + 0.5))
+        require(np.all(changed == expected), "PN perturbation did not preserve its dose")
+        patterns = connected_pns[perturbed].reshape(base.shape)
+        drive, _, _ = project_cues(adjacency, patterns)
+        drives[level] = drive
+        delta = drive - drives[0.0]
+        norm = float(np.sqrt(delta.multiply(delta).sum() / len(flat)))
+        require(
+            (norm > 0) == (level > 0), "robustness perturbation failed after PN-to-KC projection"
+        )
+        audit[str(level)] = {"pn_replacements_per_cue": expected, "projected_kc_rms_l2": norm}
+    return drives, audit

@@ -1,5 +1,12 @@
 # Overnight status — 2026-11-18 (Asia/Tehran)
 
+## Final binary release pilot
+
+Both final real-only GraphSAGE-max runs met the rolling-mean rule before
+1,500. Seed 1337 stopped at trial 968 and seed 2026 at 879. AMENDMENT-02
+replaces the historical Ridge method. The authorized next run is the
+six-job post-tag engineering batch. The 1,830-job sweep awaits approval.
+
 ## Phase-4 binary pilot with real PN→KC connections
 
 The six Molab runs completed and their manifests were verified. GraphSAGE-max
