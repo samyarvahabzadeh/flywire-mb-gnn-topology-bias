@@ -1,0 +1,14 @@
+scope: EXPLORATORY_REAL_PN_BINARY_PILOT_ONLY
+pilot_seeds: [1337, 2026]
+models: [GCN, GraphSAGE-max, GraphSAGE-mean]
+trials: 2000
+pairs_per_trial: 4
+threshold: 0.75
+checkpoint_seconds: 900
+family_design:
+  layout_seed: 1337
+  pair_shared_pns: 16
+  family_specific_pns: 16
+  instance_variable_pns: 8
+  train_stream: 404
+  heldout_stream: 405
