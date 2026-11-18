@@ -1,5 +1,12 @@
 # Overnight status — 2026-11-18 (Asia/Tehran)
 
+## Paired-cue pilot
+
+All four real-graph pilots completed for seeds 1337 and 2026 with GCN and
+GraphSAGE. None met the unchanged criterion. The prospective amendment and
+repeat throughput run were not triggered. See
+`results/paired_pilot/ab08efe09953/REPORT.md`. The main sweep remains on hold.
+
 ## Seed 1337 diagnostic ladder
 
 The first three predeclared gates passed on Molab. The condition for the fourth

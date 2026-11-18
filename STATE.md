@@ -2,6 +2,11 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+Latest decision: the exploratory paired-cue pilot on seeds 1337 and 2026 failed
+its four-run criterion gate. See `results/paired_pilot/ab08efe09953/REPORT.md`.
+The amendment and post-amendment rate grid were not triggered. Keep the main
+sweep on hold. The proposed robustness injector is isolated from frozen training.
+
 Current research hold: the main sweep requires explicit researcher release after review
 of the seed-0 probe report and the three seed-1337 throughput measurements.
 The checkpoint diagnosis and single-graph Adam pilot are recorded in the local
