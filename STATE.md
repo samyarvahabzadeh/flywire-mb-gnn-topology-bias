@@ -1,4 +1,4 @@
-# Resume state — 2026-11-18 (Asia/Tehran)
+# Resume state — 2026-11-19 (Asia/Tehran)
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
@@ -11,12 +11,23 @@ The Google Drive read-back preflight passed at `2026-11-18T20:07:52Z`. Session
 verified in session 1. The durable Drive folder is
 `root/FlyWireMB-v12-sweep/149776bcf90f`.
 
-First resume action: inspect only `SWEEP` engineering events in Molab
-`final-binary-confirmatory-sweep-session1.log` and check whether PID 42795 is
-still the writer. If a new session is required, use the same sweep code, plan
-and Drive prefix `root/FlyWireMB-v12-sweep` with the execution command in
-RUN_OVERNIGHT.md. The runner skips verified batch receipts and restores the
-latest durable partial state. Do not open Parquet trajectories during the sweep.
+The first sandbox was reclaimed. It no longer has the prior writer or scratch
+checkout. All 60 null graphs and 108 jobs in 18 batches survived on Drive.
+The latest receipt, `batch-0017.receipt.json`, was read back with archive
+SHA-256 `a75bb4a3a10c129d658f7d75d9c007631dc9760b612e936d2e3bc9327614a5cb`.
+By the last receipt, session 1 had 1,938.91 measured seconds and 200.5 jobs/hour
+versus the 163 benchmark. No retry or partial checkpoint receipt exists.
+
+The notebook was relaunched on the RTX PRO 6000. The pinned checkout is
+`/marimo/flywire-mb-v12-resume`, pinned commit `da7b9cb`, NumPy 2.5.5,
+PyG 2.8.1, Torch 2.11.0+cu130 and the same Drive prefix
+`root/FlyWireMB-v12-sweep`. Session 2 (`1795038123287148241`, PID 1172)
+read 108 durable jobs at launch. It saved batch `0018`, bringing the confirmed
+total to 114/1,830 at `2026-11-18T21:44:23Z` with zero retries.
+First resume action: inspect only `SWEEP` events from
+`/marimo/flywire-mb-v12-resume/final-binary-confirmatory-sweep-session2.log`.
+Launch the frozen execution command only when no writer is active.
+The runner restores the graph bank and skips committed Drive receipts.
 
 The locked real-only pilot passed at trials 968 and 879. Raw pilot results
 are under Molab `results/final_binary_pilot/fae650607b35/`. The public annotated
