@@ -19,10 +19,12 @@ from .experiment_io import (
 from .nulls import signs_from_nt
 from .registration import require_registered
 from .runtime import fingerprint, read_json, require, sha256
-from .task_inputs import initial_weights, load_source, node_identity, schedule
+from .task_inputs import initial_weights, load_source, make_patterns, node_identity, schedule
 
 
-def frozen_inputs(root, task_config, graph_manifest, seed, null_config, model_config, device):
+def frozen_inputs(
+    root, task_config, graph_manifest, seed, null_config, model_config, device, *, pilot=False
+):
     root = Path(root)
     _, nodes, matrix = load_source(root, graph_manifest)
     report = read_json(root / "reports/task_inputs.json")
@@ -42,7 +44,11 @@ def frozen_inputs(root, task_config, graph_manifest, seed, null_config, model_co
         require(sha256(root / path) == report[key], "FAIRNESS FAIL: frozen input hash changed")
     odors = read_json(root / task_config["cs_encoding"]["odor_sets"])
     readout = read_json(root / task_config["readout"]["frozen_membership"])
-    require(str(seed) in odors["seeds"], "seed outside frozen input set")
+    require(
+        (pilot and seed == 1337 and str(seed) not in odors["seeds"])
+        or (not pilot and str(seed) in odors["seeds"]),
+        "invalid seed for pilot or frozen input set",
+    )
     role_values = nodes["role"].to_list()
     role_map = {"KC": 0, "PN": 1, "MBON": 2, "DAN": 3}
     require(set(role_values) <= set(role_map), "unknown model role")
@@ -70,6 +76,16 @@ def frozen_inputs(root, task_config, graph_manifest, seed, null_config, model_co
         len(nodes),
         model_config["model_self_loop_weight"],
     )
+    patterns = odors["seeds"].get(str(seed))
+    if pilot:
+        encoding = task_config["cs_encoding"]
+        patterns = make_patterns(
+            len(kc),
+            task_config["task"]["n_odors"],
+            encoding["kc_sparsity"],
+            seed,
+            encoding["odor_seed_stream"],
+        )
     return {
         "graph": graph,
         "roles": torch.tensor(role_ids, device=device),
@@ -77,9 +93,7 @@ def frozen_inputs(root, task_config, graph_manifest, seed, null_config, model_co
         "mbon": torch.tensor(mbon, device=device),
         "avoidance": torch.tensor(readout["avoidance_indices"], device=device),
         "approach": torch.tensor(readout["approach_indices"], device=device),
-        "patterns": [
-            torch.tensor(x, dtype=torch.long, device=device) for x in odors["seeds"][str(seed)]
-        ],
+        "patterns": [torch.tensor(x, dtype=torch.long, device=device) for x in patterns],
         "schedule": schedule(task_config, seed),
         "input_report": report,
     }
