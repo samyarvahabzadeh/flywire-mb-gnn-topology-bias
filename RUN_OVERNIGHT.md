@@ -3,7 +3,7 @@
 All commands run from `D:/icss/acc2/flywire-mb-gnn-topology-bias` or the equivalent
 persistent molab project directory. No new download or account action is required.
 
-## Safe checks before OSF
+## Non-training checks
 
 ```powershell
 .venv\Scripts\python scripts/validate.py
@@ -18,46 +18,30 @@ graphs, train biological models, produce learning curves or compare real/null re
 All scientific configuration, frozen inputs and implementation files contribute to the
 bundle hash. Changed inputs produce a separate plan; mismatched artifacts fail loudly.
 
-After generating the current plan, a local review archive can be prepared with:
-
-```powershell
-.venv\Scripts\python scripts/prepare_osf_review.py
-```
-
-The ZIP and its SHA-256 manifest are written under `dist/osf_review/<bundle>/`.
-It includes code, frozen configurations, structural checks, source manifests and all
-3660 run YAMLs. Dataset payloads, private files, learning outputs and live registration
-evidence are excluded. This command does not upload anything or register OSF. Its
-registration template is deliberately invalid until the researcher provides genuine
-registration details for the final accepted plan.
-
 The full crossed plan is 30 task/model seeds times (one real + 30 null-A + 30 null-B
 graphs) times GCN/GAT. Null graph instances are reused across seeds and architectures.
 The graph, role/NT annotations, frozen odor identities, readout groups and initialization
 policy have explicit fairness checks. Source graph files are never modified by training.
 
-## After the researcher registers OSF
+## Public tag and execution
 
-The runner cannot bypass the registration gate. The researcher must reconcile the DRAFT
-with accepted DECISIONS (including v1 scalar DAN and trial-cap/censoring language), register
-the exact plan, and update the registration metadata themselves. This overnight task
-does not edit PREREGISTRATION.md or perform any account action.
+W3-P03 replaced the OSF requirement with the public annotated GitHub tag.
+See [REGISTRATION_EVIDENCE.md](REGISTRATION_EVIDENCE.md) for the tag and hashes.
+The gate checks the public ref without credentials, the local tag target, and the
+exact analysis plan bytes. A new Git checkout can fetch the tag with
+`git fetch origin tag v1.0-prereg`.
 
-The gate expects a REGISTERED status and a valid OSF registration DOI in that document,
-plus `configs/osf_registration.json` containing the same `osf_doi`, `registered_at`,
-the exact current file's `preregistration_sha256`, `task_config_sha256` from task_inputs.json,
-and the accepted `bundle_sha256` from experiment_plan.json. The bundle also binds the
-environment lock and implementation files. No such evidence is created tonight.
-
-Once registration is complete, double-click `RUN_EXPERIMENT.cmd` on Windows, or execute:
+For the full experiment, double-click `RUN_EXPERIMENT.cmd` on Windows, or execute:
 
 ```bash
 python src/run_experiment.py --execute
 ```
 
 In marimo, a single subprocess call to that `.py` entry point provides the same launch.
-The Windows launcher currently exits through the OSF gate while the document is DRAFT.
-The code does not expose a force-run or skip-registration option.
+For an engineering smoke job on this checkout, run
+`python scripts/smoke_experiment.py real` or substitute `A` or `B`.
+Each job runs two GCN trials on CPU at seed 0. Its independent checkpoints and
+resource manifest preserve the full experiment's starting state.
 
 ## Checkpoint and resume
 
@@ -80,7 +64,7 @@ An orphan parquet is accepted only if it equals recovered checkpoint history.
 
 ## Explicit modeling proposals
 
-Review DECISIONS W1-P06..P09 and W2-P01..P06 before registering. In particular, readout
+Review DECISIONS W1-P06..P09 and W2-P01..P06 before interpreting results. In particular, readout
 NT groups are a coarse surrogate; E/I sign labels are a separate PROPOSED surrogate.
 The frozen task anti-Hebbian baseline and gradient-trained GCN/GAT are distinct paths,
 as described in EXPERIMENT_SPEC. GNNs receive cue features, never a direct US/target input.

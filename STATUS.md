@@ -1,5 +1,13 @@
 # Overnight status — 2026-11-18 (Asia/Tehran)
 
+## Current status — W3-P03
+
+The public annotated tag `v1.0-prereg` supersedes the OSF gate described in the
+historical status below. The tag, working SHA-256 and Git blob were verified before
+all three two-trial GCN smoke jobs. All passed. See REGISTRATION_EVIDENCE.md,
+reports/W3_SMOKE.md and RUN_OVERNIGHT.md. The updated plan has 3660 jobs under
+`plans/4bfaf9e768c6/`. All 43 engineering tests passed. The full comparison has not run.
+
 ## Completed
 
 - Frozen fafb/v783 sources downloaded and converted to parquet; full CSR/PyG graph built.

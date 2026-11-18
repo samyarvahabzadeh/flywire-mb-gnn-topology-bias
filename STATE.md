@@ -2,6 +2,14 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+W3-P03 update: the public GitHub tag `v1.0-prereg` is now the execution gate.
+The OSF-dependent instructions below record the earlier state. Three GCN smoke
+jobs at seed 0 passed. See REGISTRATION_EVIDENCE.md and reports/W3_SMOKE.md.
+Current scientific bundle: `4bfaf9e768c6b4ade3874311652dc5aa928aaf30d03bce0eb0078f33ad8907ed`.
+Active plan: `plans/4bfaf9e768c6/plan.parquet` (3660 jobs, public gate passed).
+The full experiment is ready through `python src/run_experiment.py --execute`.
+Smoke files live in separate directories and the full experiment starts fresh.
+
 The real bilateral MB graph has been built and passed structural/count checks:
 data/graphs/mb_bilateral_v783/MANIFEST.json; reports/mb_sanity.json.
 KC=5177, PN=685, MBON=96, DAN=277, edges=89769.

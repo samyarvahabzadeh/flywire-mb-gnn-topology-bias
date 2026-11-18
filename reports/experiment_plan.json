@@ -16,9 +16,9 @@
     "relative_difference": 0.03773473659385042,
     "status": "PASS"
   },
-  "bundle_sha256": "d26847e31f27f84e5435db36b61c5398957f5455688afea43e461180d54b9e4e",
-  "plan_path": "plans/d26847e31f27/plan.parquet",
-  "osf_gate": "FAIL: OSF gate: PREREGISTRATION is not registered; biological learning/comparisons are prohibited",
+  "bundle_sha256": "4bfaf9e768c6b4ade3874311652dc5aa928aaf30d03bce0eb0078f33ad8907ed",
+  "plan_path": "plans/4bfaf9e768c6/plan.parquet",
+  "registration_gate": "registration_evidence_present",
   "executes_models": false,
   "model_metrics_computed": false
 }

@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "scope": "ENGINEERING_SMOKE",
+  "completed_at": "2026-11-18T08:26:30.819626+00:00",
+  "git_commit": "16a03cff5579a802b2cae780c98f56ae87caae40",
+  "config_sha256": "a70bfbfa1066895bcfffd2ae110711f0d0ba361ef68cd98cec14e320e1f989e7",
+  "bundle_sha256": "4bfaf9e768c6b4ade3874311652dc5aa928aaf30d03bce0eb0078f33ad8907ed",
+  "registration": {
+    "type": "public_github_annotated_tag",
+    "tag": "v1.0-prereg",
+    "tag_url": "https://github.com/samyarvahabzadeh/flywire-mb-gnn-topology-bias/tree/v1.0-prereg",
+    "tag_object": "92b818d2ccd9c3c2c5f4a3bc74408d279659f05e",
+    "tagged_commit": "5e2c0b384252c1415f4e0fd61fd973aa28fcdb0a",
+    "tagged_at": "2026-11-18T11:51:10+03:30",
+    "preregistration_sha256": "3fc010a514841e6c1aef9e4f5dc016f94c974197fbdc91e3d307534f5e727be6",
+    "tagged_blob_sha256": "9ec100c10124c483855513ff119d154a70dd712bfd6fa7c0a0f69d0e61942d82",
+    "checkout_sha256": "3fc010a514841e6c1aef9e4f5dc016f94c974197fbdc91e3d307534f5e727be6"
+  },
+  "run_id": "GCN-nullA-00-seed00",
+  "graph_manifest": "data/smoke_nulls/4bfaf9e768c6/A-00/MANIFEST.json",
+  "seed": 0,
+  "condition": "A",
+  "architecture": "GCN",
+  "trials_completed": 2,
+  "graph_preparation_seconds": 11.912319700000808,
+  "wall_seconds": 27.767482199997175,
+  "peak_ram_bytes": 524500992,
+  "device": "cpu",
+  "torch_threads": 4
+}

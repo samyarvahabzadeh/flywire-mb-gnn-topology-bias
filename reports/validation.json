@@ -14,7 +14,7 @@
       ],
       "exit_code": 0,
       "log": "logs/validation_0.log",
-      "completed_at": "2026-11-18T06:30:29.600584+00:00"
+      "completed_at": "2026-11-18T08:33:12.087981+00:00"
     },
     {
       "command": [
@@ -29,7 +29,7 @@
       ],
       "exit_code": 0,
       "log": "logs/validation_1.log",
-      "completed_at": "2026-11-18T06:30:29.754032+00:00"
+      "completed_at": "2026-11-18T08:33:12.285527+00:00"
     },
     {
       "command": [
@@ -45,15 +45,15 @@
       ],
       "exit_code": 0,
       "log": "logs/validation_2.log",
-      "completed_at": "2026-11-18T06:31:48.673640+00:00"
+      "completed_at": "2026-11-18T08:34:59.739737+00:00"
     }
   ],
   "provenance": {
-    "git_commit": "e56cd5dc664b12fefdc4dc81feb0c5835757df53",
+    "git_commit": "16a03cff5579a802b2cae780c98f56ae87caae40",
     "config_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-    "source_sha256": "1b2c399cc22281b2ba53b0a8d908d7c9816cede1d64274492ead9b814db4e239",
+    "source_sha256": "f75eb4b1da3f40e8a1c40af16d6b82d742fb45d6496256616d61b3274e94c817",
     "source_files": {
-      "configs/experiment.yaml": "e0d79f0c213bd18eb84f90299bc24bd4e4c54425993c07e800da6b0ca16ccbc7",
+      "configs/experiment.yaml": "66bd8aa718c7093228d77182dbd9f5b485f008e7633fb6a6da499d212e32e81d",
       "configs/mb_bilateral.yaml": "2bc22ef64db02ddf3f9402a4eb2d28bf8eadbeebe2e0cf0c381b3fc5e30b32e8",
       "configs/mbon_readout.json": "52e359c1b948e48fcea66a021c9c96307973074da6d135bd2a9245e0a73a1bea",
       "configs/models.yaml": "c73533298b12444cb250bc0d4741f041dacbe8b76590e7daca88b81a3b045bf8",
@@ -64,18 +64,19 @@
       "configs/task_toy.yaml": "f4ae757ed82c7ccb362935955a769d5ad4a639f6f6ec408caf8813d84f589c07",
       "configs/week1.yaml": "d50246c846ff27144f7a94098287af0dc0569c4e557f0a55236e4b74fb8faf3c",
       "src/mbtopology/__init__.py": "9dce1df6bf64cf4e2165194e579e2ec5723782c4860c14f2c6515535c963b5c1",
-      "src/mbtopology/cli.py": "19179efc0ebd151ebfb21abcabcbf41233feded55b6db583a65c9d9d91dcce58",
+      "src/mbtopology/cli.py": "f9223a06840471562e6c1c09fc3df57b5a249b0b63058c97e71d1fd3893802a2",
       "src/mbtopology/experiment_io.py": "b9da6bf5e3eaad3072e95dfc967a81dfd440cfa5c25a85c91abe867c1f544ff8",
-      "src/mbtopology/gnn_training.py": "81e9f45dca3bc2cdf616da58378d8c9185c7cc53e87936fb9bb91dd6594e6c3d",
+      "src/mbtopology/gnn_training.py": "ab4c8f512ed942c98cca24d09c8fc111ae219f8acb1473ba37ff546e75d2b36c",
       "src/mbtopology/graph.py": "d5d32d788461ad0809264ed319f805fa614ed04a2889864202478f360f57ae26",
       "src/mbtopology/ingest.py": "cbf7f3c77001afb9eeb214d6583feffaa8458490cbef5499ae346da7d9884825",
       "src/mbtopology/mb_subset.py": "4dbce61daa49b0a61442ed394bd66f829112d37ba8b1df5a132ccb30008a081f",
       "src/mbtopology/models.py": "0ae891742637f713853a58a906ac491f5fe1481dd20c49b703a844dd2b62d990",
       "src/mbtopology/nulls.py": "6f985bb7835ef48851f17d8785a78893fc8ab32b528b2c4b179bbe3f5aaa7b7b",
-      "src/mbtopology/runner.py": "5959a8928e07977ba4c6b54874f48f5dbaa4dbb211e91e30ec8361ce17a8f137",
+      "src/mbtopology/registration.py": "635ee49d9404b246dc88d45433d1e99ee831430a4562e1e49b9f38a642086fdb",
+      "src/mbtopology/runner.py": "20c183d140c93105c3cfb088eeaf11011812ce2bcb079de2e2bca7ce53ddbff2",
       "src/mbtopology/runtime.py": "8b73101bc0624c8fd426d58c748e6bf8c37977bb0638e34629098fd5a0b81b68",
-      "src/mbtopology/task_engine.py": "0e7c261057bc2d4c4038bc31e0a0876264da17537a6d3b9252fc16cef21e6b34",
-      "src/mbtopology/task_inputs.py": "8b5a542ece45ee7e1fef8e51d15951d15817ba30df29846dd4ffefa3364d4e7d",
+      "src/mbtopology/task_engine.py": "1c4d4c49196df7c476ad4c3e086507fe1c496e13b3fe3bf9294ef634024406e9",
+      "src/mbtopology/task_inputs.py": "6b2bf737b3b68a5ec53b72b52ff6c5bce2b7250751d23a7432a0343141829cb4",
       "src/mbtopology/task_toy.py": "b46951dd3a7dd5e5c28dd4060385bad3b8eddc531a7cb57731ad3ee677f70bd0",
       "src/mbtopology/toy.py": "4052afe59b6c889ec6f9671ebe86e4ed255078555aea6baa427d605a5ce90ba1",
       "src/run_experiment.py": "a07fd740201d5e6543b8a8b6ec261ddd555a25a44cacf85c927fbb6e06f7bc3d",
