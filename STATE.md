@@ -11,10 +11,13 @@ odor_sets.json and mbon_readout.json frozen. Real input preparation and syntheti
 command completed; 23 tests passed. Read reports/task_inputs.json and task_toy_sanity.json.
 Phase B complete: models.py and nulls.py plus synthetic invariant/backward tests.
 Phase C implementation now exists in runner.py, gnn_training.py and experiment_io.py;
-the final synthetic suite PASSED (38 tests). Audited code committed at e31c469. All
+the latest synthetic suite PASSED (41 tests). All
 three authorized overnight phases are COMPLETE. Active plan is
 plans/d418a415d07f/plan.parquet, with 3660 verified per-run YAMLs under
-configs/runs/d418a415d07f/. No biological results or real nulls were generated.
+configs/runs/d418a415d07f/. This plan is now superseded by the follow-up bundle-integrity
+code change: regenerate --plan after the new code commit, then prepare the local OSF
+review package. The new GCN/GAT execute/cache integration tests use temporary explicitly
+synthetic fixtures only. No biological results or real nulls were generated.
 Read reports/OVERNIGHT_REPORT.md and RUN_OVERNIGHT.md for the handoff.
 Do not execute biological learning or real-vs-null
 comparisons. User locked task v1 and authorized PROPOSED defaults (weekly human veto).
@@ -27,8 +30,10 @@ Set-Location D:\icss\acc2\flywire-mb-gnn-topology-bias
 ```
 
 Read STATUS.md and latest DECISIONS.md before continuing. PREREGISTRATION.md must stay
-unchanged. All work/data/cache/temp files stay on D. No account action or new download
-is authorized tonight. Commit locally every 45 minutes and update this file at phase
+unchanged. All work/data/cache/temp files stay on D. No new download or unrelated account
+action is authorized. The researcher explicitly authorized Git origin pushes on
+2026-11-18: commit AND push codex/week1-night-build at every 45-minute work interval.
+The initial origin push succeeded for 9ae6aae. Update this file at phase
 boundaries or before any context/usage interruption. If continuing code changes, run
 `python scripts/validate.py` and regenerate --plan after committing. Do not run --execute
 until genuine OSF registration evidence binds the exact preregistration hash, task config

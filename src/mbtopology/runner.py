@@ -13,7 +13,7 @@ import yaml
 from scipy import sparse
 
 from . import gnn_training, models, nulls
-from .experiment_io import SessionYield, cached_result, save_yaml, write_result
+from .experiment_io import SessionYield, cached_result, save_yaml, verify_bundle, write_result
 from .ingest import record_file
 from .runtime import (
     Exclusive,
@@ -140,6 +140,7 @@ def run_specifications(bundle):
 
 
 def make_plan(root, bundle, progress=None):
+    verify_bundle(bundle)
     root = Path(root)
     prefix, experiment = bundle["bundle_sha256"][:12], bundle["experiment"]
     plan_dir = root / experiment["plans_dir"] / prefix
@@ -295,6 +296,7 @@ def execution_environment(root, bundle):
 def execute(root, bundle, frame, progress):
     root = Path(root)
     registration = require_registered(root, bundle["task"], bundle["bundle_sha256"])
+    verify_bundle(bundle)
     os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
     torch.use_deterministic_algorithms(bundle["experiment"]["deterministic_algorithms"])
     device, environment = execution_environment(root, bundle)

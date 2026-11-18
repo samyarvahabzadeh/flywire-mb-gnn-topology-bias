@@ -9,7 +9,7 @@ import torch
 import yaml
 
 from mbtopology import cli, experiment_io, gnn_training, models, runner, task_inputs
-from mbtopology.runtime import Fail, read_json, sha256
+from mbtopology.runtime import Fail, fingerprint, read_json, sha256
 
 ROOT = Path(__file__).parents[1]
 
@@ -131,9 +131,9 @@ def test_full_matrix_yaml_and_plan_manifest_without_execution(tmp_path, monkeypa
         "seeds": list(range(30)),
         "models": {"architectures": ["GCN", "GAT"]},
         "nulls": {"instances_per_variant": 30},
-        "bundle_sha256": "a" * 64,
         "parameter_budget": {"scope": "SYNTHETIC_PLAN_FIXTURE"},
     }
+    bundle["bundle_sha256"] = fingerprint(bundle)
     (tmp_path / "PREREGISTRATION.md").write_text("Status: DRAFT\nOSF DOI: <TODO>\n")
     monkeypatch.setattr(
         runner,

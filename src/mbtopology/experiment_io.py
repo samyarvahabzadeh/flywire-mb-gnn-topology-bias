@@ -9,11 +9,19 @@ import polars as pl
 import torch
 import yaml
 
-from .runtime import atomic_file, atomic_json, now, read_json, require, sha256
+from .runtime import atomic_file, atomic_json, fingerprint, now, read_json, require, sha256
 
 
 class SessionYield(RuntimeError):
     pass
+
+
+def verify_bundle(bundle):
+    payload = {key: value for key, value in bundle.items() if key != "bundle_sha256"}
+    require(
+        bundle.get("bundle_sha256") == fingerprint(payload),
+        "scientific bundle contents do not match the registered hash",
+    )
 
 
 def save_yaml(path, document):

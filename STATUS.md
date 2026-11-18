@@ -34,12 +34,14 @@ null mixing budget, the fully crossed run matrix and deterministic/session execu
 
 - PREREGISTRATION is DRAFT: real biological learning and comparative runs remain disabled.
 - No changes to PREREGISTRATION.md, dense adjacency, new datasets or account actions tonight.
+- Superseding Git-only authorization (2026-11-18): branch pushed to origin; subsequent
+  45-minute work checkpoints require both commit and push. Other account actions remain restricted.
 - PN->KC distribution is reported; biological interpretation remains with the researcher.
 - E/I and valence surrogate maps are explicitly PROPOSED and subject to weekly veto.
 
 ## Validation
 
-Full suite: 38 passed. Real MB hard checks PASS. Task preparation created 30 frozen
+Full suite: 41 passed. Real MB hard checks PASS. Task preparation created 30 frozen
 eight-odor sets (259 active KCs/odor); PROPOSED readout has 23 avoidance, 68 approach
 and 5 unassigned MBONs. Twelve MBONs have no KC inputs under threshold=5; retained
 with the predeclared zero-input output rule. Three-odor task mechanics/checkpoint test PASS.
@@ -51,6 +53,10 @@ Runner tests also verified 3660 unique planned jobs, per-run YAML immutability, 
 result recovery, result mismatch refusal, and a one-button OSF gate before graph loading.
 Registration evidence is hash-bound to the exact task configuration and scientific/code
 bundle; changed parameters cannot silently reuse a registration record.
+Follow-up integration audit: the actual execute/results/cache path passed for temporary
+synthetic GCN/GAT fixtures. Mutable bundles are re-hashed before planning or execution;
+altering a model parameter while retaining an old hash now fails before model work.
+Production FlyWire execution remains zero. The code change requires a fresh plan hash.
 
 ## Handoff
 

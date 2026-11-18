@@ -14,6 +14,7 @@ from .experiment_io import (
     load_training_checkpoint,
     restore_rng,
     save_training_checkpoint,
+    verify_bundle,
 )
 from .nulls import signs_from_nt
 from .runtime import fingerprint, read_json, require, sha256
@@ -205,6 +206,7 @@ def train_loop(
 def run_registered(root, bundle, run_config, graph_manifest, device, progress, deadline):
     task_config, model_config, null_config = bundle["task"], bundle["models"], bundle["nulls"]
     require_registered(root, task_config, bundle["bundle_sha256"])
+    verify_bundle(bundle)
     seed = run_config["seed"]
     random.seed(seed)
     np.random.seed(seed)

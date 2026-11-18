@@ -14,7 +14,7 @@
       ],
       "exit_code": 0,
       "log": "logs/validation_0.log",
-      "completed_at": "2026-11-17T21:22:57.635479+00:00"
+      "completed_at": "2026-11-18T06:23:46.242091+00:00"
     },
     {
       "command": [
@@ -29,7 +29,7 @@
       ],
       "exit_code": 0,
       "log": "logs/validation_1.log",
-      "completed_at": "2026-11-17T21:22:57.779743+00:00"
+      "completed_at": "2026-11-18T06:23:46.405310+00:00"
     },
     {
       "command": [
@@ -45,13 +45,13 @@
       ],
       "exit_code": 0,
       "log": "logs/validation_2.log",
-      "completed_at": "2026-11-17T21:24:00.508537+00:00"
+      "completed_at": "2026-11-18T06:25:12.187780+00:00"
     }
   ],
   "provenance": {
-    "git_commit": "21c8a2aa85d1655a67644946ec53665bbedfc0f0",
+    "git_commit": "9ae6aae0d19795d076923f2cc55072b1e7e83338",
     "config_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
-    "source_sha256": "c68cb7704112fef2448354060b505c4ce7f3f7eb15db8b00a24501466ba57306",
+    "source_sha256": "1b2c399cc22281b2ba53b0a8d908d7c9816cede1d64274492ead9b814db4e239",
     "source_files": {
       "configs/experiment.yaml": "e0d79f0c213bd18eb84f90299bc24bd4e4c54425993c07e800da6b0ca16ccbc7",
       "configs/mb_bilateral.yaml": "2bc22ef64db02ddf3f9402a4eb2d28bf8eadbeebe2e0cf0c381b3fc5e30b32e8",
@@ -65,14 +65,14 @@
       "configs/week1.yaml": "d50246c846ff27144f7a94098287af0dc0569c4e557f0a55236e4b74fb8faf3c",
       "src/mbtopology/__init__.py": "9dce1df6bf64cf4e2165194e579e2ec5723782c4860c14f2c6515535c963b5c1",
       "src/mbtopology/cli.py": "19179efc0ebd151ebfb21abcabcbf41233feded55b6db583a65c9d9d91dcce58",
-      "src/mbtopology/experiment_io.py": "d9314785a50c40a7361b6fcdb20a5745566a608df8c7a4326481ac5a0df49e00",
-      "src/mbtopology/gnn_training.py": "62025e2f31bb1362d48ed368016931453b610ba062e07de6f2d57b9ccb14292f",
+      "src/mbtopology/experiment_io.py": "b9da6bf5e3eaad3072e95dfc967a81dfd440cfa5c25a85c91abe867c1f544ff8",
+      "src/mbtopology/gnn_training.py": "81e9f45dca3bc2cdf616da58378d8c9185c7cc53e87936fb9bb91dd6594e6c3d",
       "src/mbtopology/graph.py": "d5d32d788461ad0809264ed319f805fa614ed04a2889864202478f360f57ae26",
       "src/mbtopology/ingest.py": "cbf7f3c77001afb9eeb214d6583feffaa8458490cbef5499ae346da7d9884825",
       "src/mbtopology/mb_subset.py": "4dbce61daa49b0a61442ed394bd66f829112d37ba8b1df5a132ccb30008a081f",
       "src/mbtopology/models.py": "0ae891742637f713853a58a906ac491f5fe1481dd20c49b703a844dd2b62d990",
       "src/mbtopology/nulls.py": "6f985bb7835ef48851f17d8785a78893fc8ab32b528b2c4b179bbe3f5aaa7b7b",
-      "src/mbtopology/runner.py": "7d5bc3bc34f5eb55b1ba235155c7e0b078d8831bf8ba5cd862e13117cca7fcbe",
+      "src/mbtopology/runner.py": "5959a8928e07977ba4c6b54874f48f5dbaa4dbb211e91e30ec8361ce17a8f137",
       "src/mbtopology/runtime.py": "8b73101bc0624c8fd426d58c748e6bf8c37977bb0638e34629098fd5a0b81b68",
       "src/mbtopology/task_engine.py": "0e7c261057bc2d4c4038bc31e0a0876264da17537a6d3b9252fc16cef21e6b34",
       "src/mbtopology/task_inputs.py": "8b5a542ece45ee7e1fef8e51d15951d15817ba30df29846dd4ffefa3364d4e7d",
