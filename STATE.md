@@ -5,10 +5,18 @@ Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 The researcher released the v1.2 confirmatory sweep. The frozen plan lives in
 `configs/final_binary_sweep.json` (plan SHA-256
 `149776bcf90f9d2a9ce5455d1c6e9b2cf2b97f8f9e1d56d76b7828121f6ee23f`).
-The 1,830-job matrix and six benchmark exclusions are ready. Molab's GitHub
-dry-run lacks write access and its Remote storage list is empty. Await the
-researcher's Google Drive connection. Start with the storage preflight in
-RUN_OVERNIGHT.md before executing any confirmatory job.
+The Google Drive read-back preflight passed at `2026-11-18T20:07:52Z`. Session
+`1795032549415243511` is running on Molab from commit
+`da7b9cb802f78b4eee5c598023c8dc350fd41250`. Six excluded-marked events were
+verified in session 1. The durable Drive folder is
+`root/FlyWireMB-v12-sweep/149776bcf90f`.
+
+First resume action: inspect only `SWEEP` engineering events in Molab
+`final-binary-confirmatory-sweep-session1.log` and check whether PID 42795 is
+still the writer. If a new session is required, use the same sweep code, plan
+and Drive prefix `root/FlyWireMB-v12-sweep` with the execution command in
+RUN_OVERNIGHT.md. The runner skips verified batch receipts and restores the
+latest durable partial state. Do not open Parquet trajectories during the sweep.
 
 The locked real-only pilot passed at trials 968 and 879. Raw pilot results
 are under Molab `results/final_binary_pilot/fae650607b35/`. The public annotated

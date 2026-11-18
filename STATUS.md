@@ -2,9 +2,10 @@
 
 ## Authorized final sweep
 
-The researcher released the frozen v1.2 matrix. The runner and immutable
-batch receipt format are prepared. Confirmatory execution awaits a verified
-writable storage connection outside Molab. Completed jobs: 0/1,830.
+The researcher released the frozen v1.2 matrix. Google Drive passed the
+write/read-back preflight. The first Molab session started, recorded all six
+benchmark exclusions and began building the sparse graph bank. Durable
+completion is tracked by the external batch receipts.
 
 ## Final binary release pilot
 
