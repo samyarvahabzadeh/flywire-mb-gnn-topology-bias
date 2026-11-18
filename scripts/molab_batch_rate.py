@@ -12,9 +12,11 @@ BENCH_TRIALS = 200
 
 
 def roster(k):
+    from mbtopology.benchmark_models import ARCHITECTURES
+
     return [
         (architecture, "real" if index == 0 else ("A" if index % 2 else "B"), index)
-        for architecture in ("GCN", "GAT")
+        for architecture in ARCHITECTURES
         for index in range(k // 2)
     ]
 
@@ -34,6 +36,7 @@ def run_wave(bundle, graphs, k, wave, started, deadline, evidence):
     import torch
 
     from mbtopology import batched, gnn_training, models
+    from mbtopology.benchmark_models import make_benchmark_model
     from mbtopology.runtime import atomic_json, fingerprint, provenance, read_json, require, sha256
 
     output = ROOT / "results" / "molab_batch_rate" / bundle["bundle_sha256"][:12]
@@ -73,11 +76,12 @@ def run_wave(bundle, graphs, k, wave, started, deadline, evidence):
             "cuda": torch.version.cuda,
             "gpu": torch.cuda.get_device_name(),
         }
-        model = models.make_model(architecture, model_cfg, batched.PILOT_SEED, "cuda")
-        require(
-            models.parameter_count(model) == bundle["parameter_budget"]["counts"][architecture],
-            "batch model parameter count differs from frozen budget",
-        )
+        model = make_benchmark_model(architecture, model_cfg, batched.PILOT_SEED, "cuda")
+        if architecture == "GCN":
+            require(
+                models.parameter_count(model) == bundle["parameter_budget"]["counts"]["GCN"],
+                "batch GCN parameter count differs from frozen budget",
+            )
         optimizer = torch.optim.Adam(
             model.parameters(),
             lr=model_cfg["optimizer"]["learning_rate"],
@@ -111,14 +115,17 @@ def run_wave(bundle, graphs, k, wave, started, deadline, evidence):
         **config,
         "scope": "EXPLORATORY_BATCH_RATE",
         "status": "PASS",
-        "architecture_counts": {"GCN": k // 2, "GAT": k // 2},
+        "architecture_counts": {"GCN": k // 2, "GraphSAGE": k // 2},
+        "parameter_counts": {
+            job.model.architecture: models.parameter_count(job.model) for job in jobs
+        },
         "completed_jobs": len(jobs),
         "total_completed_trials": sum(len(job.history) for job in jobs),
         "training_and_checkpoint_seconds": training_seconds,
         "wall_seconds": total_seconds,
         "jobs_per_hour_200_trials": 3600 * k / total_seconds,
         "active_jobs_per_hour_200_trials": 3600 * k / training_seconds,
-        "projected_3660_job_hours_at_2000_trials": projected,
+        "engineering_3660_job_hours_at_2000_trials_gcn_graphsage_mix": projected,
         "peak_vram_pytorch_reserved_bytes": torch.cuda.max_memory_reserved(),
         "gpu": torch.cuda.get_device_name(),
         "torch": str(torch.__version__),

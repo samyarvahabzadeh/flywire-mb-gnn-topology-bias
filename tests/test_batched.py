@@ -5,9 +5,10 @@ import torch
 import yaml
 
 from mbtopology import batched, gnn_training, models
+from mbtopology.benchmark_models import make_benchmark_model
 
 
-@pytest.mark.parametrize("architecture", ["GCN", "GAT"])
+@pytest.mark.parametrize("architecture", ["GCN", "GraphSAGE"])
 def test_batch_probe_matches_sequential_probe(architecture):
     config = yaml.safe_load((Path(__file__).parents[1] / "configs/models.yaml").read_text())
     edges = torch.tensor([[0, 1, 1, 2, 3, 4], [2, 2, 3, 4, 4, 0]])
@@ -26,7 +27,7 @@ def test_batch_probe_matches_sequential_probe(architecture):
         "avoidance": torch.tensor([0]),
         "approach": torch.tensor([1]),
     }
-    model = models.make_model(architecture, config, 1337).eval()
+    model = make_benchmark_model(architecture, config, 1337).eval()
     with torch.no_grad():
         expected = torch.stack([gnn_training.predict(model, data, i) for i in range(3)])
         actual = batched.probe_values(model, data, batched.precompute_features(data))
