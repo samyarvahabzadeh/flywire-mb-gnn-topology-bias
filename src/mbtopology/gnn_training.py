@@ -117,6 +117,7 @@ def train_loop(
     checkpoint_seconds=900,
     deadline=None,
     trial_limit=None,
+    record_trial_times=False,
 ):
     trials_max = task_config["task"]["trials_max"]
     if trial_limit is not None:
@@ -161,6 +162,7 @@ def train_loop(
             if deadline is not None and time.monotonic() >= deadline:
                 raise SessionYield("session safety deadline reached; resume the same command")
             in_trial = True
+            trial_started = time.perf_counter()
             odor = int(data["schedule"][cursor])
             model.train()
             optimizer.zero_grad(set_to_none=True)
@@ -183,16 +185,19 @@ def train_loop(
             cursor += 1
             if streak >= task_config["readout"]["consecutive_trials"]:
                 reached = cursor
-            history.append(
-                {
-                    "trial": cursor,
-                    "odor_id": odor,
-                    "us": int(is_plus),
-                    "training_loss": float(loss.detach().cpu()),
-                    "discrimination": score,
-                    "criterion_streak": streak,
-                }
-            )
+            row = {
+                "trial": cursor,
+                "odor_id": odor,
+                "us": int(is_plus),
+                "training_loss": float(loss.detach().cpu()),
+                "discrimination": score,
+                "criterion_streak": streak,
+            }
+            if record_trial_times:
+                if data["roles"].is_cuda:
+                    torch.cuda.synchronize(data["roles"].device)
+                row["trial_seconds"] = time.perf_counter() - trial_started
+            history.append(row)
             in_trial = False
             if time.monotonic() - last_save >= checkpoint_seconds:
                 checkpoint()
@@ -210,7 +215,16 @@ def train_loop(
 
 
 def run_registered(
-    root, bundle, run_config, graph_manifest, device, progress, deadline, *, smoke_trials=None
+    root,
+    bundle,
+    run_config,
+    graph_manifest,
+    device,
+    progress,
+    deadline,
+    *,
+    smoke_trials=None,
+    rate_measurement=False,
 ):
     task_config, model_config, null_config = bundle["task"], bundle["models"], bundle["nulls"]
     require_registered(root)
@@ -238,9 +252,10 @@ def run_registered(
             "torch_version": torch.__version__,
             "implementation_sha256": sha256(__file__),
             "smoke_trials": smoke_trials,
+            "rate_measurement": rate_measurement,
         }
     )
-    scope = "gnn" if smoke_trials is None else "smoke"
+    scope = "molab_rate" if rate_measurement else ("gnn" if smoke_trials is None else "smoke")
     directory = Path(root) / "checkpoints" / scope / bundle["bundle_sha256"][:12]
     directory /= run_config["run_id"]
     result = train_loop(
@@ -254,6 +269,7 @@ def run_registered(
         model_config["checkpoint_seconds"],
         deadline,
         trial_limit=smoke_trials,
+        record_trial_times=rate_measurement,
     )
     result["parameter_count"] = models.parameter_count(model)
     return result
