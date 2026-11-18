@@ -2,7 +2,18 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
-Latest decision: phase 2A failed and phase 2B passed its four-run core gate.
+Phase 3 is complete. The real-graph held-out pilot from commit `afed8a6`
+exhausted 5,000 trials on all six jobs. W3-S18 records the failed gate.
+The v1.1 Ridge tag remains historical after the researcher's rejection.
+The cap and aggregator remain undecided. AMENDMENT-02 and its rate run
+require a qualifying pilot. The main sweep remains on hold.
+
+First review command from the workspace root:
+`Get-Content results/phase3_pilot/65106f95c81b/REPORT.md`.
+The matching Molab directory contains the original per-trial Parquets and
+manifests, and its launch log is `phase3-heldout-pilot.log`.
+
+Historical outcome: phase 2A failed and phase 2B passed its four-run core gate.
 GraphSAGE-max passed B on both seeds as a supplemental check. Phase 2C was not
 triggered. See `results/phase2_pilot/0a368cfc455e/REPORT.md`, AMENDMENT-01.md
 and REGISTRATION_EVIDENCE.md. The public amendment tag records B's method.

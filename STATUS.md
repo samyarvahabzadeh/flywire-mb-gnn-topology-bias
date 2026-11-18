@@ -1,9 +1,20 @@
 # Overnight status — 2026-11-18 (Asia/Tehran)
 
+## Phase-3 held-out pilot
+
+The phase-3 pilot did not qualify a cap or either GraphSAGE aggregator. The
+end-to-end GCN cap-finding run did not reach criterion within 5,000 updates.
+See W3-S16/S17 and the local `results/phase3_pilot/65106f95c81b/REPORT.md`
+for the cue-family design, held-out split audit, and all six exploratory jobs.
+The v1.1 Ridge tag is historical. The qualifying gate for AMENDMENT-02 and
+post-amendment rate measurements was unmet. The confirmatory sweep awaits
+explicit researcher authorization.
+
 ## Phase-2 pilot decision
 
-A failed on both pilot seeds for GCN and GraphSAGE mean/max. B passed all six
-at 20 readout fits following 500 warm-up updates. C was not triggered. See
+A failed on both pilot seeds for GCN and GraphSAGE mean/max. B passed that
+pilot's gate at 20 readout fits following 500 warm-up updates. The researcher
+subsequently rejected B for confirmation. C was not triggered. See
 `results/phase2_pilot/0a368cfc455e/REPORT.md` and AMENDMENT-01.md. The main
 sweep remains on hold.
 
