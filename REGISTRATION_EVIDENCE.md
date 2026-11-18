@@ -29,3 +29,7 @@ not a prerequisite under this decision.
 The tag records the intervention selected by the phase-2B pilot. The original
 v1.0 bytes and the confirmatory runner and configurations remain in place.
 The main sweep is on hold pending separate researcher authorization.
+
+**Subsequent decision W3-S15:** the researcher rejected phase 2B for
+confirmatory use. The v1.1 evidence is historical. Phase 3 evaluates an
+end-to-end held-out cue protocol before any new amendment or execution release.

@@ -1,4 +1,18 @@
-# AMENDMENT-01 — frozen body and Ridge readout
+# AMENDMENT-01 — pilot record and decision history
+
+**Current status: phase 2B is rejected for confirmatory use.** The researcher
+rejected the frozen-body Ridge method because fitting and probing the same eight
+cues made memorization possible, all runs tied at the 20-fit floor, and the
+endpoint shifted away from end-to-end associative learning. The v1.1 tagged
+document records the earlier pilot selection. This working copy supersedes its
+confirmatory status without moving that public tag.
+
+Phase 3 tests an end-to-end procedure on held-out cue instances. That candidate
+is exploratory, and an operative replacement would be recorded in AMENDMENT-02
+only after the phase-3 gate. A properly split Ridge readout can remain a
+secondary diagnostic subject to that decision.
+
+## Historical phase-2B record
 
 Date: 2026-11-18. Evidence: exploratory phase 2B. This record does not authorize
 starting the confirmatory sweep. The original preregistration remains the document

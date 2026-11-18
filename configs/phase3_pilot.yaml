@@ -1,0 +1,18 @@
+scope: EXPLORATORY_HELD_OUT_PILOT_ONLY
+pilot_seeds: [1337, 2026]
+exploration_trials: 5000
+family_design:
+  layout_seed: 1337
+  pair_shared_pns: 16
+  family_specific_pns: 16
+  instance_variable_pns: 16
+  symmetric_pn_afferents_per_kc: 6
+  kc_active_fraction: 0.05
+  train_stream: 304
+  holdout_stream: 305
+cap_selection:
+  stability_window: 100
+  required_window_fraction_at_criterion: 0.8
+  padding_fraction: 0.20
+  round_up_to_trials: 100
+  target_median_ttc: [300, 1500]
