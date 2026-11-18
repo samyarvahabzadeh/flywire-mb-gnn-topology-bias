@@ -24,6 +24,9 @@ PyG 2.8.1, Torch 2.11.0+cu130 and the same Drive prefix
 `root/FlyWireMB-v12-sweep`. Session 2 (`1795038123287148241`, PID 1172)
 read 108 durable jobs at launch. It saved batch `0018`, bringing the confirmed
 total to 114/1,830 at `2026-11-18T21:44:23Z` with zero retries.
+Latest engineering checkpoint: batch `0054`, 330/1,830 archived at
+`2026-11-18T22:28:23Z`. Session throughput was 287.47 jobs/hour, with
+zero retries and an engineering ETA of 5.22 hours.
 First resume action: inspect only `SWEEP` events from
 `/marimo/flywire-mb-v12-resume/final-binary-confirmatory-sweep-session2.log`.
 Launch the frozen execution command only when no writer is active.
