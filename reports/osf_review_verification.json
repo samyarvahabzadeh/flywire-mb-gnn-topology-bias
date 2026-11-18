@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-11-18T06:44:40.639076+00:00",
+  "archive_sha256": "af2b32bc8cac3172e85b91a2ed4fc85190f645a0ed59b9dfae93ee62fce7f1bd",
+  "archive_bytes": 2218442,
+  "verified_project_files": 3725,
+  "git_commit": "553b96f79f4c2d0c78ec40a1201f680f2b67cd29",
+  "config_sha256": "d26847e31f27f84e5435db36b61c5398957f5455688afea43e461180d54b9e4e",
+  "production_results_parquets": 0,
+  "real_null_graphs": 0,
+  "preregistration_unchanged": true,
+  "uploaded": false,
+  "registered": false
+}

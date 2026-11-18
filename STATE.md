@@ -13,13 +13,19 @@ Phase B complete: models.py and nulls.py plus synthetic invariant/backward tests
 Phase C implementation now exists in runner.py, gnn_training.py and experiment_io.py;
 the latest synthetic suite PASSED (43 tests). All
 three authorized overnight phases are COMPLETE. Active plan is
-plans/d418a415d07f/plan.parquet, with 3660 verified per-run YAMLs under
-configs/runs/d418a415d07f/. This plan is now superseded by the follow-up bundle-integrity
-code change: regenerate --plan after the new code commit, then prepare the local OSF
-review package with `python scripts/prepare_osf_review.py`. Its archive-scope tests pass.
+plans/d26847e31f27/plan.parquet, with 3660 verified per-run YAMLs under
+configs/runs/d26847e31f27/. The full current bundle hash is
+d26847e31f27f84e5435db36b61c5398957f5455688afea43e461180d54b9e4e.
+The plan was regenerated after the bundle-integrity code change. A local DRAFT OSF
+review package was built with `python scripts/prepare_osf_review.py` and verified.
 The new GCN/GAT execute/cache integration tests use temporary explicitly
 synthetic fixtures only. No biological results or real nulls were generated.
 Read reports/OVERNIGHT_REPORT.md and RUN_OVERNIGHT.md for the handoff.
+Local ZIP: dist/osf_review/d26847e31f27/osf_review_d26847e31f27.zip
+SHA-256: af2b32bc8cac3172e85b91a2ed4fc85190f645a0ed59b9dfae93ee62fce7f1bd
+Size: 2218442 bytes. All 3725 project-file checksums and ZIP CRC PASS. No dataset
+payloads, private files or live registration evidence are included; no upload occurred.
+See reports/osf_review_package.json and reports/osf_review_verification.json.
 Do not execute biological learning or real-vs-null
 comparisons. User locked task v1 and authorized PROPOSED defaults (weekly human veto).
 
@@ -34,9 +40,11 @@ Read STATUS.md and latest DECISIONS.md before continuing. PREREGISTRATION.md mus
 unchanged. All work/data/cache/temp files stay on D. No new download or unrelated account
 action is authorized. The researcher explicitly authorized Git origin pushes on
 2026-11-18: commit AND push codex/week1-night-build at every 45-minute work interval.
-The initial origin push succeeded for 9ae6aae. Update this file at phase
+The initial origin push and subsequent code/review-packager push through 553b96f
+succeeded. The final generated metadata/docs checkpoint follows separately. Update this file at phase
 boundaries or before any context/usage interruption. If continuing code changes, run
-`python scripts/validate.py` and regenerate --plan after committing. Do not run --execute
+`python scripts/validate.py`, commit+push, regenerate --plan and rebuild the local review
+ZIP. Do not run --execute
 until genuine OSF registration evidence binds the exact preregistration hash, task config
 hash and active bundle hash. No pre-OSF scientific execution remains authorized.
 Raw credentials are in ignored

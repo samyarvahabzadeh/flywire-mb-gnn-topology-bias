@@ -93,8 +93,8 @@ is PROPOSED, not a proof of perfect graph mixing. No real null was generated ton
 
 Planned jobs: **3660** = 30 seeds x (real + 30 A + 30 B) x GCN/GAT.
 One frozen YAML exists per planned run, referencing the same immutable scientific bundle:
-`d418a415d07f03d1a019c95b2c952cf424bf327355eb5631bc5af38953d3d876`.
-Active plan: `plans/d418a415d07f/plan.parquet` with its JSON manifest.
+`d26847e31f27f84e5435db36b61c5398957f5455688afea43e461180d54b9e4e`.
+Active plan: `plans/d26847e31f27/plan.parquet` with its JSON manifest.
 
 RUN_EXPERIMENT.cmd is the Windows one-button launcher. Portable command:
 `python src/run_experiment.py --execute`. While PREREGISTRATION is DRAFT this is blocked
@@ -110,7 +110,7 @@ Session safety yields after 11.5 hours; rerunning the same command resumes verif
 
 ## Validation and limits
 
-Full synthetic suite: **38 tests**, failures/errors **0**; Ruff lint and
+Full synthetic suite: **43 tests**, failures/errors **0**; Ruff lint and
 format checks pass. Tests cover model gradients, exact degree/sign invariants, same-seed
 fairness, corrupt/mismatched checkpoints, result orphan recovery, 3660 unique immutable
 plans, pre-OSF blocking and exact resume after interruption following an optimizer step.
@@ -125,16 +125,24 @@ No automatic scientific exclusions or comparative statistics were run.
 PREREGISTRATION.md was not edited. Current SHA-256:
 `3fc010a514841e6c1aef9e4f5dc016f94c974197fbdc91e3d307534f5e727be6`.
 All active files/data/cache/temporary work are on D. No new dataset or account action
-occurred during the overnight phases. The earlier Drive backup was not refreshed tonight.
+occurred during the original overnight phases. The researcher subsequently authorized
+Git origin pushes: codex/week1-night-build is published and subsequent 45-minute work
+checkpoints include both commit and push. The earlier Drive backup was not refreshed.
+
+Follow-up tests exercise the actual execute/results/cache path using temporary synthetic
+GCN/GAT fixtures and reject modified bundles that retain an old hash. The local DRAFT
+review packager also passed archive-scope tests. It packages the current code/configuration
+and planned jobs without dataset payloads or private files; it neither uploads nor
+registers OSF. Run `python scripts/prepare_osf_review.py` after `--plan` to build it.
 
 ## Local Git checkpoints
 
 ```text
+553b96f Prepare local OSF review archives with strict payload and credential exclusions
+e56cd5d Audit synthetic runner execution and reject mutated scientific bundles
+9ae6aae Record completed overnight phases, final 3660-run plan and safe OSF-blocked handoff
 e31c469 Bind OSF evidence to exact task and code bundle and finalize bilateral status reporting
 21c8a2a Prepare OSF-gated 3660-run launcher with immutable plans and transactional model resume
-402ad6f Implement GCN GAT and resumable directed signed degree-preserving nulls with invariant tests
-b29afca Complete locked task v1, freeze shared inputs, and verify synthetic resume and OSF gate
-6361584 Build audited v783 sparse graphs and checkpoint approved bilateral MB and task v1 config
 ```
 
 See STATUS.md for completion/blockers and STATE.md for the safe resume command. The

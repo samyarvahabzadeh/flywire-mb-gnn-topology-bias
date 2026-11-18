@@ -1,0 +1,15 @@
+{
+  "status": "DRAFT_REVIEW_ONLY",
+  "created_at": "2026-11-18T06:42:56.967259+00:00",
+  "git_commit": "553b96f79f4c2d0c78ec40a1201f680f2b67cd29",
+  "bundle_sha256": "d26847e31f27f84e5435db36b61c5398957f5455688afea43e461180d54b9e4e",
+  "planned_runs": 3660,
+  "draft_preregistration_sha256": "3fc010a514841e6c1aef9e4f5dc016f94c974197fbdc91e3d307534f5e727be6",
+  "contains_dataset_payloads": false,
+  "contains_credentials": false,
+  "uploaded": false,
+  "registered": false,
+  "archive": "dist/osf_review/d26847e31f27/osf_review_d26847e31f27.zip",
+  "archive_bytes": 2218442,
+  "archive_sha256": "af2b32bc8cac3172e85b91a2ed4fc85190f645a0ed59b9dfae93ee62fce7f1bd"
+}

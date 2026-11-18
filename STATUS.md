@@ -18,9 +18,10 @@ C. COMPLETE: one-command 30-seed runner, per-run YAML and parquet +
 git/config/source/graph manifests; strict OSF gate, model/optimizer/RNG checkpoints,
 partial-trial safety, immutable plans, session-yield and verified completed-result reuse.
 Final plan-only generation complete: 3660 verified YAML files, active bundle
-d418a415d07f03d1a019c95b2c952cf424bf327355eb5631bc5af38953d3d876.
-Plan: plans/d418a415d07f/plan.parquet. Zero biological model execution and zero real null
-graphs generated. Current code checkpoint: e31c469; final handoff docs committed separately.
+d26847e31f27f84e5435db36b61c5398957f5455688afea43e461180d54b9e4e.
+Plan: plans/d26847e31f27/plan.parquet. Zero biological model execution and zero real null
+graphs generated. Current code/review-packager checkpoint: 553b96f, pushed to origin;
+generated plan/report metadata and handoff docs are committed separately.
 
 ## PROPOSED decisions
 
@@ -56,10 +57,12 @@ bundle; changed parameters cannot silently reuse a registration record.
 Follow-up integration audit: the actual execute/results/cache path passed for temporary
 synthetic GCN/GAT fixtures. Mutable bundles are re-hashed before planning or execution;
 altering a model parameter while retaining an old hash now fails before model work.
-Production FlyWire execution remains zero. The code change requires a fresh plan hash.
+Production FlyWire execution remains zero. The plan was regenerated for the code change.
 The local DRAFT review packager passed synthetic file-scope and archive tests. It
 excludes private files, raw/processed dataset payloads and live registration evidence.
-The archive will be built after regenerating the current immutable plan.
+The current archive was built and independently verified: 3725 project files, 2218442
+bytes, ZIP CRC and every project-file SHA-256 PASS. No upload or registration occurred.
+See reports/osf_review_package.json and reports/osf_review_verification.json.
 
 ## Handoff
 
