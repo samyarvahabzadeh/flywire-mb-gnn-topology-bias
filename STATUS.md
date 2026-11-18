@@ -4,8 +4,11 @@
 
 Both final real-only GraphSAGE-max runs met the rolling-mean rule before
 1,500. Seed 1337 stopped at trial 968 and seed 2026 at 879. AMENDMENT-02
-replaces the historical Ridge method. The authorized next run is the
-six-job post-tag engineering batch. The 1,830-job sweep awaits approval.
+replaces the historical Ridge method and is publicly frozen under
+`v1.2-prereg-amendment`. The six-job engineering batch completed after the
+tag, with exact early-stops and verified noise injection. See
+`results/final_binary_rate/c3df5b2c7dfc/REPORT.md` for the measured and
+full-cap Molab session estimates. The 1,830-job sweep awaits approval.
 
 ## Phase-4 binary pilot with real PN→KC connections
 

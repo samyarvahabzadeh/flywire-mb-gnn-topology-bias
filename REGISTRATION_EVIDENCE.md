@@ -33,3 +33,18 @@ The main sweep is on hold pending separate researcher authorization.
 **Subsequent decision W3-S15:** the researcher rejected phase 2B for
 confirmatory use. The v1.1 evidence is historical. Phase 3 evaluates an
 end-to-end held-out cue protocol before any new amendment or execution release.
+
+## Final binary protocol amendment evidence
+
+- [Public annotated tag v1.2-prereg-amendment](https://github.com/samyarvahabzadeh/flywire-mb-gnn-topology-bias/tree/v1.2-prereg-amendment)
+- Tagged commit: `515e65506616c7ad3c4ef17e6def1f06463f26e4`
+- Annotated tag object: `50fcd6000781c27cdb96ce7f6258b75193f62c22`
+- Tagger timestamp: `2026-11-18T22:49:20+03:30` (`2026-11-18T19:19:20Z`)
+- Public ref and peeled commit verified without credentials at `2026-11-18T19:19:51Z`.
+- SHA-256 of the tagged `AMENDMENT-02.md` blob: `045f34049ff9b6f747c054f325360bf0af88ea26f94f2da2ccfb6517349b2e9b`
+- SHA-256 of the tagged `configs/final_binary.yaml` blob: `4a721b186fd1c8cd1a21fe2c6ea2d622ed083c79338f34c18dc4f905d15ef673`
+
+Both real-only pilot runs passed W3-S22 and AMENDMENT-02 supersedes the
+historical Ridge protocol. This tag precedes any null job under the final binary
+protocol. The six-job engineering rate batch is declared in W3-S24. The
+1,830-job sweep requires separate explicit researcher approval.

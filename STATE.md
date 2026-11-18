@@ -3,10 +3,14 @@
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
 The locked real-only pilot passed at trials 968 and 879. Raw pilot results
-are under Molab `results/final_binary_pilot/fae650607b35/`. The next authorized
-run is `python -u scripts/final_binary_rate.py` on the Molab GPU after fetching
-and verifying the public annotated `v1.2-prereg-amendment` tag. Only six sample
-jobs are authorized. The 1,830-job sweep remains on hold.
+are under Molab `results/final_binary_pilot/fae650607b35/`. The public annotated
+`v1.2-prereg-amendment` was verified before the six-job engineering run, which
+is complete. Raw rate Parquets and manifests are in Molab
+`results/final_binary_rate/c3df5b2c7dfc/` and its notebook log is
+`final-binary-post-tag-rate.log`. The 1,830-job sweep remains on hold.
+
+First review command from the workspace root:
+`Get-Content -Encoding utf8 results/final_binary_rate/c3df5b2c7dfc/REPORT.md`.
 
 Phase 4 is complete. The real PN→KC binary pilot on seeds 1337 and 2026
 qualified GraphSAGE-max under the exploratory 2,000-trial rule. GCN and
