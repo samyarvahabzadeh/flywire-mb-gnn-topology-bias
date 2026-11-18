@@ -12,12 +12,14 @@ ARCHITECTURES = ("GCN", "GraphSAGE")
 class BenchmarkGraphSAGE(nn.Module):
     architecture = "GraphSAGE"
 
-    def __init__(self, config):
+    def __init__(self, config, aggregation="mean"):
         super().__init__()
+        if aggregation not in ("mean", "max"):
+            raise ValueError("GraphSAGE aggregation must be mean or max")
         width = config["hidden_width"]
         self.encoder = nn.Linear(5, width)
         self.convs = nn.ModuleList(
-            SAGEConv(width, width, aggr="mean") for _ in range(config["message_passing_depth"])
+            SAGEConv(width, width, aggr=aggregation) for _ in range(config["message_passing_depth"])
         )
         self.head = nn.Linear(width, 1)
 
@@ -31,12 +33,12 @@ class BenchmarkGraphSAGE(nn.Module):
         return torch.sigmoid(self.head(x)).squeeze(-1)
 
 
-def make_benchmark_model(architecture, config, seed, device="cpu"):
+def make_benchmark_model(architecture, config, seed, device="cpu", *, aggregation="mean"):
     if architecture == "GCN":
         return make_model(architecture, config, seed, device)
     if architecture != "GraphSAGE":
         raise ValueError(f"unknown benchmark architecture: {architecture}")
     with torch.random.fork_rng(devices=[]):
         torch.manual_seed(seed)
-        model = BenchmarkGraphSAGE(config)
+        model = BenchmarkGraphSAGE(config, aggregation)
     return model.to(device)
