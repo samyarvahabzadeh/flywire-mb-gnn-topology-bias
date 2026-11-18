@@ -13,6 +13,7 @@ from torch.nn import functional as F
 
 from mbtopology import gnn_training, models, runner
 from mbtopology.benchmark_models import make_benchmark_model
+from mbtopology.binary_protocol import add_observation, reached
 from mbtopology.experiment_io import (
     SessionYield,
     cached_result,
@@ -90,6 +91,22 @@ def valences(model, inputs, drive, trial, presentations):
     ).clamp(0, 1)
 
 
+def binary_step(model, optimizer, inputs, drives, trial, labels):
+    model.train()
+    optimizer.zero_grad(set_to_none=True)
+    loss = F.binary_cross_entropy(valences(model, inputs, drives[0], trial, len(labels)), labels)
+    loss.backward()
+    finite_grad = torch.stack(
+        [torch.isfinite(p.grad).all() for p in model.parameters() if p.grad is not None]
+    ).all()
+    optimizer.step()
+    model.eval()
+    with torch.no_grad():
+        probe = valences(model, inputs, drives[1], trial, len(labels)).double()
+        valid = finite_grad & torch.isfinite(loss) & torch.isfinite(probe).all()
+        return torch.stack((probe[::2].mean(), probe[1::2].mean(), valid.double()))
+
+
 def train(model, optimizer, inputs, drives, config, checkpoint_dir, signature, progress, deadline):
     history = []
     elapsed = 0.0
@@ -104,8 +121,8 @@ def train(model, optimizer, inputs, drives, config, checkpoint_dir, signature, p
         )
     started = last_save = monotonic()
     in_trial = False
-    presentations = config["pairs_per_trial"] * 2
     labels = torch.tensor([1.0, 0.0] * config["pairs_per_trial"], device=inputs["roles"].device)
+    window = config.get("rolling_window")
 
     def checkpoint():
         save_training_checkpoint(
@@ -124,40 +141,25 @@ def train(model, optimizer, inputs, drives, config, checkpoint_dir, signature, p
     checkpoint()
     try:
         for t in range(len(history), config["trials"]):
+            if window and reached(history, config["threshold"]):
+                break
             if monotonic() >= deadline:
                 raise SessionYield("phase-4 pilot checkpointed at session deadline")
             in_trial = True
-            model.train()
-            optimizer.zero_grad(set_to_none=True)
-            loss = F.binary_cross_entropy(
-                valences(model, inputs, drives[0], t, presentations), labels
-            )
-            require(bool(torch.isfinite(loss)), "nonfinite phase-4 BCE")
-            loss.backward()
-            require(
-                all(
-                    p.grad is None or bool(torch.isfinite(p.grad).all()) for p in model.parameters()
-                ),
-                "nonfinite phase-4 gradient",
-            )
-            optimizer.step()
-            model.eval()
-            with torch.no_grad():
-                probe = valences(model, inputs, drives[1], t, presentations).double()
-                a_plus, a_minus = float(probe[::2].mean()), float(probe[1::2].mean())
-                score = (a_plus + 1 - a_minus) / 2
-                require(np.isfinite(score), "nonfinite phase-4 held-out score")
-            history.append(
-                {
-                    "trial": t + 1,
-                    "discrimination": score,
-                    "heldout_a_plus": a_plus,
-                    "heldout_a_minus": a_minus,
-                }
-            )
+            a_plus, a_minus, valid = binary_step(
+                model, optimizer, inputs, drives, t, labels
+            ).tolist()
+            require(bool(valid), "nonfinite binary loss, gradient or probe")
+            add_observation(history, (a_plus, a_minus), window)
             in_trial = False
             if (t + 1) % 500 == 0:
-                print("PHASE4_PROGRESS", checkpoint_dir.name, t + 1, score, flush=True)
+                print(
+                    "BINARY_PROGRESS",
+                    checkpoint_dir.name,
+                    t + 1,
+                    history[-1]["discrimination"],
+                    flush=True,
+                )
             if monotonic() - last_save >= config["checkpoint_seconds"]:
                 checkpoint()
                 last_save = monotonic()
