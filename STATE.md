@@ -2,6 +2,17 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+Current research hold: the main sweep requires explicit researcher release after review
+of the seed-0 probe report and the three seed-1337 throughput measurements.
+The checkpoint diagnosis and single-graph Adam pilot are recorded in the local
+`results/molab_rate/d63676097993/LEARNABILITY.md` and
+`results/learnability_pilot/0a1e8ed92f32/REPORT.md` reports. No pilot candidate met
+criterion and no settings were changed. The only authorized GPU rate command is
+`python scripts/molab_batch_rate.py --rate-grid` in the Molab checkout. It runs
+the 200-trial benchmarks at K=8,16,32 and skips their verified completed manifests.
+The one authorized grid completed. See `results/molab_batch_rate/cdeb76795db0/REPORT.md`.
+The 24-hour target did not pass. Leave the main sweep on hold for researcher review.
+
 W3-P03 update: the public GitHub tag `v1.0-prereg` is now the execution gate.
 The OSF-dependent instructions below record the earlier state. Three GCN smoke
 jobs at seed 0 passed. See REGISTRATION_EVIDENCE.md and reports/W3_SMOKE.md.

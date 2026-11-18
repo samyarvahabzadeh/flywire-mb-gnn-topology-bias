@@ -1,5 +1,12 @@
 # Overnight status — 2026-11-18 (Asia/Tehran)
 
+## Learnability and batch-rate hold
+
+The seed-0 probe diagnosis, single-graph seed-1337 pilot, and one benchmark of
+K=8,16,32 all completed on Molab. The pilot selected no amendment. The measured
+batch rates do not meet the 24-hour full-cap budget. The main sweep remains on hold
+for researcher review. See the local reports linked from STATE.md.
+
 ## Current status — W3-P03
 
 The public annotated tag `v1.0-prereg` supersedes the OSF gate described in the
