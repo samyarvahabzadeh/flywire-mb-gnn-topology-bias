@@ -11,6 +11,7 @@ from pathlib import Path
 import yaml
 
 from . import graph, ingest, mb_subset, task_engine, task_inputs, task_toy, toy
+from .registration import require_registered
 from .runtime import (
     Exclusive,
     Fail,
@@ -106,9 +107,7 @@ def status_report(root, config, selection_path=None):
     scientific_gate = "registration not checked"
     if (root / "configs/task_engine.yaml").exists():
         try:
-            task_inputs.require_registered(
-                root, task_inputs.load_task(root / "configs/task_engine.yaml")
-            )
+            require_registered(root)
             scientific_gate = "registration evidence present"
         except Fail as exc:
             scientific_gate = str(exc)

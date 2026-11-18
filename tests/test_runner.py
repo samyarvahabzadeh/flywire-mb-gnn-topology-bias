@@ -146,7 +146,7 @@ def test_full_matrix_yaml_and_plan_manifest_without_execution(tmp_path, monkeypa
     assert frame.filter(pl.col("condition") == "A").height == 1800
     assert frame.filter(pl.col("condition") == "B").height == 1800
     assert frame.filter((pl.col("seed") == 0) & (pl.col("architecture") == "GCN")).height == 61
-    assert "OSF gate" in report["osf_gate"] and report["executes_models"] is False
+    assert "GitHub tag gate" in report["registration_gate"] and report["executes_models"] is False
     assert not (tmp_path / "results").exists()
     assert (tmp_path / report["plan_path"]).with_suffix(".manifest.json").exists()
     again, _ = runner.make_plan(tmp_path, bundle)
@@ -165,10 +165,12 @@ def test_one_button_execution_gate_cannot_load_graphs_or_train(tmp_path, monkeyp
     original = b"Status: DRAFT v0.1\nOSF DOI: <TODO>\n"
     prereg.write_bytes(original)
     monkeypatch.setattr(
-        runner, "load_bundle", lambda *a: pytest.fail("OSF gate must precede data/model work")
+        runner,
+        "load_bundle",
+        lambda *a: pytest.fail("GitHub tag gate must precede data/model work"),
     )
     assert runner.main(["--execute", "--root", str(tmp_path)]) == 2
-    assert "OSF gate" in capsys.readouterr().out
+    assert "GitHub tag gate" in capsys.readouterr().out
     assert prereg.read_bytes() == original and not (tmp_path / "results").exists()
 
 

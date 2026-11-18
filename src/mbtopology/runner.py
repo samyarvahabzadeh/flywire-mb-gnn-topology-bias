@@ -15,6 +15,7 @@ from scipy import sparse
 from . import gnn_training, models, nulls
 from .experiment_io import SessionYield, cached_result, save_yaml, verify_bundle, write_result
 from .ingest import record_file
+from .registration import require_registered
 from .runtime import (
     Exclusive,
     Fail,
@@ -28,7 +29,7 @@ from .runtime import (
     require,
     sha256,
 )
-from .task_inputs import load_source, load_task, require_registered
+from .task_inputs import load_source, load_task
 
 
 def load_bundle(root, experiment_path):
@@ -39,10 +40,10 @@ def load_bundle(root, experiment_path):
         "runner source must be fafb/v783",
     )
     require(
-        experiment["require_osf"] is True
+        experiment["registration_evidence"] == "github_tag"
         and experiment["precision"] == "float32"
         and 0 < experiment["checkpoint_seconds"] <= 900,
-        "unsupported execution policy or disabled OSF gate",
+        "unsupported execution policy or invalid registration evidence policy",
     )
     task = load_task(root / experiment["task_config"])
     model_config = yaml.safe_load((root / experiment["models_config"]).read_text(encoding="utf-8"))
@@ -193,7 +194,7 @@ def make_plan(root, bundle, progress=None):
         },
     )
     try:
-        require_registered(root, bundle["task"], bundle["bundle_sha256"])
+        require_registered(root)
         gate = "registration_evidence_present"
     except Fail as exc:
         gate = str(exc)
@@ -207,7 +208,7 @@ def make_plan(root, bundle, progress=None):
         "parameter_budget": bundle["parameter_budget"],
         "bundle_sha256": bundle["bundle_sha256"],
         "plan_path": (plan_dir / "plan.parquet").relative_to(root).as_posix(),
-        "osf_gate": gate,
+        "registration_gate": gate,
         "executes_models": False,
         "model_metrics_computed": False,
     }
@@ -215,10 +216,10 @@ def make_plan(root, bundle, progress=None):
     return frame, report
 
 
-def materialize_null(root, bundle, variant, instance, progress, deadline):
+def materialize_null(root, bundle, variant, instance, progress, deadline, *, scope="nulls"):
     root = Path(root)
     prefix = bundle["bundle_sha256"][:12]
-    output = root / "data" / "nulls" / prefix / f"{variant}-{instance:02d}"
+    output = root / "data" / scope / prefix / f"{variant}-{instance:02d}"
     manifest_path = output / "MANIFEST.json"
     if manifest_path.exists():
         saved = read_json(manifest_path)
@@ -229,7 +230,7 @@ def materialize_null(root, bundle, variant, instance, progress, deadline):
     coo = matrix.tocoo(copy=False)
     node_signs = nulls.signs_from_nt(nodes["nt_type"].to_list(), bundle["nulls"]["nt_signs"])
     chain = nulls.DirectedSwapChain(matrix, node_signs[coo.row], variant, instance)
-    checkpoint = root / "checkpoints" / "nulls" / prefix / f"{variant}-{instance:02d}"
+    checkpoint = root / "checkpoints" / scope / prefix / f"{variant}-{instance:02d}"
     chain.restore(checkpoint)
     target = int(matrix.nnz * bundle["nulls"]["accepted_swaps_per_edge"])
 
@@ -295,7 +296,7 @@ def execution_environment(root, bundle):
 
 def execute(root, bundle, frame, progress):
     root = Path(root)
-    registration = require_registered(root, bundle["task"], bundle["bundle_sha256"])
+    registration = require_registered(root)
     verify_bundle(bundle)
     os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
     torch.use_deterministic_algorithms(bundle["experiment"]["deterministic_algorithms"])
@@ -385,7 +386,7 @@ def execute(root, bundle, frame, progress):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(
-        description="Plan safely; execute only after verified local OSF registration evidence"
+        description="Plan safely; execute only after a verified public GitHub preregistration tag"
     )
     parser.add_argument("--root", type=Path, default=Path.cwd())
     parser.add_argument("--config", type=Path)
@@ -397,8 +398,7 @@ def main(argv=None):
     try:
         path = args.config or root / "configs/experiment.yaml"
         if args.execute:
-            experiment = yaml.safe_load(path.read_text(encoding="utf-8"))
-            require_registered(root, load_task(root / experiment["task_config"]))
+            require_registered(root)
         bundle = load_bundle(root, path)
         with Exclusive(root), Run(root, bundle["experiment"], "experiment") as progress:
             frame, report = make_plan(root, bundle, progress)

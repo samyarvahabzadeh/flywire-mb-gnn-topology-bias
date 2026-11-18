@@ -17,8 +17,9 @@ from .experiment_io import (
     verify_bundle,
 )
 from .nulls import signs_from_nt
+from .registration import require_registered
 from .runtime import fingerprint, read_json, require, sha256
-from .task_inputs import initial_weights, load_source, node_identity, require_registered, schedule
+from .task_inputs import initial_weights, load_source, node_identity, schedule
 
 
 def frozen_inputs(root, task_config, graph_manifest, seed, null_config, model_config, device):
@@ -115,7 +116,12 @@ def train_loop(
     run,
     checkpoint_seconds=900,
     deadline=None,
+    trial_limit=None,
 ):
+    trials_max = task_config["task"]["trials_max"]
+    if trial_limit is not None:
+        require(0 < trial_limit <= trials_max, "invalid smoke trial limit")
+        trials_max = trial_limit
     cursor, history, streak, reached, elapsed = 0, [], 0, None, 0.0
     saved = load_training_checkpoint(checkpoint_dir, signature)
     if saved:
@@ -126,7 +132,7 @@ def train_loop(
         )
         restore_rng(saved["rng"])
     require(
-        cursor == len(history) and cursor <= task_config["task"]["trials_max"],
+        cursor == len(history) and cursor <= trials_max,
         "invalid resumed trial cursor",
     )
     started, last_save = time.monotonic(), time.monotonic()
@@ -151,7 +157,7 @@ def train_loop(
     checkpoint()
     in_trial = False
     try:
-        while cursor < task_config["task"]["trials_max"] and reached is None:
+        while cursor < trials_max and reached is None:
             if deadline is not None and time.monotonic() >= deadline:
                 raise SessionYield("session safety deadline reached; resume the same command")
             in_trial = True
@@ -203,9 +209,11 @@ def train_loop(
     }
 
 
-def run_registered(root, bundle, run_config, graph_manifest, device, progress, deadline):
+def run_registered(
+    root, bundle, run_config, graph_manifest, device, progress, deadline, *, smoke_trials=None
+):
     task_config, model_config, null_config = bundle["task"], bundle["models"], bundle["nulls"]
-    require_registered(root, task_config, bundle["bundle_sha256"])
+    require_registered(root)
     verify_bundle(bundle)
     seed = run_config["seed"]
     random.seed(seed)
@@ -229,11 +237,12 @@ def run_registered(root, bundle, run_config, graph_manifest, device, progress, d
             "device": device,
             "torch_version": torch.__version__,
             "implementation_sha256": sha256(__file__),
+            "smoke_trials": smoke_trials,
         }
     )
-    directory = (
-        Path(root) / "checkpoints" / "gnn" / bundle["bundle_sha256"][:12] / run_config["run_id"]
-    )
+    scope = "gnn" if smoke_trials is None else "smoke"
+    directory = Path(root) / "checkpoints" / scope / bundle["bundle_sha256"][:12]
+    directory /= run_config["run_id"]
     result = train_loop(
         model,
         optimizer,
@@ -244,6 +253,7 @@ def run_registered(root, bundle, run_config, graph_manifest, device, progress, d
         progress,
         model_config["checkpoint_seconds"],
         deadline,
+        trial_limit=smoke_trials,
     )
     result["parameter_count"] = models.parameter_count(model)
     return result

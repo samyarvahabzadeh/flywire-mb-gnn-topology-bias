@@ -8,8 +8,9 @@ from uuid import uuid4
 import numpy as np
 from scipy import sparse
 
+from .registration import require_registered
 from .runtime import atomic_file, atomic_json, fingerprint, read_json, require, sha256
-from .task_inputs import initial_weights, load_source, node_identity, require_registered, schedule
+from .task_inputs import initial_weights, load_source, node_identity, schedule
 
 
 @dataclass(frozen=True)
@@ -228,7 +229,7 @@ class TaskEngine:
 def from_frozen(root, config, seed, graph_manifest=None, assess_metrics=True):
     root = Path(root)
     if assess_metrics:
-        require_registered(root, config)
+        require_registered(root)
     _, canonical, _ = load_source(root, config["source_manifest"])
     _, nodes, matrix = load_source(root, graph_manifest or config["source_manifest"])
     inputs = read_json(root / "reports" / "task_inputs.json")
@@ -275,7 +276,7 @@ def from_frozen(root, config, seed, graph_manifest=None, assess_metrics=True):
 
 
 def run_biological(root, config, seed, run, graph_manifest=None, run_id=None):
-    require_registered(root, config)
+    require_registered(root)
     engine = from_frozen(root, config, seed, graph_manifest, assess_metrics=True)
     directory = Path(root) / "checkpoints" / "task" / (run_id or f"real-seed-{seed:02d}")
     engine.restore(directory)

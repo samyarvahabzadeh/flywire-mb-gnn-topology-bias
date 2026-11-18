@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import hashlib
-import re
 from pathlib import Path
 
 import numpy as np
@@ -192,42 +191,3 @@ def prepare(root, config, run):
     }
     atomic_json(root / "reports" / "task_inputs.json", report)
     return report
-
-
-def require_registered(root, config, bundle_sha256=None):
-    root = Path(root)
-    path = root / config["osf"]["preregistration_file"]
-    text = path.read_text(encoding="utf-8")
-    status = next((line for line in text.splitlines() if line.startswith("Status:")), "")
-    doi = re.search(r"^OSF DOI:\s*(.+)$", text, flags=re.MULTILINE)
-    require(
-        status and "DRAFT" not in status.upper() and "REGISTERED" in status.upper(),
-        "OSF gate: PREREGISTRATION is not registered; biological learning/comparisons are prohibited",
-    )
-    require(
-        doi
-        and re.fullmatch(
-            r"(?:https://doi.org/)?10\.17605/OSF\.IO/[A-Za-z0-9]+",
-            doi[1].strip(),
-            flags=re.IGNORECASE,
-        ),
-        "OSF gate: a real registration DOI is required",
-    )
-    evidence = read_json(root / "configs" / "osf_registration.json")
-    require(
-        evidence
-        and evidence.get("osf_doi") == doi[1].strip()
-        and evidence.get("preregistration_sha256") == sha256(path)
-        and evidence.get("registered_at"),
-        "OSF gate: local registration evidence and exact preregistration hash are required",
-    )
-    require(
-        evidence.get("task_config_sha256") == fingerprint(config),
-        "OSF gate: task configuration differs from registered evidence",
-    )
-    if bundle_sha256 is not None:
-        require(
-            evidence.get("bundle_sha256") == bundle_sha256,
-            "OSF gate: scientific/code bundle differs from registered evidence",
-        )
-    return evidence

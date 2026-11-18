@@ -17,6 +17,16 @@ from mbtopology.runtime import Fail, atomic_json, fingerprint, read_json, sha256
 ROOT = Path(__file__).parents[1]
 
 
+@pytest.fixture(autouse=True)
+def synthetic_registration(monkeypatch):
+    def verify_fixture_root(root):
+        assert Path(root) != ROOT
+        return {"type": "SYNTHETIC_FIXTURE_ONLY"}
+
+    monkeypatch.setattr(runner, "require_registered", verify_fixture_root)
+    monkeypatch.setattr(runner.gnn_training, "require_registered", verify_fixture_root)
+
+
 class Progress:
     def save(self, **values):
         pass
@@ -99,21 +109,6 @@ def fixture_bundle(root, architecture):
                 "yaml_sha256": sha256(spec_path),
             }
         ]
-    )
-    document = root / "PREREGISTRATION.md"
-    document.write_text(
-        "Status: REGISTERED — SYNTHETIC UNIT FIXTURE ONLY\nOSF DOI: 10.17605/OSF.IO/TESTFIXTURE\n",
-        encoding="utf-8",
-    )
-    atomic_json(
-        root / "configs/osf_registration.json",
-        {
-            "osf_doi": "10.17605/OSF.IO/TESTFIXTURE",
-            "registered_at": "SYNTHETIC_UNIT_FIXTURE_ONLY",
-            "preregistration_sha256": sha256(document),
-            "task_config_sha256": fingerprint(task),
-            "bundle_sha256": bundle["bundle_sha256"],
-        },
     )
     return bundle, frame
 

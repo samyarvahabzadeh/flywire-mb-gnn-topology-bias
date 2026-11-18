@@ -10,7 +10,7 @@ plans_dir: plans
 run_configs_dir: configs/runs
 checkpoint_seconds: 900
 session_hours: 11.5
-require_osf: true
+registration_evidence: github_tag
 deterministic_algorithms: true
 precision: float32
 decision_ids: [W2-P05, W2-P06]
