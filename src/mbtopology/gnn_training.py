@@ -45,7 +45,7 @@ def frozen_inputs(
     odors = read_json(root / task_config["cs_encoding"]["odor_sets"])
     readout = read_json(root / task_config["readout"]["frozen_membership"])
     require(
-        (pilot and seed == 1337 and str(seed) not in odors["seeds"])
+        (pilot and seed in (1337, 2026) and str(seed) not in odors["seeds"])
         or (not pilot and str(seed) in odors["seeds"]),
         "invalid seed for pilot or frozen input set",
     )

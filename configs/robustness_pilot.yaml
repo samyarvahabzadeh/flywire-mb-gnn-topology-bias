@@ -1,0 +1,4 @@
+scope: PROPOSED_EXPLORATORY_ONLY
+levels: [0.0, 0.1, 0.2, 0.3]
+encoding: exchange_active_and_inactive_kcs
+decision_ids: [W3-S10]
