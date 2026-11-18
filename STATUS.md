@@ -1,5 +1,12 @@
 # Overnight status — 2026-11-18 (Asia/Tehran)
 
+## Seed 1337 diagnostic ladder
+
+The first three predeclared gates passed on Molab. The condition for the fourth
+gate was absent. See `results/diagnostic_ladder/fefe5ce31306/REPORT.md` for the
+seed-1337 results and downstream readout localization. Engineering benchmarks use
+GCN + GraphSAGE. The confirmatory protocol and main sweep hold stay in force.
+
 ## Learnability and batch-rate hold
 
 The seed-0 probe diagnosis, single-graph seed-1337 pilot, and one benchmark of
