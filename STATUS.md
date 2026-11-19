@@ -1,5 +1,26 @@
 # Overnight status — 2026-11-19 (Asia/Tehran)
 
+## Exploratory mechanism analysis
+
+**Complete.** The analysis re-read the 305 frozen job archives and the 11
+topology archives, and matched every job's graph-manifest SHA-256. The resulting
+tables contain 61 graph rows and 1,830 job rows. The private Drive export passed
+write and read-back checks. Its ZIP SHA-256 is
+`6a050a34b181cd8b11e6e2c9d137dcf3f9afb65090137b2487b157bde0f56abb`.
+The verified local report, manifest and figures are in
+`results/exploratory/mechanism/`. `PREPRINT-DRAFT/` holds the working manuscript,
+exploratory outputs, and byte-identical copies of the tagged confirmatory report
+and four confirmatory figures. The confirmatory phase remains closed.
+
+**PROPOSED decisions.** Use the sparse unweighted message-passing support, report
+both full and component-level gaps, describe TTC associations at the topology
+level, and summarize the stop-aligned final 100 observed scores. See
+`DECISIONS.md` for definitions and the censoring rule.
+
+**OSF link blocked.** The public registration exists at DOI
+`10.17605/OSF.IO/H5GBV`. Archived links are read-only. Adding a Resource requires
+a DOI for the linked results. The results currently have a GitHub tag.
+
 ## Confirmatory analysis
 
 The single locked analysis verified all 1,830 confirmatory Parquets and all
