@@ -7,9 +7,11 @@ write/read-back preflight. Before the sandbox was reclaimed, the first Molab
 session recorded all six benchmark exclusions, archived all 60 null graphs,
 and saved 108/1,830 jobs in 18 verified batches. The rate at the last receipt
 was 200.5 jobs/hour versus the prior 163/hour benchmark. Zero retries were
-recorded. The second session restored the 18 receipts and saved through
-batch `0054`, bringing progress to 330/1,830 at 01:58 Tehran time on
-2026-11-19. Session throughput was 287.47 jobs/hour with zero retries.
+recorded. The second session restored those receipts and saved through
+batch `0212`, bringing progress to 1,278/1,830 at 05:19 Tehran time on
+2026-11-19. It added 1,170 jobs at 284.27 jobs/hour with zero retries
+before the sandbox was reclaimed. The third session has the original runtime
+ready and awaits refreshed Drive authorization to resume at batch `0213`.
 
 ## Final binary release pilot
 

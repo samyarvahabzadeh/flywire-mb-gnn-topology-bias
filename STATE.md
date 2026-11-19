@@ -24,13 +24,21 @@ PyG 2.8.1, Torch 2.11.0+cu130 and the same Drive prefix
 `root/FlyWireMB-v12-sweep`. Session 2 (`1795038123287148241`, PID 1172)
 read 108 durable jobs at launch. It saved batch `0018`, bringing the confirmed
 total to 114/1,830 at `2026-11-18T21:44:23Z` with zero retries.
-Latest engineering checkpoint: batch `0054`, 330/1,830 archived at
-`2026-11-18T22:28:23Z`. Session throughput was 287.47 jobs/hour, with
-zero retries and an engineering ETA of 5.22 hours.
-First resume action: inspect only `SWEEP` events from
-`/marimo/flywire-mb-v12-resume/final-binary-confirmatory-sweep-session2.log`.
-Launch the frozen execution command only when no writer is active.
-The runner restores the graph bank and skips committed Drive receipts.
+Session 2 was also reclaimed. Drive has a contiguous 213-batch sequence
+through `batch-0212.receipt.json`, or 1,278/1,830 jobs. Session 2 added 1,170
+jobs through 05:19 Tehran time on November 19, with no recorded retries.
+Its last durable time was 14,816.82 seconds and throughput 284.27 jobs/hour.
+No final audit or partial receipt had been committed.
+
+The third sandbox has the same pinned checkout at
+`/marimo/flywire-mb-v12-resume-03` and the verified runtime packages. Its first
+attempt exited during Google Drive authorization, before creating a writer lock
+or training a job. The notebook's existing Drive cell is waiting for the
+researcher to renew OAuth. The next missing batch is `0213`.
+First resume action: after authorization, run the frozen storage preflight
+with prefix `root/FlyWireMB-v12-sweep`, then launch the same execution command
+with a new log. The runner restores the graph bank and skips the 213 committed
+Drive receipts. Do not open Parquet trajectories during the sweep.
 
 The locked real-only pilot passed at trials 968 and 879. Raw pilot results
 are under Molab `results/final_binary_pilot/fae650607b35/`. The public annotated
