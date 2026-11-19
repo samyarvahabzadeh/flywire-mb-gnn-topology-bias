@@ -2,6 +2,16 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+The one-time confirmatory analysis has completed from locked commit
+`ef2eb2f95d73b118390aca13e9ad5f0a745cc2ae`. W3-S29/S30 freeze the
+v1.2 primary and the researcher-defined two-sided ACE/three-outcome BH family
+before opening data. All 1,830 inputs and 305 archives were verified.
+The output archive SHA-256 is
+`41b06a9081024a5277d2bed932d79866439aab2ca2e1ac43ba68b7403e6a43bb`.
+The verified report, summaries and figures are in `results/confirmatory/`.
+The [original result package](https://drive.google.com/file/d/1PRpXph0GuL7wTlhGp_sc4AxBtVK88sja/view?usp=drivesdk)
+includes the one-time inference provenance.
+
 **The v1.2 sweep and its engineering audit are complete.** At 11:48 Tehran
 time on November 19, all 1,830 planned jobs and 305 Drive archives passed
 inventory and hash checks. The third writer recorded a session summary and

@@ -1,0 +1,154 @@
+{
+  "amendment_tag": "v1.2-prereg-amendment",
+  "analysis_git_commit": "ef2eb2f95d73b118390aca13e9ad5f0a745cc2ae",
+  "analysis_source_sha256": {
+    "analysis/confirmatory.py": "7dd96613c9b8de044bf03d2ea2eda7341067620bd3769fd27de9d30946c4ba67",
+    "analysis/confirmatory_data.py": "59f68eb4b27df832c8c2b4b014f29654f311cab7e91e3e7ea22304b932e9c3f7",
+    "analysis/confirmatory_plan.json": "eb8ac3f1f9429ea8c7d7e128838c648eba2b0d94358792ee3511b271b25ae1ae",
+    "analysis/confirmatory_plots.py": "54fd7f19c79b16c958861e1a0ba19dfb02d60172aa2ea6c062b0f693adfe1ada",
+    "analysis/confirmatory_stats.py": "92415a242706795623229b8648ff5b7e7172fa95ea246c56dca053ef05dbde18"
+  },
+  "archive_count": 305,
+  "bundle_sha256": "3e594885546869701faa9ccc9f671ab8a39b7eaf7debf1780f9d9065e722aee7",
+  "completion_marker_sha256": "472c452f40c4c11bad83ce6d3c10e44d8dffebf452f3e6d0765f862479567f68",
+  "data_plan_sha256": "149776bcf90f9d2a9ce5455d1c6e9b2cf2b97f8f9e1d56d76b7828121f6ee23f",
+  "descriptive": [
+    {
+      "censored": 0,
+      "condition": "Real",
+      "jobs": 30,
+      "seed_groups": 30,
+      "ttc_by_job": "748.50 [668.25, 838.25]",
+      "ttc_by_seed": "748.50 [668.25, 838.25]",
+      "uncensored_at_cap": 0
+    },
+    {
+      "censored": 1,
+      "condition": "Null-A",
+      "jobs": 900,
+      "seed_groups": 30,
+      "ttc_by_job": "404.00 [335.00, 496.25]",
+      "ttc_by_seed": "410.00 [383.75, 433.50]",
+      "uncensored_at_cap": 0
+    },
+    {
+      "censored": 0,
+      "condition": "Null-B",
+      "jobs": 900,
+      "seed_groups": 30,
+      "ttc_by_job": "441.00 [362.00, 552.25]",
+      "ttc_by_seed": "445.75 [417.12, 474.88]",
+      "uncensored_at_cap": 0
+    }
+  ],
+  "figures": [
+    "auc-descriptive.png",
+    "ttc-strip-box.png",
+    "discrimination-curve.png",
+    "noise-and-ace.png"
+  ],
+  "inference_started_at_utc": "2026-11-19T10:12:12.853276+00:00",
+  "job_count": 1830,
+  "package_versions": {
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.5",
+    "polars": "2.0.0",
+    "scipy": "1.18.1"
+  },
+  "protocol_config_sha256": "baf78c324c31eaf9375af24a76094ec6a1e391d81b83824f0a637eb264d976ec",
+  "receipt_sequence_sha256": "2b796ff309f772110f44665b6300a2e76c6f7d64d1bdd77df2b9eee3e7ce1795",
+  "secondary_bh_family": {
+    "ACE": {
+      "alternative": "two-sided",
+      "matched_null_median": 0.6783617754699662,
+      "median_difference_favor_real": -0.0023362539786223047,
+      "n_nonzero": 30,
+      "n_pairs": 30,
+      "p_bh": 0.007102483883500099,
+      "p_raw": 0.0023674946278333664,
+      "rank_biserial": -0.6172043010752688,
+      "real_median": 0.6758829020584622,
+      "w_minus": 376.0,
+      "w_plus": 89.0
+    },
+    "First single crossing ≥0.75": {
+      "alternative": "greater",
+      "matched_null_median": 320.5,
+      "median_difference_favor_real": -122.25,
+      "n_nonzero": 30,
+      "n_pairs": 30,
+      "p_bh": 0.9999999981373549,
+      "p_raw": 0.9999999953433871,
+      "rank_biserial": -0.9827956989247312,
+      "real_median": 437.0,
+      "w_minus": 461.0,
+      "w_plus": 4.0
+    },
+    "Normalized AUC to cap": {
+      "alternative": "greater",
+      "matched_null_median": 0.7328159833985148,
+      "median_difference_favor_real": -0.005994425503839773,
+      "n_nonzero": 30,
+      "n_pairs": 30,
+      "p_bh": 0.9999999981373549,
+      "p_raw": 0.9999999981373549,
+      "rank_biserial": -0.9913978494623656,
+      "real_median": 0.7276621028800961,
+      "w_minus": 463.0,
+      "w_plus": 2.0
+    }
+  },
+  "sweep_git_commit": "da7b9cb802f78b4eee5c598023c8dc350fd41250",
+  "timestamp_tehran": "2026-11-19T13:06:55.209086+03:30",
+  "timestamp_utc": "2026-11-19T09:36:55.209086+00:00",
+  "ttc": {
+    "Null-A": {
+      "alternative": "greater",
+      "matched_null_median": 410.0,
+      "median_difference_favor_real": -340.25,
+      "n_nonzero": 30,
+      "n_pairs": 30,
+      "p_raw": 0.9999999990686774,
+      "rank_biserial": -0.9956989247311828,
+      "rank_biserial_ci95": [
+        -1.0,
+        -0.9741935483870968
+      ],
+      "real_median": 748.5,
+      "w_minus": 464.0,
+      "w_plus": 1.0
+    },
+    "Null-B": {
+      "alternative": "greater",
+      "matched_null_median": 445.75,
+      "median_difference_favor_real": -299.5,
+      "n_nonzero": 30,
+      "n_pairs": 30,
+      "p_raw": 0.9999999981373549,
+      "rank_biserial": -0.9913978494623656,
+      "rank_biserial_ci95": [
+        -1.0,
+        -0.9483870967741935
+      ],
+      "real_median": 748.5,
+      "w_minus": 463.0,
+      "w_plus": 2.0
+    },
+    "Pooled nulls": {
+      "alternative": "greater",
+      "matched_null_median": 424.0,
+      "median_difference_favor_real": -318.75,
+      "n_nonzero": 30,
+      "n_pairs": 30,
+      "p_raw": 0.9999999981373549,
+      "rank_biserial": -0.9913978494623656,
+      "rank_biserial_ci95": [
+        -1.0,
+        -0.9483870967741935
+      ],
+      "real_median": 748.5,
+      "w_minus": 463.0,
+      "w_plus": 2.0
+    }
+  }
+}

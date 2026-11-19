@@ -1,5 +1,12 @@
 # Overnight status — 2026-11-19 (Asia/Tehran)
 
+## Confirmatory analysis
+
+The single locked analysis verified all 1,830 confirmatory Parquets and all
+305 archives. W3-S29/S30 document the v1.2 primary and the researcher-approved
+ACE replacement in the secondary BH family. The results, numeric precision
+and four figures are in `results/confirmatory/`.
+
 ## Authorized final sweep
 
 **Complete.** The November 19 engineering audit verified 1,830/1,830 fresh
