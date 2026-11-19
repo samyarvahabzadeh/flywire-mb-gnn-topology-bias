@@ -12,7 +12,8 @@ batch `0212`, bringing progress to 1,278/1,830 at 05:19 Tehran time on
 2026-11-19. It added 1,170 jobs at 284.27 jobs/hour with zero retries
 before the sandbox was reclaimed. After refreshed Drive authorization and
 removing the implicit notebook console alias, session 3 recovered through
-batch `0212` and saved through `0214`, bringing progress to 1,290/1,830.
+batch `0212` and saved through `0247`, bringing progress to 1,488/1,830
+at 10:15 Tehran time. Session 3 shows no retries at that checkpoint.
 
 ## Final binary release pilot
 
