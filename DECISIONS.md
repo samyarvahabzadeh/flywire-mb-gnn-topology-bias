@@ -70,3 +70,30 @@ Every semantic decision (dataset versions, name matching, hyperparameter locks, 
 | 2026-11-19 | W3-S29 — ANALYSIS RULES LOCKED BEFORE OUTCOME ACCESS: the researcher confirmed the original v1.2 one-sided primary signed-rank test and rank value 2,001 for capped misses. Use exact conditional signed-rank tails, signed rank-biserial effects and a 10,000-draw percentile paired-seed bootstrap for TTC. Preserve capped misses at 2,000 only in descriptive displays. The separately requested null-A and null-B Wilcoxon rows are supplementary to v1.2's descriptive strata. | Two-sided primary or assigning a capped miss the same rank as an observed hit at 2,000. | Explicit researcher clarification before opening outcomes or plotting. Keep the tagged amendment unchanged. | analysis/confirmatory_plan.json |
 | 2026-11-19 | W3-S30 — PRE-INSPECTION SECONDARY DEVIATION: the researcher operationalized ACE as (d0+2*d0.1+2*d0.2+d0.3)/6 across frozen noise doses and replaced the original noise slope with ACE in the three-test BH family. Use a two-sided exact test for ACE, with the real value paired to the same-seed median over 60 nulls. Retain the two previously registered secondary directions and cap AUC rule. Plot observed clean AUC through stop or cap first, then the locked TTC distribution, clean curve and two-panel frozen noise/ACE figure. | Estimating TTC at nonzero noise from terminal responses or switching estimands based on results. | Researcher specified the operationalization after completion of training and before inspecting confirmatory outcomes. | analysis/confirmatory_plan.json |
 | 2026-11-19 | W3-S31 — CONFIRMATORY ANALYSIS COMPLETE: execute once from the locked analysis commit after confirming all inputs and generating the descriptive figures. Mirror the original results byte-for-byte after verifying the export hash and source hashes. | Refitting, removing outcomes, changing the locked estimands or running additional analyses after inspection. | User requested one execution and a public tag with the results and script. | results/confirmatory/RESULTS.md |
+
+## 2026-11-19 · Exploratory mechanism analysis
+
+**PROPOSED — EXPLORATORY ONLY.** Link each completed job to the archived CSR by its
+graph-manifest SHA-256. Use the unweighted message-passing edge support. Exclude
+self-loops. Use the undirected union of arcs for normalized-Laplacian λ₂, average
+local clustering and Louvain modularity (resolution 1, seed 20261119). Report
+full-graph λ₂ and largest weak-component λ₂ separately. Calculate mean shortest
+path across reachable distinct ordered pairs and report the reachable fraction.
+Calculate reciprocity as the fraction of directed arcs with the reverse present.
+Describe metric–TTC associations within each null variant using the topology
+median over seeds. The real condition has one topology. Display the single
+censored TTC at 2,000 with a censor flag.
+
+Use the sample SD of the final 100 observed held-out discrimination scores per
+job, using the entire trace when shorter. Compare null median endpoints within
+each seed and summarize across 30 seeds. Calculate first-crossing-to-stabilization
+lags among observed hits and retain the censored job with a lower bound in the
+job table. No new simulations, significance tests or modifications to the tagged
+confirmatory analysis. Summarize Null-A versus Null-B descriptively.
+
+**OSF status verified.** The previously attempted public registration was
+accepted on November 18, 2026 and has DOI
+[10.17605/OSF.IO/H5GBV](https://doi.org/10.17605/OSF.IO/H5GBV).
+The OSF Links page lists linked OSF records and has no add control. Its Resources
+form requires the DOI of the linked output. The results currently have a public
+GitHub tag. The GitHub tags document the final amendment and confirmatory results.
