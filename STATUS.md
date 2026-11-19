@@ -2,6 +2,13 @@
 
 ## Authorized final sweep
 
+**Complete.** The November 19 engineering audit verified 1,830/1,830 fresh
+jobs, all 305 batch receipts and archive members, and the job manifest links
+to the Parquet and checkpoint hashes. The result files and engineering
+completion marker are stored outside Molab. The writer has exited.
+See `results/final_binary_sweep/149776bcf90f/ENGINEERING_REPORT.md` for
+session totals and the audit record.
+
 The researcher released the frozen v1.2 matrix. Google Drive passed the
 write/read-back preflight. Before the sandbox was reclaimed, the first Molab
 session recorded all six benchmark exclusions, archived all 60 null graphs,
@@ -13,7 +20,8 @@ batch `0212`, bringing progress to 1,278/1,830 at 05:19 Tehran time on
 before the sandbox was reclaimed. After refreshed Drive authorization and
 removing the implicit notebook console alias, session 3 recovered through
 batch `0212` and saved through `0285`, bringing progress to 1,716/1,830
-at 11:01 Tehran time. Session 3 shows no retries at that checkpoint.
+at 11:01 Tehran time. It continued to the final audit with no recorded
+job retries.
 
 ## Final binary release pilot
 

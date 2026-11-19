@@ -2,6 +2,14 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+**The v1.2 sweep and its engineering audit are complete.** At 11:48 Tehran
+time on November 19, all 1,830 planned jobs and 305 Drive archives passed
+inventory and hash checks. The third writer recorded a session summary and
+released the writer lock. The local aggregate report is
+`results/final_binary_sweep/149776bcf90f/ENGINEERING_REPORT.md`.
+The [verified Drive completion manifest](https://drive.google.com/file/d/15qsM12zQ3rOfMQ85jSwcokR12ADeJvnk/view?usp=drivesdk)
+is the durable completion marker. Analysis is a separate stage.
+
 The researcher released the v1.2 confirmatory sweep. The frozen plan lives in
 `configs/final_binary_sweep.json` (plan SHA-256
 `149776bcf90f9d2a9ce5455d1c6e9b2cf2b97f8f9e1d56d76b7828121f6ee23f`).
@@ -40,11 +48,10 @@ safely archived the next batches. Latest verified count is 1,716/1,830
 through batch `0285` at `2026-11-19T07:31:57Z`, zero session retries and
 264.54 jobs/hour. Engineering ETA to the last batch was 0.43 hours.
 
-First resume action: inspect only `SWEEP` events from
+Run log reference:
 `/marimo/flywire-mb-v12-resume-03/final-binary-confirmatory-sweep-session3-resume.log`
-or the verified Drive receipts if the sandbox stops. Use the same Drive prefix
-`root/FlyWireMB-v12-sweep`, run the storage preflight, and launch the frozen
-command only when no writer is active. Do not open Parquet trajectories.
+and the durable Drive receipts. The final marker supersedes the incremental
+checkpoint totals above.
 
 The locked real-only pilot passed at trials 968 and 879. Raw pilot results
 are under Molab `results/final_binary_pilot/fae650607b35/`. The public annotated
