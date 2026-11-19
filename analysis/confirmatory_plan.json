@@ -1,0 +1,32 @@
+{
+  "status": "LOCKED_BEFORE_OUTCOME_ACCESS",
+  "date_tehran": "2026-11-19",
+  "plan_sha256": "149776bcf90f9d2a9ce5455d1c6e9b2cf2b97f8f9e1d56d76b7828121f6ee23f",
+  "amendment_tag_object": "50fcd6000781c27cdb96ce7f6258b75193f62c22",
+  "primary_alternative": "greater",
+  "rank_code_for_capped_miss": 2001,
+  "display_code_for_capped_miss": 2000,
+  "paired_unit": "task seed, real versus within-seed null median",
+  "primary_null_instances_per_seed": 60,
+  "stratified_ttc": "requested supplementary Null-A and Null-B signed-rank comparisons",
+  "rank_test": "conditional exact signed-rank tails with averaged tie ranks and zero differences dropped",
+  "paired_bootstrap": {
+    "n_draws": 10000,
+    "seed": 20261119,
+    "confidence_interval": "95 percent percentile interval for TTC rank-biserial effects"
+  },
+  "secondary_bh_family": [
+    {"outcome": "first_single_crossing", "alternative": "greater"},
+    {"outcome": "normalized_auc_to_cap", "alternative": "greater"},
+    {"outcome": "ace", "alternative": "two-sided"}
+  ],
+  "ace": {
+    "levels": [0.0, 0.1, 0.2, 0.3],
+    "weights": [1, 2, 2, 1],
+    "normalizing_denominator": 6,
+    "source": "frozen-model held-out discrimination",
+    "status": "researcher-selected replacement of v1.2 noise slope before inspection"
+  },
+  "descriptive_figure": "observed_clean_auc_until_stop_or_cap",
+  "noise_figure": "four-level frozen discrimination with 30 seed points, median, IQR and chance line, plus ACE distribution"
+}

@@ -2,6 +2,7 @@ configs/** text eol=lf
 src/** text eol=lf
 tests/** text eol=lf
 scripts/** text eol=lf
+analysis/** text eol=lf
 reports/** text eol=lf
 uv.lock text eol=lf
 pyproject.toml text eol=lf
