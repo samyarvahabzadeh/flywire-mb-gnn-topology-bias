@@ -36,9 +36,9 @@ attempt exited during Google Drive authorization, before creating a writer lock
 or training a job. The researcher renewed OAuth. The Drive cell now binds
 `fs` without a notebook-global `mo` alias, and the separate writer preflight
 passed. Session 3 (`1795067556671097903`, PID 2696) recovered 1,278 jobs and
-safely archived the next batches. Latest verified count is 1,488/1,830
-through batch `0247` at `2026-11-19T06:45:57Z`, zero session retries and
-236.22 jobs/hour. Engineering ETA to the last batch was 1.45 hours.
+safely archived the next batches. Latest verified count is 1,716/1,830
+through batch `0285` at `2026-11-19T07:31:57Z`, zero session retries and
+264.54 jobs/hour. Engineering ETA to the last batch was 0.43 hours.
 
 First resume action: inspect only `SWEEP` events from
 `/marimo/flywire-mb-v12-resume-03/final-binary-confirmatory-sweep-session3-resume.log`
