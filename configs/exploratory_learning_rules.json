@@ -1,0 +1,21 @@
+{
+  "scope": "EXPLORATORY_TOPOLOGY_LEARNING_RULE_V1",
+  "protocol": "configs/final_binary.yaml",
+  "protocol_sha256": "4a721b186fd1c8cd1a21fe2c6ea2d622ed083c79338f34c18dc4f905d15ef673",
+  "graph_bank_plan_sha256": "149776bcf90f9d2a9ce5455d1c6e9b2cf2b97f8f9e1d56d76b7828121f6ee23f",
+  "null_selection": "Rank instance IDs 00–29 separately in A and B by ascending SHA-256 of UTF-8 lr-screen-v1:<variant>:<two-digit-id>; take the first three in each variant.",
+  "graphs": ["real", "A-14", "A-17", "A-24", "B-11", "B-19", "B-21"],
+  "seeds": [4100, 4101, 4102, 4103, 4104],
+  "smoke_seed": 4199,
+  "smoke_trials": 32,
+  "arms": ["A", "B", "C"],
+  "trials": 2000,
+  "pairs_per_trial": 4,
+  "threshold": 0.75,
+  "rolling_window": 20,
+  "checkpoint_seconds": 900,
+  "local_readout": {
+    "step_size": 0.001,
+    "maximum_depression": 0.05
+  }
+}

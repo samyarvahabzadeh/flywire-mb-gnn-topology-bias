@@ -97,3 +97,25 @@ accepted on November 18, 2026 and has DOI
 The OSF Links page lists linked OSF records and has no add control. Its Resources
 form requires the DOI of the linked output. The results currently have a public
 GitHub tag. The GitHub tags document the final amendment and confirmatory results.
+
+## 2026-11-19 · Exploratory topology × learning rule screen
+
+**PROPOSED, locked before smoke.** Use five new task and initialization seeds
+4100–4104, with 4199 reserved for the engineering smoke. Rank null IDs by
+SHA-256 of `lr-screen-v1:<variant>:<two-digit-id>` independently within each
+variant. Select A-14, A-17, A-24, B-11, B-19 and B-21. Reuse the verified archived
+graph artifacts. The selection procedure reads identifiers only.
+
+Use the frozen binary task, sensory drive, held-out scheme and 20-trial mean
+threshold 0.75 through a common horizon of 2,000 trials, even after a hit.
+Compute observed-horizon mean discrimination as normalized AUC. Use three
+arms combining the original model, frozen body with the original Adam/BCE
+head, and an opponent-specific reward-modulated local readout. For C, use the
+forward-pairing depression term from Jiang & Litwin-Kumar (2021), adapted to
+a tie across approach MBON embeddings. Fix step 0.001 and bound the local
+offset at −0.05 with a zero start. The values take their numerical scales
+from the baseline and the reference paper, respectively. Run a 32-trial
+real-graph smoke to verify shared initial predictions, weight updates,
+cue separation, held-out nonmutation and zero update without reinforcement.
+See reports/EXPLORATORY_LEARNING_RULES_DESIGN.md for the computation map,
+equation and interpretation of B–C. The output scope is exploratory.
