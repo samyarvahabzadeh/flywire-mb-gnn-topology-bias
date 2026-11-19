@@ -1,5 +1,23 @@
 # Overnight status — 2026-11-19 (Asia/Tehran)
 
+## Exploratory topology × learning rule screen
+
+The 32-trial CUDA smoke passed. Held-out predictions matched at initialization,
+all three readouts updated, B and C kept their bodies fixed, and C had zero drift
+on an unreinforced block. Training and held-out PN patterns and KC drives had
+zero exact overlap. The smoke wave took 1.3 seconds on an RTX PRO 6000 and peaked
+at 2.53 GiB allocated VRAM. The archived smoke report and its inventories of
+three jobs and 96 trial rows passed local SHA-256 checks.
+
+**Complete.** Molab published all six waves, 105/105 jobs and their checkpoints.
+The local audit independently re-derived TTC and AUC from all 210,000 trial
+rows and verified the cue checksums, inventory and summary artifact hashes.
+Wave training totaled 2,039.1 seconds. Peak allocated VRAM was 4.50 GiB.
+See `results/exploratory/learning_rules/d9957e587455/screen/REPORT.md`.
+The exploratory plan and run code ship in
+`7dee80d399af05a41dd353a760a013e4e77a911c`. See `DECISIONS.md` for the locked
+PROPOSED definitions and the outcome-independent null-index selection.
+
 ## Exploratory mechanism analysis
 
 **Complete.** The analysis re-read the 305 frozen job archives and the 11

@@ -2,6 +2,20 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+## Completed exploratory learning-rule screen
+
+Run commit `7dee80d399af05a41dd353a760a013e4e77a911c`. The 32-trial CUDA smoke
+passed for all three arms and its Drive summary ZIP SHA-256 is
+`ab389c2007b5692a8177da35ce92e5e95e9d47507ac04499d0b54df07c077dd4`.
+The fixed-budget screen finished with `RULE_COMPLETE screen 105` in the Molab
+notebook `nb_QuFeJ6u22LAUiouD4dTEBF`. The Drive subfolder
+`exploratory-learning-rules-v1/screen` holds six immutable wave receipts,
+per-job Parquets and model checkpoints. The summary archive SHA-256 is
+`85c58512f684e84dccae2b2fd3b8ead7afcf4dd9e2d63f3599452276cb3e6652`.
+The completed local audit verified all 105 jobs and 210,000 trial rows.
+Open `results/exploratory/learning_rules/d9957e587455/screen/REPORT.md` for the
+results and figures. This phase has no outstanding runs or transfers.
+
 The one-time confirmatory analysis has completed from locked commit
 `ef2eb2f95d73b118390aca13e9ad5f0a745cc2ae`. W3-S29/S30 freeze the
 v1.2 primary and the researcher-defined two-sided ACE/three-outcome BH family
