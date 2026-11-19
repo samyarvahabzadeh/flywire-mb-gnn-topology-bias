@@ -119,3 +119,24 @@ real-graph smoke to verify shared initial predictions, weight updates,
 cue separation, held-out nonmutation and zero update without reinforcement.
 See reports/EXPLORATORY_LEARNING_RULES_DESIGN.md for the computation map,
 equation and interpretation of B–C. The output scope is exploratory.
+
+## 2026-11-19 · Exploratory frozen-readout diagnosis and positive control
+
+**PROPOSED, fixed before outcomes.** Seed 4301 on real only. Independent
+balanced cue streams 404/407/405 for train/validation/held-out, with 512/256/512
+presentations. Fit preprocessing only on train and choose L2 on validation.
+Probe KC inputs, all MBON output scores, the two group means, the existing scalar,
+and pre-head MBON embeddings. Report held-out once.
+
+The previous arm C was an offset-only approximation. At seed 4302 use a
+reduced real model with separate plastic weights on same-side KCg→MBON11
+edges. Confirm the PPL101 and MBON11 root identities and the negative readout
+sign from the published aversive pathway and the code. Fix 48 cue pairs, unit
+initial weights, bounds [0,1], and forward-pairing depression −0.05 R x.
+R is the externally supplied aversive pulse. Score 0.25 + 0.5 × (1 − mean
+cue-normalized MBON11 activity). Require trained avoidance gap ≥0.01 both
+directions, no-US invariance and a selective update before an unreinforced
+fresh-cue probe. The future Adam path shares the exact learnable edge vector
+and readout. Do not train it on real data in this control. Null A/B preserve
+degree constraints without preserving the plastic mask or compartments.
+Definitions, exact IDs and primary sources are in the exploratory design.

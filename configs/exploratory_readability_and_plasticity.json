@@ -1,0 +1,29 @@
+{
+  "scope": "EXPLORATORY_READABILITY_AND_POSITIVE_CONTROL_V1",
+  "source": "data/graphs/mb_bilateral_v783/MANIFEST.json",
+  "binary_config": "configs/final_binary.yaml",
+  "binary_config_sha256": "4a721b186fd1c8cd1a21fe2c6ea2d622ed083c79338f34c18dc4f905d15ef673",
+  "readability": {
+    "seed": 4301,
+    "trials_per_split": [64, 32, 64],
+    "validation_stream": 407,
+    "l2_grid": [0.001, 0.01, 0.1, 1.0],
+    "constant_std": 1e-8,
+    "saturation_margin": 0.01
+  },
+  "plasticity": {
+    "seed": 4302,
+    "mbon_type": "MBON11",
+    "dan_type": "PPL101",
+    "kc_type_prefix": "KCg-",
+    "mbon_ids": ["720575940617749538", "720575940623201833"],
+    "dan_ids": ["720575940617691170", "720575940621040737"],
+    "fixed_pair_presentations": 48,
+    "heldout_blocks": 32,
+    "initial_weight": 1.0,
+    "step": 0.05,
+    "bounds": [0.0, 1.0],
+    "minimum_fixed_avoidance_gap": 0.01,
+    "adam_learning_rate": 0.001
+  }
+}
