@@ -1,5 +1,22 @@
 # Overnight status — 2026-11-19 (Asia/Tehran)
 
+## Exploratory readability and real-edge control
+
+**Complete.** Real-only readability seed 4301 used 512/256/512 presentations
+with pairwise disjoint PN patterns and projected KC drives. The five feature
+tables and train/validation/held-out scores passed the local hash and shape
+audit. CPU wall time was 226.5 seconds. See
+`results/exploratory/readability_positive_control_v1/B/readability.json`.
+
+Seed 4302 passed all fixed-cue controls on 1,638 directed KCγ→MBON11 pairs.
+The trained and swapped score gaps were +0.17129 and −0.15446 in fixed A+−A−
+order. The unreinforced control changed zero weights. The gated probe scored
+256 fresh cue instances without training. In-process CPU time was 0.34 seconds.
+See `results/exploratory/readability_positive_control_v1/C/plasticity.json`.
+The Adam implementation shares the edge vector and passed a toy inventory
+test. The current null generators give no compartment- or plastic-mask-
+preservation guarantee. See the dated PROPOSED entry in `DECISIONS.md`.
+
 ## Exploratory topology × learning rule screen
 
 The 32-trial CUDA smoke passed. Held-out predictions matched at initialization,
