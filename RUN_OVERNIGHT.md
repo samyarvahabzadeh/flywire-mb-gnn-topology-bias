@@ -12,7 +12,22 @@ exclusions from `c3df5b2c7dfc`. The runner requires the adjudicated annotated
 
 From the Molab repository root, use the same authenticated Google Drive folder
 for every session. Enable the connection from the notebook's Remote storage
-panel. These are the plan-only, storage preflight, and execution modes:
+panel. Keep the Drive cell self-contained so a fresh notebook kernel can
+evaluate it:
+
+```python
+from gdrive_fsspec import GoogleDriveFileSystem
+
+fs = GoogleDriveFileSystem(
+    use_listings_cache=False,
+    skip_instance_cache=True,
+    auth_kwargs={"use_local_webserver": False},
+)
+```
+
+Complete any Google authorization prompt in the notebook. Run the storage
+preflight before launching a new writer. Use these plan-only, preflight, and
+execution modes:
 
 ```bash
 PYTHONPATH=src:scripts python -u scripts/final_binary_sweep.py

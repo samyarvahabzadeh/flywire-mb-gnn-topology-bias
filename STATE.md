@@ -33,12 +33,17 @@ No final audit or partial receipt had been committed.
 The third sandbox has the same pinned checkout at
 `/marimo/flywire-mb-v12-resume-03` and the verified runtime packages. Its first
 attempt exited during Google Drive authorization, before creating a writer lock
-or training a job. The notebook's existing Drive cell is waiting for the
-researcher to renew OAuth. The next missing batch is `0213`.
-First resume action: after authorization, run the frozen storage preflight
-with prefix `root/FlyWireMB-v12-sweep`, then launch the same execution command
-with a new log. The runner restores the graph bank and skips the 213 committed
-Drive receipts. Do not open Parquet trajectories during the sweep.
+or training a job. The researcher renewed OAuth. The Drive cell now binds
+`fs` without a notebook-global `mo` alias, and the separate writer preflight
+passed. Session 3 (`1795067556671097903`, PID 2696) recovered 1,278 jobs and
+safely archived batches `0213` and `0214`. Latest confirmed count is
+1,290/1,830 at `2026-11-19T06:01:19Z`, zero session retries.
+
+First resume action: inspect only `SWEEP` events from
+`/marimo/flywire-mb-v12-resume-03/final-binary-confirmatory-sweep-session3-resume.log`
+or the verified Drive receipts if the sandbox stops. Use the same Drive prefix
+`root/FlyWireMB-v12-sweep`, run the storage preflight, and launch the frozen
+command only when no writer is active. Do not open Parquet trajectories.
 
 The locked real-only pilot passed at trials 968 and 879. Raw pilot results
 are under Molab `results/final_binary_pilot/fae650607b35/`. The public annotated
