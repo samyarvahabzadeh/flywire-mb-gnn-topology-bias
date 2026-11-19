@@ -140,3 +140,23 @@ fresh-cue probe. The future Adam path shares the exact learnable edge vector
 and readout. Do not train it on real data in this control. Null A/B preserve
 degree constraints without preserving the plastic mask or compartments.
 Definitions, exact IDs and primary sources are in the exploratory design.
+
+## 2026-11-19 · Exploratory matched-edge follow-up
+
+**PROPOSED, fixed before training.** The 1,638 fitted parameters correspond to
+unique KCγ→MBON11 root-ID pairs, not individual contacts. The selected pairs
+have 2,318 source rows (657 multirow pairs), 12,020 aggregate synapses and a
+same-side MB_PED row on every pair. The three controls use seeds 4410–4412 to
+sample ipsilateral KCγ with outgoing MB_PED evidence, stratifying by recipient,
+KC subtype and presence of real PN input. Exact pair count, compartment
+assignment in the model and trainable parameter count are matched.
+
+Seeds 4401–4405 use 48 repetitions of the same fixed train pair, the same
+unreinforced 256 held-out cues for both laws, shared unit initialization and
+[0,1] bounds. The numeric cut at each graph/seed/checkpoint is shared across
+laws and is the arithmetic mean of their four train-pair scores. Report
+balanced accuracy, score gap and AUROC. Keep real runs separate and earlier.
+The independent-MBON GNN head check uses the frozen seed-4301 embeddings and
+exact previous splits, with a matched shared-head reference under Adam/BCE.
+See the exploratory design and configuration for the optimizer and selection
+rules. The previous confirmatory analysis is outside the scope.

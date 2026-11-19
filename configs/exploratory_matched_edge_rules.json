@@ -1,0 +1,14 @@
+{
+  "scope": "EXPLORATORY_MATCHED_EDGE_RULES_V1",
+  "seeds": [4401, 4402, 4403, 4404, 4405],
+  "control_seeds": [4410, 4411, 4412],
+  "checkpoints": [0, 1, 2, 4, 8, 16, 32, 48],
+  "threshold": "arithmetic mean of the four train-pair scores across both current laws; common to both laws in each graph, seed and checkpoint",
+  "gnn": {
+    "seed": 4301,
+    "representations_sha256": "90a81abed0141857a37470c5ad3eaafc51917c24952fc7510de6324286df7f52",
+    "epochs": [0, 1, 2, 4, 8, 16],
+    "learning_rate": 0.001,
+    "batch_size": 8
+  }
+}
