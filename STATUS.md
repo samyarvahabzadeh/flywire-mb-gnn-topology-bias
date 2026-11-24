@@ -1,5 +1,16 @@
 # Research status — 2026-11-24 (Asia/Tehran)
 
+## Exploratory role-preserving layer intervention
+
+**Complete.** Molab finished 65 jobs across five seeds, three paired donors,
+and a 768-trial horizon. The median first-layer minus second-layer gap was
++2.96 percentage points with signed-degree swaps and +0.15 with additional
+cell-role constraints. Median paired attenuation was +3.19 points and
+positive in two of three donors. The restricted chain replaced 91.62–91.82%
+of edges versus 94.18–94.23% for the signed-degree chain.
+The independent audit verified all 49,920 trial rows. See
+`results/exploratory/role_layers_v1/REPORT.md`.
+
 ## Molab replays and exploratory GraphSAGE layer intervention
 
 **Complete.** The small Molab study finished all 35 fixed-horizon jobs.

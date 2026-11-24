@@ -2,6 +2,15 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+## Role-preserving layer experiment on Molab
+
+Frozen commit `d160b3a62bd7ce1b482feba393a57ce91f42c9d1` completed all 65 jobs
+and 49,920 held-out trial rows on Molab. The private run folder contains
+25 wave receipts, five panel receipts, and the final archive and receipt.
+The final archive passed its SHA-256 and inventory checks on D. Read
+`results/exploratory/role_layers_v1/REPORT.md`. Rerun the audit with
+`python analysis/audit_role_layers.py <final-archive.zip> results/exploratory/role_layers_v1`.
+
 ## Completed Molab crossed-null layer intervention
 
 The [dedicated Molab notebook](https://molab.marimo.io/notebooks/nb_E7gGfy7N3knAfAJTd3dH1r)
