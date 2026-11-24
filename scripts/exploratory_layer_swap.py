@@ -100,7 +100,7 @@ def conditions(data, *, retain_null_id=False):
     return result
 
 
-def verify(model, inputs, first, final, drive, presentations):
+def verify(model, inputs, first, final, drive, presentations, *, double_precision=False):
     body = model.body
     h = reduced_embeddings(body, inputs, drive, 0, presentations)
     # Rebuild the first input block directly to compare full and reduced gradients.
@@ -113,14 +113,18 @@ def verify(model, inputs, first, final, drive, presentations):
     reference = torch.relu(body.encoder(x))
     reference = torch.relu(body.convs[0](reference, first["neighbors"]))
     reference = torch.relu(body.convs[1](reference, final["neighbors"]))[:, inputs["mbon"]]
-    torch.testing.assert_close(h, reference, atol=1e-6, rtol=1e-6)
+    value_atol = 2e-11 if double_precision else 1e-6
+    value_rtol = 1e-9 if double_precision else 1e-6
+    torch.testing.assert_close(h, reference, atol=value_atol, rtol=value_rtol)
     reduced = model(x, inputs["graph"])[:, inputs["mbon"]]
     full = torch.sigmoid(body.head(reference)).squeeze(-1)
-    torch.testing.assert_close(reduced, full, atol=1e-6, rtol=1e-6)
+    torch.testing.assert_close(reduced, full, atol=value_atol, rtol=value_rtol)
     rg = torch.autograd.grad(reduced.mean(), tuple(body.parameters()))
     fg = torch.autograd.grad(full.mean(), tuple(body.parameters()))
+    gradient_atol = 2e-10 if double_precision else 2e-6
+    gradient_rtol = 1e-6 if double_precision else 1e-4
     for a, b in zip(rg, fg, strict=True):
-        torch.testing.assert_close(a, b, atol=2e-6, rtol=1e-4)
+        torch.testing.assert_close(a, b, atol=gradient_atol, rtol=gradient_rtol)
 
 
 def train_wave(jobs, config, every, device, *, deadline=None):

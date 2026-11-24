@@ -266,3 +266,13 @@ above threshold when the first crossing occurs by trial 668. Show eligibility
 counts by condition; comparisons involving that fraction are conditional.
 All outputs are exploratory, and the protocol for the closed confirmatory
 study is outside this run.
+
+**Engineering retry.** The initial crossed-bank CUDA attempt archived one
+six-job wave and then stopped during a full-versus-reduced gradient check.
+One float32 gradient element differed by 2.110e-6 with a 2e-6 absolute
+tolerance. Leave that wave in its original engineering archive and exclude
+it from the restarted bank. Check all 37 wiring pairs in float64 before
+retraining any job. This changes only the parity check: initialization,
+float32 training, graph bank, seeds, endpoints, and paired contrasts use
+the original plan. Charge elapsed time from the first launch against the
+same 118-minute budget.

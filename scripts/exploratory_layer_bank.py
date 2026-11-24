@@ -97,6 +97,23 @@ def verify_shard(path, metadata, signature, expected, cap):
     return frame, spec
 
 
+def verify_bank(arms, graphs_on_device, model_config, seed, drive, presentations):
+    # Full and reduced graphs can accumulate single-precision gradients in
+    # different orders. Use a separate double-precision copy for this check.
+    model = make_benchmark_model(
+        "GraphSAGE", model_config, seed, "cuda", aggregation="max"
+    ).double()
+    cue = drive[:presentations].astype("float64")
+    for condition, inputs in arms.items():
+        donor, code = condition.rsplit("-", 1) if condition != "RR" else ("real", "RR")
+        first, final = [graphs_on_device["real" if ch == "R" else donor] for ch in code]
+        proof = {**inputs, "base": inputs["base"].double()}
+        verify(
+            HybridSAGE(model, proof), proof, first, final, cue, presentations, double_precision=True
+        )
+    print(f"BANK_FP64_PARITY_PASS conditions={len(arms)}", flush=True)
+
+
 def run_panel(number, seeds, state, deadline, store):
     plan, config, graphs_on_device, arms, bundle, run, output = state
     folder = output / f"panel-{number:02d}"
@@ -113,6 +130,15 @@ def run_panel(number, seeds, state, deadline, store):
     folder.mkdir(parents=True, exist_ok=True)
     started = monotonic()
     cues = {s: load_real_cues(bundle["task"], config, s)[0] for s in seeds}
+    if number == 1:
+        verify_bank(
+            arms,
+            graphs_on_device,
+            bundle["models"],
+            seeds[0],
+            cues[seeds[0]][0],
+            2 * config["pairs_per_trial"],
+        )
     remaining = iter(product(seeds, arms))
     frames, wave_files, archive_count = [], [], 0
     old_archive_names = store.list_names() if store is not None else set()
@@ -135,12 +161,6 @@ def run_panel(number, seeds, state, deadline, store):
                     ),
                     inputs,
                 )
-                if number == 1 and seed == seeds[0]:
-                    donor, code = condition.rsplit("-", 1) if condition != "RR" else ("real", "RR")
-                    first, final = [graphs_on_device["real" if ch == "R" else donor] for ch in code]
-                    verify(
-                        model, inputs, first, final, cues[seed][0], 2 * config["pairs_per_trial"]
-                    )
                 jobs.append(
                     Job(
                         seed,
@@ -364,6 +384,12 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--await-study", type=Path)
     parser.add_argument("--drive-prefix")
+    parser.add_argument(
+        "--elapsed-before",
+        type=float,
+        default=0.0,
+        help="Charge the previous attempt and interruption against this session budget",
+    )
     args = parser.parse_args()
     started = monotonic()
     os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
@@ -371,7 +397,13 @@ def main():
     torch.set_num_threads(3)
     torch.use_deterministic_algorithms(True)
     plan = read_json(PLAN)
-    deadline = started + plan["session_minutes"] * 60 - plan["archive_reserve_seconds"]
+    require(args.elapsed_before >= 0, "elapsed time must be nonnegative")
+    deadline = (
+        started
+        + plan["session_minutes"] * 60
+        - plan["archive_reserve_seconds"]
+        - args.elapsed_before
+    )
     _, config = read_plan()
     config = {**config, "trials": plan["trials"]}
     bundle = runner.load_bundle(ROOT, ROOT / "configs/experiment.yaml")
@@ -445,6 +477,7 @@ def main():
         "complete_seeds": [s for p in panels for s in p["seeds"]],
         "stop_reason": reason,
         "wall_seconds": monotonic() - started,
+        "elapsed_before_seconds": args.elapsed_before,
         "completed_utc": now(),
     }
     manifest = args.output / "MANIFEST.json"
