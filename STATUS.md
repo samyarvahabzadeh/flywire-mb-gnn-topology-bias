@@ -1,5 +1,18 @@
 # Research status — 2026-11-24 (Asia/Tehran)
 
+## Exploratory aversive memory generalization
+
+**Complete.** A reduced KCγ-to-MBON11 circuit compared local dopamine-gated
+depression and Adam/BCE across 16 seeds and 12 capacity-matched input masks
+plus real wiring. All 416 jobs matched conditioned-cue strength and the
+audit verified 83,200 novel-cue evaluations. The real circuit transferred
+32.0% of the conditioned response change to zero-overlap probes under local
+plasticity and 44.9% under Adam. Near-probe transfer was 93.8% and 94.7%.
+The matched-strength topology-by-rule interaction was -0.00292 in units of
+conditioned-cue response, with five of 16 positive seed contrasts. The
+topology controls retained 67.1–68.7% of real pairs. Read
+`results/exploratory/memory_generalization_v1/REPORT.md`.
+
 ## Exploratory role-preserving layer intervention
 
 **Complete.** Molab finished 65 jobs across five seeds, three paired donors,

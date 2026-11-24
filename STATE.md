@@ -2,6 +2,15 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+## Aversive memory generalization
+
+All 416 exploratory jobs and 83,200 probe rows passed the local audit on D.
+The first run failed when writing its manifest. The corrected deterministic
+replay produced a byte-identical probe table and a valid manifest.
+Read `results/exploratory/memory_generalization_v1/REPORT.md`.
+Reproduce its analysis with
+`python -X utf8 analysis/memory_generalization.py results/exploratory/memory_generalization_v1`.
+
 ## Role-preserving layer experiment on Molab
 
 Frozen commit `d160b3a62bd7ce1b482feba393a57ce91f42c9d1` completed all 65 jobs
