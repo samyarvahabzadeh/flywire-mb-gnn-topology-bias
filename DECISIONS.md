@@ -276,3 +276,21 @@ retraining any job. This changes only the parity check: initialization,
 float32 training, graph bank, seeds, endpoints, and paired contrasts use
 the original plan. Charge elapsed time from the first launch against the
 same 118-minute budget.
+
+### 2026-11-24 · PROPOSED · Exploratory role-preserving layer intervention
+
+Freeze five fresh cue/initialization seeds 5101–5105 and three new donor seeds
+8101–8103 before training. Each seed has a real baseline and both layer
+placements of each of six graphs, for 65 jobs. Each donor index initializes
+both the signed-degree swap chain and a chain restricted to equal source role,
+target role, and presynaptic sign. Preserve synapse counts on presynaptic edge
+slots. GraphSAGE-max consumes neighbor identity; sign is a rewiring constraint.
+Certify 10 accepted swaps per original edge, unchanged nodewise signed degrees,
+and at least 50% of original edges replaced in every donor. For the restricted
+chain also verify the exact incoming and outgoing role composition per neuron.
+Keep the real PN-to-KC drive, held-out cue schedule, readout and 768-trial budget
+of the previous exploratory bank. The primary descriptive outcome is the
+first-only minus second-only mean held-out discrimination gap within donor
+and seed, and its attenuation under the restricted control (B gap minus S
+gap). Summarize across seeds within each donor before summarizing across the
+three donors. Report overlap differences as a limitation on attribution.

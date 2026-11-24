@@ -1,0 +1,27 @@
+{
+  "scope": "exploratory_role_layers_v1",
+  "seeds": [
+    5101,
+    5102,
+    5103,
+    5104,
+    5105
+  ],
+  "donors": [
+    8101,
+    8102,
+    8103
+  ],
+  "trials": 768,
+  "wave_width": 3,
+  "checkpoint_every_trials": 64,
+  "minimum_fraction_edges_replaced": 0.5,
+  "primary": "Within each seed and donor, mean held-out discrimination for NR minus RN. Compare this gap under signed-degree swaps (B) and role-and-sign swaps (S). Report B gap minus S gap in percentage points, median across seeds per donor, then across donors. Also report both gaps and paired baseline effects.",
+  "roles": [
+    "DAN",
+    "KC",
+    "MBON",
+    "PN"
+  ],
+  "accepted_swaps_per_edge": 10
+}
