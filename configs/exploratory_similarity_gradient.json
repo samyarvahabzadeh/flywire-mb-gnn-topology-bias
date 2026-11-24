@@ -1,0 +1,18 @@
+{
+  "scope": "exploratory_differential_similarity_gradient_v1",
+  "seed_start": 8301,
+  "n_seeds": 64,
+  "cue_size": 40,
+  "train_shared_pns": [0, 10, 20, 30, 36],
+  "probe_shared_pns": [0, 10, 20, 30, 36],
+  "probes_per_class_per_level": 20,
+  "training_cycles": 48,
+  "rules": ["pulse", "prediction_error", "adam_bce"],
+  "schedules": ["absolute", "differential"],
+  "reciprocal_assignments": [0, 1],
+  "local_eta": 0.05,
+  "adam_learning_rate": 0.001,
+  "initial_weight": 1.0,
+  "weight_bounds": [0.0, 1.0],
+  "description": "Exploratory factorial sweep: vary active-PN overlap between trained CS+ and explicitly safe CS-, then measure held-out generalization at five overlaps to each trained cue. Reuse the real PN-to-KC projection and frozen real/control KC-gamma-to-MBON11 masks."
+}

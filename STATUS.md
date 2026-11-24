@@ -320,3 +320,12 @@ Read reports/OVERNIGHT_REPORT.md for the full structural results and final DAN t
 Safe next command: `.venv/Scripts/python src/run_experiment.py --plan`.
 Actual execution remains intentionally blocked until the researcher completes OSF and
 supplies exact registration/config/bundle hash evidence. See RUN_OVERNIGHT.md.
+
+## 2026-11-24 · Exploratory cognitive follow-up prepared
+
+- Kept the prior confirmatory dataset and analysis unchanged.
+- Reviewed the existing differential-conditioning implementation and the Barth et al. behavioral result. The broad benefit of differential training is already known; the new exploratory question is whether model discrimination across held-out odor families varies jointly with CS+/CS− PN overlap, probe-to-trained-cue overlap, and learning rule, and whether any rule effect depends on the KCγ→MBON11 input mask.
+- PROPOSED plan frozen in `configs/exploratory_similarity_gradient.json` and `DECISIONS.md`: 64 new synthetic cue layouts, five active-PN overlap levels, 20 probes per family and level, 48 paired cycles, reciprocal assignment, three learning rules, real mask plus 12 existing capacity-matched input masks. These layouts are repeated simulations on one connectome, not biological replicates; input-mask controls are not full graph nulls.
+- Added CUDA-batched runner and input packager. Static compilation and lint are the remaining local checks; no run output has been inspected.
+- Molab notebook reports 4 CPU, 32 GiB host RAM and RTX Pro 6000. Actual VRAM availability and any still-running earlier jobs have not yet been verified. Next: inspect GPU/active-process engineering status in Molab, package and hash inputs, run a small GPU preflight, then start the checkpointed exploratory sweep and archive each shard to private Drive.
+- No confirmatory run, confirmatory file, registration document, or frozen preregistration was modified.
