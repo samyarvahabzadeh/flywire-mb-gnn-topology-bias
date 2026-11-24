@@ -155,7 +155,8 @@ def roster(nodes, projection, kc, pre, post, old, plan):
         )
         masks[f"input-{seed}"] = (p, q)
     require(
-        len({frozenset(zip(p.tolist(), q.tolist(), strict=True)) for p, q in masks.values()}) == 4,
+        len({frozenset(zip(p.tolist(), q.tolist(), strict=True)) for p, q in masks.values()})
+        == 1 + len(plan["control_seeds"]),
         "duplicate input sets",
     )
     real_pairs = set(zip(pre.tolist(), post.tolist(), strict=True))

@@ -294,3 +294,30 @@ first-only minus second-only mean held-out discrimination gap within donor
 and seed, and its attenuation under the restricted control (B gap minus S
 gap). Summarize across seeds within each donor before summarizing across the
 three donors. Report overlap differences as a limitation on attribution.
+
+### 2026-11-24 · PROPOSED · Exploratory aversive memory generalization
+
+Use the existing verified bilateral KCγ-to-MBON11 reduced circuit and its
+PPL101-inspired reinforcement pulse. Compare local synaptic depression and
+Adam/BCE on the same plastic synapses and bounded readout. Adam receives
+both cue labels. The local rule receives the CS+ reinforcement pulse.
+Anchor the generalization gradient to Hige et al. (2015), DOI
+10.1016/j.neuron.2015.11.003. Simulate exact 0, 10, 20, 30, and 36 shared
+active PNs out of 40, with 40 novel probes per level. PN overlap is a modeled
+stimulus similarity measure. Use independently drawn disjoint training
+CS+/CS− inputs, 16 frozen cue seeds and 12 frozen input-control seeds.
+The controls preserve recipient, side, KC subtype, PN reachability and
+plastic edge count. Synthetic pairs have no finer contact localization.
+Use identical initial weights and training pairs across conditions.
+
+The primary outcome is the 36-minus-0 contrast in probe response change,
+normalized by a +0.002 change at the conditioned cue. Match the earliest
+crossing of that training-only reference by linear interpolation of adjacent
+weight snapshots within 48 pairs. Report every unmatched job, any resulting
+loss of matched comparisons, the two endpoint responses, and the raw
+48-pair gradients. Compute real minus within-seed null median separately
+per rule and subtract the Adam contrast from the local contrast. Report
+the seed median descriptively. A positive interaction alone is insufficient
+for a local-rule advantage. Inspect both the local topology contrast and
+the near/far components. Verify absence of an unreinforced update and the
+exact one-pair local prediction from the activity at plastic synapses.

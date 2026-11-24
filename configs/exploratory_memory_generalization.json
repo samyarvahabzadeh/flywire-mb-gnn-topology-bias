@@ -1,0 +1,20 @@
+{
+  "scope": "exploratory_aversive_memory_generalization_v1",
+  "seed_start": 6101,
+  "n_seeds": 16,
+  "control_seed_start": 6201,
+  "n_controls": 12,
+  "training_pairs": 48,
+  "cue_size": 40,
+  "train_shared_pns": 0,
+  "shared_pns": [
+    0,
+    10,
+    20,
+    30,
+    36
+  ],
+  "probes_per_level": 40,
+  "match_cs_plus_change": 0.002,
+  "primary": "Topology-by-rule contrast on matched-CS-plus-strength novel-cue transfer at 36 minus 0 shared PNs. Aggregate nulls by median within seed separately per rule; report unmatched fits and fixed-budget effects."
+}
