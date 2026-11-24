@@ -1,5 +1,16 @@
 # Research status — 2026-11-24 (Asia/Tehran)
 
+## Manuscript review package and five-seed pooling control
+
+**Complete.** The real-only pooling control verified 15 matched readout fits
+on seeds 4501–4505. Each pair of two-dimensional classifiers fit three
+parameters on the same 91 frozen MBON scores. Train-only PCA and held-out
+separation are documented in `results/exploratory/pooling_control_v1/`.
+`PREPRINT-DRAFT/` contains the editable manuscript, visually reviewed
+eight-page PDF, seven figures, source reports, and package manifest. The
+manuscript identifies the registered and exploratory evidence. Author
+information, declarations, and external archive access are pending review.
+
 ## Exploratory matched KCγ→MBON11 follow-up
 
 **Complete.** Ten real runs and thirty input-set control runs produced 320

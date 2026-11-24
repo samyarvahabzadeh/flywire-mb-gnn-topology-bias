@@ -2,6 +2,13 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+## Manuscript ready for researcher review
+
+Read `PREPRINT-DRAFT/MANUSCRIPT.md` or its reviewed PDF. The local package
+manifest verifies all included reports and figures. The real-only pooling
+control completed 15 fits. Review author details, declarations and external
+archive access before any submission. There is no active compute run.
+
 ## Completed matched edge-rule follow-up
 
 The 40-job exploratory comparison and the separate frozen-body GNN check are
