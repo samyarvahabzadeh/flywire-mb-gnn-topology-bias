@@ -1,0 +1,26 @@
+{
+  "analysis_git_commit": "ce83e07efa179a211cf853cbf98e2575f9f440ab",
+  "analysis_manifest_sha256": "5608ed061bc41efeb9f810bcafd9b9fdf061cc0e84b52c3deddbc8a9b389719d",
+  "analysis_script_sha256": "69ed65ce1d8fc06f5df02f422c6b722f1ecbf178d948e5b6953da9bc17fbbd98",
+  "config_sha256": "771aa0f6fd7e1d2551a115e0b5a76a2a55890f6d2eb82f2340779bccd12fb058",
+  "data_rows": 249600,
+  "end_to_end_with_drive_readback_seconds": 519.9,
+  "exploratory_only": true,
+  "input_run_manifest_sha256": "d431b7dc9da2398c5035ea2742edd1cda4145f887143a8884e6a552795883c4f",
+  "report": {
+    "file": "RESULTS.md",
+    "sha256": "ef78bc013ce83955b8267c509d5c611868a15494a5e70e4cf6d840945bc6c5a1"
+  },
+  "results_drive_folder": "https://drive.google.com/drive/folders/1y6QuKjF91dvwuXuBuR4cb7if9xjAk6Yp",
+  "analysis_drive_folder": "https://drive.google.com/drive/folders/1vm0mdE1GhxwttoFOv2Gn0okd7aHAoOj1",
+  "run_git_commit": "9894ac032cb310797eb0eff7d0b5e6a9dda4654b",
+  "runner_sha256": "8765760f1ae6111274f0f64df58e9f0d404b4f1df8226d05a69715c299ea60fb",
+  "peak_torch_gpu_allocation_bytes": 13839872,
+  "sum_of_shard_compute_seconds": 64.11,
+  "mean_shard_compute_seconds": 0.9863076923076923,
+  "analysis_archive_sha256": "c4bc485d7222faff9cbb22b7bd4c57a01c2c7ae5bf789f65b397e54fc895a033",
+  "runner_input_bundle_sha256": "e2aebcfbb31ab6ccc01ff8ec22aaafd5b2e5d03a0ae5e36b43a3f0b2ad1c9094",
+  "shards": 65,
+  "timestamp": "2026-11-24",
+  "total_jobs": 249600
+}

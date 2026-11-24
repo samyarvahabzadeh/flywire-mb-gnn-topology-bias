@@ -122,7 +122,7 @@ def fit_batch(x_plus, x_minus, c_plus, c_minus, probe, rule, schedule, cfg, devi
         else:
             raise ValueError(f"unknown rule {rule}")
         w.clamp_(lo, hi)
-    response = (1 - w) @ probe.T
+    response = ((1 - w).unsqueeze(1) * probe).sum(dim=2)
     response = response.reshape(batch, len(cfg["probe_shared_pns"]), 2)
     cs_plus = (c_plus * (1 - w)).sum(dim=1)
     cs_minus = (c_minus * (1 - w)).sum(dim=1)
