@@ -166,9 +166,10 @@ def main():
     atomic_json(masks_path, catalog)
     write_manifest(
         out,
-        PLAN,
+        plan,
         {"jobs": len(masks) * plan["n_seeds"] * 2, "runner_cue_sha256": cue_hashes},
         [probes, masks_path],
+        plan_path=PLAN,
     )
 
 

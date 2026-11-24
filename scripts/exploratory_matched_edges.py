@@ -19,14 +19,14 @@ PLAN = ROOT / "configs/exploratory_matched_edge_rules.json"
 METHODS = ("Adam", "Local")
 
 
-def write_manifest(output, plan, metadata, paths):
+def write_manifest(output, plan, metadata, paths, *, plan_path=PLAN):
     commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     atomic_json(
         output / "MANIFEST.json",
         {
             "scope": plan["scope"],
             "git_commit": commit,
-            "config_sha256": sha256(PLAN),
+            "config_sha256": sha256(plan_path),
             "completed_utc": now(),
             **metadata,
             "files": {p.name: {"sha256": sha256(p), "bytes": p.stat().st_size} for p in paths},
