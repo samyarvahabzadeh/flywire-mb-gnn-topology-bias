@@ -1,5 +1,15 @@
 # Research status — 2026-11-24 (Asia/Tehran)
 
+## Molab replays and exploratory GraphSAGE layer intervention
+
+**Prepared, waiting for access to the private input.** CUDA and PyG are ready
+on the dedicated Molab notebook. The pinned design uses five fresh seeds and
+35 fixed-horizon jobs. Each real/null wiring pair changes the first layer,
+the last layer, or both, with fixed real sensory drive and held-out cues.
+All seven pairings passed forward and gradient parity against the full-graph
+computation locally. Authenticated input transfer is pending. No new
+intervention outcomes have been collected.
+
 ## Exploratory decoder-by-topology diagnostic and PCA decomposition
 
 **Complete.** The 30%-replacement interaction had a median of +1.04

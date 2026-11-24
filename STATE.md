@@ -2,6 +2,26 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+## Pending Molab exploratory layer intervention
+
+The old FlyWire notebook could not be opened. The
+[dedicated Molab notebook](https://molab.marimo.io/notebooks/nb_E7gGfy7N3knAfAJTd3dH1r)
+has an RTX PRO 6000, CUDA Torch 2.11.0+cu130, and PyG 2.8.1.
+The new 35-job design and both replay entry points are at public code commit
+`7a436b56f826b311d4066f2be4c32feef10b9d16`. All seven layer pairings passed
+local full-graph forward/gradient parity. The input ZIP on D and in the
+[private FlyWire Drive folder](https://drive.google.com/file/d/1tCwGrnUAVy8Ynemm6BN5xx5NjDOp6gF0/view)
+is 2,481,237 bytes, SHA-256
+`29ab5c63cbc3ee04c3cd9704513875afb0362a1b700622e1ee25cc959bcac5ab`.
+
+At the last check the Drive cell was waiting for the researcher's OAuth
+response. No new GPU training or PCA replay had started. The first notebook
+cell contains the launcher. Resume by running `launch_flywire()` in that
+cell after `FLYWIRE_INPUT_READY` appears. Check
+`/marimo/flywire-layer-study.log`, then verify all result manifests and
+transfer the results safely. Layer swap can resume from its last valid
+128-trial checkpoint under `/marimo/flywire-layer-outputs/layer-swap/`.
+
 ## Completed frozen decoder diagnostics
 
 The decoder-by-topology comparison verified 40 fits and 120 held-out rows.
