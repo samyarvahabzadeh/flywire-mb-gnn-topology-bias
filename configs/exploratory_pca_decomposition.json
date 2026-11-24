@@ -1,0 +1,11 @@
+{
+  "scope": "EXPLORATORY_PCA_TOPOLOGY_MEAN_DECOMPOSITION_V1",
+  "seeds": [4701, 4702, 4703],
+  "null_instances_per_variant": [0],
+  "blocks": {"train": 6, "validation": 4, "heldout": 6},
+  "validation_stream": 407,
+  "noise_levels": [0.0],
+  "epochs": [0, 1, 2, 4, 8, 16],
+  "learning_rate": 0.001,
+  "batch_size": 8
+}

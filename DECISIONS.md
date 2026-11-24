@@ -201,3 +201,19 @@ each seed. Report every seed and panel, including null-variant means and the
 60% stress result. No seed, null, dose or projection is selected by outcome.
 The probe concerns access to information in frozen representations. The
 end-to-end learning-speed mechanism remains a separate claim.
+
+## 2026-11-24 · Exploratory decomposition of pooled PCA variance
+
+**PROPOSED, after the interaction test and before new evaluation.** Shared
+raw pooled PCA underperformed on the real graph in the interaction test.
+Test whether graph identity absorbs the two PCA axes using untouched seeds
+4701–4703, real plus A-00/B-00, the same binary layout, and clean splits of
+48/32/48 cues. Report the between-graph fraction of training variance overall
+and along each raw PCA axis. Compare four two-coordinate features: pooled PCA
+and pooled scaling, the same pooled axes with per-graph training scaling,
+shared PCA estimated after removing each graph's training mean followed by
+per-graph scaling, and per-graph PCA with the same scaling. All heads have
+the same three trainable parameters and Adam/BCE budget. The main diagnostic
+is the paired real held-out balanced-accuracy difference between the two
+shared bases with local scaling. This tests what determines the directions
+of a pooled decoder. It does not measure changes in end-to-end learning.
