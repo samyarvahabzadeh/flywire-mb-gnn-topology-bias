@@ -2,6 +2,17 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+## Differential conditioning
+
+The 24-condition smoke and 3,120-condition scientific run finished on Molab
+from bundle commit `04bc07a4cb16d506139926181a2b0068654b5677`. The scientific
+run with per-seed readbacks took 454.5 seconds before final ZIP verification.
+The private Drive archive SHA-256 is
+`e7afbc458a02efce55cdbe34b0398f85cd5c6739f03dae9cce6afdc915734897`.
+All 20 raw shards and their receipts passed the independent audit on D.
+Run the audit with
+`python -X utf8 analysis/audit_differential.py results/exploratory/differential_molab_v1/differential-molab-results.zip --output results/exploratory/differential_molab_v1`.
+
 ## Aversive memory generalization
 
 All 416 exploratory jobs and 83,200 probe rows passed the local audit on D.

@@ -1,12 +1,15 @@
 def run_differential_on_molab(smoke=True):
     import hashlib
+    import json
     import subprocess
     import sys
+    import time
     from pathlib import Path
-    from zipfile import ZipFile
+    from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
     from gdrive_fsspec import GoogleDriveFileSystem
 
+    started = time.monotonic()
     drive = GoogleDriveFileSystem(
         use_listings_cache=False,
         skip_instance_cache=True,
@@ -53,7 +56,26 @@ def run_differential_on_molab(smoke=True):
             raise RuntimeError("Differential conditioning worker failed")
     for name in ("seed-contrasts.parquet", "MANIFEST.json"):
         archive_file(output / name)
-    print("DRIVE_VERIFIED", remote)
+    print("DRIVE_VERIFIED", remote, f"{time.monotonic() - started:.1f}s", flush=True)
+    if not smoke:
+        manifest = json.loads((output / "MANIFEST.json").read_text())
+        names = ["MANIFEST.json", "seed-contrasts.parquet"]
+        for shard in manifest["shards"]:
+            names.extend((shard, str(Path(shard).with_suffix(".json"))))
+        result = output / "differential-molab-results.zip"
+        with ZipFile(result, "w", compression=ZIP_DEFLATED) as packed:
+            for name in sorted(names):
+                payload = (output / name).read_bytes()
+                if drive.cat_file(f"{remote}/{name}") != payload:
+                    raise ValueError(f"Final readback differs for {name}")
+                packed.writestr(ZipInfo(name), payload, compress_type=ZIP_DEFLATED)
+        archive_file(result)
+        print(
+            "ARCHIVE_VERIFIED",
+            hashlib.sha256(result.read_bytes()).hexdigest(),
+            result.stat().st_size,
+            flush=True,
+        )
 
 
 run_differential_on_molab(smoke=True)

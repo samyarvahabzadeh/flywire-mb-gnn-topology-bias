@@ -1,5 +1,20 @@
 # Research status — 2026-11-24 (Asia/Tehran)
 
+## Exploratory differential conditioning on Molab
+
+**Complete.** Molab computed all 3,120 conditions over 20 odor layouts.
+The independent audit checked all 20 shards and receipts and recomputed
+the paired contrasts from the full crossed inventory. Under local
+prediction error, explicit exposure to a similar safe odor improved
+novel-odor discrimination on all 20 layouts. The median gain was +1.527
+percentage points on the model response scale for real wiring and +1.469
+for the controls. The median paired real-minus-control effect was +0.006
+points [IQR −0.059 to +0.034], positive in 10/20 layouts. The normalized
+paired contrast was −0.028 points. The punishment-pulse control yielded
+zero changes and the Adam reference gained +0.100 points with real
+wiring. These are descriptive computational outcomes at one compartment
+on one connectome. See `results/exploratory/differential_molab_v1/REPORT.md`.
+
 ## Exploratory aversive memory generalization
 
 **Complete.** A reduced KCγ-to-MBON11 circuit compared local dopamine-gated
