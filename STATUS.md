@@ -1,5 +1,18 @@
 # Research status — 2026-11-24 (Asia/Tehran)
 
+## Exploratory decoder-by-topology diagnostic and PCA decomposition
+
+**Complete.** The 30%-replacement interaction had a median of +1.04
+percentage points, with two positive and two negative paired differences.
+In the three-fresh-seed follow-up, graph-mean differences accounted for
+99.35–99.88% of variance along the first two raw pooled PCA axes.
+With local training centering and scaling in both arms, learning shared
+axes from the within-graph covariance improved eight of nine graph–seed
+cases. The real graph improved in two of three cases, with a median paired
+gain of 10.42 percentage points. These estimates concern frozen features and
+the sampled bank. See `results/exploratory/decoder_topology_v1/report/` and
+`results/exploratory/pca_decomposition_v1/` for plots, summaries and manifests.
+
 ## Manuscript review package and five-seed pooling control
 
 **Complete.** The real-only pooling control verified 15 matched readout fits

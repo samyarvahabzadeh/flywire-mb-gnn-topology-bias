@@ -2,6 +2,15 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
+## Completed frozen decoder diagnostics
+
+The decoder-by-topology comparison verified 40 fits and 120 held-out rows.
+Read `results/exploratory/decoder_topology_v1/report/REPORT.md`. The fresh-seed
+variance decomposition verified 36 additional fits across three topologies.
+Read `results/exploratory/pca_decomposition_v1/REPORT.md`. Both experiments
+are exploratory. Result manifests passed hash and inventory checks.
+There is no pending compute run.
+
 ## Manuscript ready for researcher review
 
 Read `PREPRINT-DRAFT/MANUSCRIPT.md` or its reviewed PDF. The local package
