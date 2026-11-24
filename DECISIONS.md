@@ -160,3 +160,21 @@ The independent-MBON GNN head check uses the frozen seed-4301 embeddings and
 exact previous splits, with a matched shared-head reference under Adam/BCE.
 See the exploratory design and configuration for the optimizer and selection
 rules. The previous confirmatory analysis is outside the scope.
+
+## 2026-11-24 · Exploratory pooling control for the manuscript
+
+**PROPOSED, fixed before training.** Use real FlyWire only and five fresh
+initialization and cue seeds 4501–4505. Use 128/64/128 presentations from
+exactly disjoint PN and projected-KC train/validation/held-out splits. Keep
+the frozen binary cue layout, fixed GraphSAGE body and initial per-MBON
+sigmoid outputs. Compare three linear logits over the same 91 MBONs: two
+legacy group means, the first two unsupervised principal components fitted
+on train, and per-MBON scores. The first two arms each have three fitted
+parameters, including bias. The independent arm has 92. Fit feature scaling on
+train only. Adam 0.001, identical ordered eight-cue batches, zero logits at
+initialization and at most 16 epochs. Select minimum validation loss at epochs
+0/1/2/4/8/16 and evaluate held-out once at probability cut 0.5. Report paired
+outcomes without choosing a favorable head or seed. This comparison probes
+the grouping choice under a two-dimensional capacity constraint. The
+preregistered comparison is closed. The new results belong in the exploratory
+manuscript section.

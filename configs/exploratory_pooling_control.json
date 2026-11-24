@@ -1,0 +1,10 @@
+{
+  "scope": "EXPLORATORY_FROZEN_MBON_POOLING_CONTROL_V1",
+  "seeds": [4501, 4502, 4503, 4504, 4505],
+  "trials_per_split": [16, 8, 16],
+  "validation_stream": 407,
+  "epochs": [0, 1, 2, 4, 8, 16],
+  "learning_rate": 0.001,
+  "batch_size": 8,
+  "standardization_floor": 1e-8
+}
