@@ -1,0 +1,13 @@
+{
+  "scope": "EXPLORATORY_DECODER_BY_TOPOLOGY_V1",
+  "seeds": [4601, 4602, 4603, 4604],
+  "null_instances_per_variant": [0, 1],
+  "blocks": {"train": 6, "validation": 4, "heldout": 6},
+  "validation_stream": 407,
+  "noise_stream": 4680,
+  "noise_levels": [0.0, 0.3, 0.6],
+  "primary_noise": 0.3,
+  "epochs": [0, 1, 2, 4, 8, 16],
+  "learning_rate": 0.001,
+  "batch_size": 8
+}

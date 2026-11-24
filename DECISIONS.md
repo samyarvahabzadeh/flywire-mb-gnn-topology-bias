@@ -178,3 +178,26 @@ outcomes without choosing a favorable head or seed. This comparison probes
 the grouping choice under a two-dimensional capacity constraint. The
 preregistered comparison is closed. The new results belong in the exploratory
 manuscript section.
+
+## 2026-11-24 · Exploratory decoder-by-topology interaction
+
+**PROPOSED, fixed before evaluation.** Cross real, Null-A 00/01 and Null-B
+00/01 with two matched-dimensional frozen-body decoders. Use the first two IDs
+per variant before using outcomes, audited local ID 00 masks and regenerated
+ID 01 masks from the degree-preserving swap specification. Run paired seeds
+4601–4604. Per graph, use 48 clean train and 32 clean validation cues. Probe
+48 independent held-out cues at 0%, 30%, and 60% nested PN replacement
+(0, 12, and 24 of 40 active inputs). Use identical conditions within seed,
+including the real sensory projection and initialized GraphSAGE weights.
+Score the same 91 MBONs. Compare two fixed group means with PCA of pooled,
+equal-size training features from all five graphs, without labels. Fit both
+standardizers on pooled training features. Fit one three-parameter Adam/BCE
+logit per graph, seed and representation. Select epoch on clean validation,
+then report balanced accuracy at cut 0.5 and AUROC on held-out.
+
+The main descriptive interaction at 30% noise is (real minus mean of four
+nulls with PCA) minus (real minus mean of four nulls with group means) within
+each seed. Report every seed and panel, including null-variant means and the
+60% stress result. No seed, null, dose or projection is selected by outcome.
+The probe concerns access to information in frozen representations. The
+end-to-end learning-speed mechanism remains a separate claim.
