@@ -1,0 +1,11 @@
+{
+  "scope": "EXPLORATORY_GRAPHSAGE_LAYER_SWAP_V1",
+  "seeds": [4801, 4802, 4803, 4804, 4805],
+  "null_instances_per_variant": [0],
+  "trials": 768,
+  "wave_width": 6,
+  "checkpoint_every_trials": 128,
+  "primary": "Mean held-out discrimination over all 768 trials",
+  "secondary": "First 20-trial rolling mean discrimination >=0.75; right-censored at 768",
+  "contrast_order": ["NN - RR", "NR - RR", "RN - RR", "NN - NR - RN + RR"]
+}

@@ -1,6 +1,7 @@
 """Match two-dimensional decoders across real and degree-preserving graphs."""
 
 import argparse
+import os
 import subprocess
 from itertools import combinations
 from pathlib import Path
@@ -128,23 +129,26 @@ def drives_for(projection, cfg, plan, seed):
     return drives
 
 
-def gather_layers(neighbors, mbon, n):
-    src, dst = neighbors
+def gather_layers(neighbors, mbon, n, *, final_neighbors=None):
+    final = neighbors if final_neighbors is None else final_neighbors
+    src, dst = final
     ending = torch.isin(dst, mbon)
     first_nodes = torch.cat((mbon, src[ending])).unique(sorted=True)
-    first_edges = torch.isin(dst, first_nodes)
-    local = torch.full((n,), -1, dtype=torch.long)
-    local[first_nodes] = torch.arange(len(first_nodes))
-    last = torch.full((n,), -1, dtype=torch.long)
-    last[mbon] = torch.arange(len(mbon))
-    e0 = torch.stack((src[first_edges], local[dst[first_edges]]))
+    first_src, first_dst = neighbors
+    first_edges = torch.isin(first_dst, first_nodes)
+    device = neighbors.device
+    local = torch.full((n,), -1, dtype=torch.long, device=device)
+    local[first_nodes] = torch.arange(len(first_nodes), device=device)
+    last = torch.full((n,), -1, dtype=torch.long, device=device)
+    last[mbon] = torch.arange(len(mbon), device=device)
+    e0 = torch.stack((first_src[first_edges], local[first_dst[first_edges]]))
     e1 = torch.stack((local[src[ending]], last[dst[ending]]))
     return first_nodes, local[mbon], e0, e1
 
 
-def graph_inputs(bundle, path):
+def graph_inputs(bundle, path, device="cpu"):
     inputs = gnn_training.frozen_inputs(
-        ROOT, bundle["task"], path, 0, bundle["nulls"], bundle["models"], "cpu"
+        ROOT, bundle["task"], path, 0, bundle["nulls"], bundle["models"], device
     )
     inputs["base"] = models.node_features(inputs["roles"], inputs["kc"], inputs["kc"][:0])
     edges = inputs["graph"].edge_index
@@ -153,15 +157,15 @@ def graph_inputs(bundle, path):
     return inputs
 
 
-@torch.inference_mode()
 def reduced_embeddings(model, inputs, drive, trial, presentations):
     first, last = trial * presentations, (trial + 1) * presentations
     pointers = drive.indptr[first : last + 1]
     low, high = pointers[0], pointers[-1]
-    row = torch.from_numpy(np.repeat(np.arange(presentations), np.diff(pointers)))
-    col = torch.from_numpy(drive.indices[low:high])
+    device = inputs["base"].device
+    row = torch.from_numpy(np.repeat(np.arange(presentations), np.diff(pointers))).to(device)
+    col = torch.from_numpy(drive.indices[low:high]).to(device)
     x = inputs["base"].expand(presentations, -1, -1).clone()
-    x[row, inputs["kc"][col], 4] = torch.from_numpy(drive.data[low:high])
+    x[row, inputs["kc"][col], 4] = torch.from_numpy(drive.data[low:high]).to(device)
     initial = torch.relu(model.encoder(x))
     first_nodes, last_nodes, left_edge, right_edge = inputs["layers"]
     hidden = torch.relu(model.convs[0]((initial, initial[:, first_nodes]), left_edge))
@@ -183,7 +187,7 @@ def extract(model, inputs, drives, presentations, check):
         scores = []
         for t in range(drive.shape[0] // presentations):
             h = reduced_embeddings(model, inputs, drive, t, presentations)
-            scores.append(torch.sigmoid(model.head(h)).squeeze(-1).numpy())
+            scores.append(torch.sigmoid(model.head(h)).squeeze(-1).cpu().numpy())
         results[key] = np.concatenate(scores).astype(np.float64)
     return results
 
@@ -216,14 +220,17 @@ def feature_formats(scores, members):
 def run():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
     args = parser.parse_args()
     started = monotonic()
+    os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+    require(args.device == "cpu" or torch.cuda.is_available(), "requested CUDA GPU unavailable")
     torch.set_num_threads(3)
     torch.use_deterministic_algorithms(True)
     plan, (old, cfg) = read_json(PLAN), read_plan()
     bundle = runner.load_bundle(ROOT, ROOT / "configs/experiment.yaml")
     paths = graphs(bundle, plan)
-    models_in = {g: graph_inputs(bundle, p) for g, p in paths.items()}
+    models_in = {g: graph_inputs(bundle, p, args.device) for g, p in paths.items()}
     _, _, _, projection = real_projection(old["source"])
     members = read_json(ROOT / "configs/mbon_readout.json")
     args.output.mkdir(parents=True, exist_ok=False)
@@ -232,7 +239,7 @@ def run():
         clock = monotonic()
         drives = drives_for(projection, cfg, plan, seed)
         backbone = make_benchmark_model(
-            "GraphSAGE", bundle["models"], seed, aggregation="max"
+            "GraphSAGE", bundle["models"], seed, args.device, aggregation="max"
         ).eval()
         native = {
             g: extract(backbone, inputs, drives, 2 * cfg["pairs_per_trial"], index == 0)
@@ -284,6 +291,8 @@ def run():
         args.output / "MANIFEST.json",
         {
             "scope": plan["scope"],
+            "device": args.device,
+            "torch": str(torch.__version__),
             "git_commit": subprocess.check_output(
                 ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
             ).strip(),

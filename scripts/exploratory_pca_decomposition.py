@@ -1,6 +1,7 @@
 """Separate graph-mean variance, feature scale and decoder performance."""
 
 import argparse
+import os
 import subprocess
 from pathlib import Path
 from time import monotonic
@@ -91,14 +92,17 @@ def pooled_scaled(panels, training):
 def run():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
     args = parser.parse_args()
     start = monotonic()
+    os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
+    require(args.device == "cpu" or torch.cuda.is_available(), "requested CUDA GPU unavailable")
     torch.set_num_threads(3)
     torch.use_deterministic_algorithms(True)
     plan, (old, cfg) = read_json(PLAN), read_plan()
     bundle = runner.load_bundle(ROOT, ROOT / "configs/experiment.yaml")
     paths = graphs(bundle, plan)
-    data = {g: graph_inputs(bundle, path) for g, path in paths.items()}
+    data = {g: graph_inputs(bundle, path, args.device) for g, path in paths.items()}
     _, _, _, projection = real_projection(old["source"])
     members = read_json(ROOT / "configs/mbon_readout.json")
     args.output.mkdir(parents=True, exist_ok=False)
@@ -106,7 +110,9 @@ def run():
     for index, seed in enumerate(plan["seeds"]):
         t = monotonic()
         drives = drives_for(projection, cfg, plan, seed)
-        model = make_benchmark_model("GraphSAGE", bundle["models"], seed, aggregation="max").eval()
+        model = make_benchmark_model(
+            "GraphSAGE", bundle["models"], seed, args.device, aggregation="max"
+        ).eval()
         native = {
             g: extract(model, inputs, drives, 2 * cfg["pairs_per_trial"], index == 0)
             for g, inputs in data.items()
@@ -222,6 +228,8 @@ def run():
         args.output / "MANIFEST.json",
         {
             "scope": plan["scope"],
+            "device": args.device,
+            "torch": str(torch.__version__),
             "config_sha256": sha256(PLAN),
             "git_commit": subprocess.check_output(
                 ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True

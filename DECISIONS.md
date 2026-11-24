@@ -217,3 +217,24 @@ the same three trainable parameters and Adam/BCE budget. The main diagnostic
 is the paired real held-out balanced-accuracy difference between the two
 shared bases with local scaling. This tests what determines the directions
 of a pooled decoder. It does not measure changes in end-to-end learning.
+
+## 2026-11-24 · Exploratory intervention on the two GraphSAGE layers
+
+**PROPOSED, frozen before the intervention.** Use seeds 4801–4805, the real
+graph and the fixed A-00 and B-00 inputs, selected by instance number. Within
+each seed run real/real once, plus null/real, real/null and null/null for
+each null. The first letter controls the first GraphSAGE layer. The second
+letter controls the second, whose only observed outputs are MBONs. Hold
+the real sparse PN→KC projection, model initialization, Adam/BCE, cue order,
+legacy MBON readout and held-out stream fixed within seed. The implementation
+retains the exact dependency neighborhood of the MBONs. Check output and
+gradient parity with full-graph evaluation before collecting trial scores.
+
+Run 768 trials per job without early stopping. Primary exploratory endpoint
+is the unpadded mean held-out discrimination over that common horizon.
+Secondary TTC is the first 20-trial mean at least 0.75, right-censored at
+768. Report the paired per-seed contrasts NN−RR, NR−RR, RN−RR, and
+NN−NR−RN+RR in that order, with all trajectories and no seed or null
+selection by performance. The null sample is one fixed graph per variant.
+Re-execute the earlier decoder and PCA diagnostics on Molab using their
+original seeds as computational reproductions.
