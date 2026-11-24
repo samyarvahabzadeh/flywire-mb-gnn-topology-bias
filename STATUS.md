@@ -2,13 +2,28 @@
 
 ## Molab replays and exploratory GraphSAGE layer intervention
 
-**Prepared, waiting for access to the private input.** CUDA and PyG are ready
-on the dedicated Molab notebook. The pinned design uses five fresh seeds and
-35 fixed-horizon jobs. Each real/null wiring pair changes the first layer,
-the last layer, or both, with fixed real sensory drive and held-out cues.
-All seven pairings passed forward and gradient parity against the full-graph
-computation locally. Authenticated input transfer is pending. No new
-intervention outcomes have been collected.
+**Complete.** The small Molab study finished all 35 fixed-horizon jobs.
+Relative to real/real, a first-layer-only rewire increased mean held-out
+discrimination by medians of 2.83 and 3.56 percentage points for A-00 and
+B-00. Second-layer-only effects were close to zero in this two-donor study.
+The accompanying PCA and decoder replays also completed and were archived.
+
+**Crossed-bank replication complete within its wall budget.** The Molab
+RTX PRO 6000 completed five two-seed panels in 101.1 minutes including its
+numerical-check restart. The dataset contains 370 jobs with 768 trials each
+and 12 independently generated fixed donor rewires. The first-layer-only
+contrast was positive in 9 of 12 donor medians. The median donor effects
+were +2.26 pp (A) and +2.47 pp (B). The second-layer-only contrast was
+negative in 12 of 12 donor medians, with effects of −1.97 pp (A) and
+−2.08 pp (B). The full rewire yielded smaller median effects of +0.39 pp
+(A) and +0.87 pp (B). This computational pattern pertains to the tested
+connectome, GraphSAGE-max, and the fixed cue-family layout.
+
+The 65 wave receipts and six final ZIPs passed their Drive write/read-back
+checks. The independent D-drive audit verified all 284,160 trial rows and
+recomputed the recorded endpoints and paired contrasts. See
+`results/exploratory/crossed_layer_bank_molab_v1/AUDIT.md` and its
+`AUDIT_MANIFEST.json`.
 
 ## Exploratory decoder-by-topology diagnostic and PCA decomposition
 

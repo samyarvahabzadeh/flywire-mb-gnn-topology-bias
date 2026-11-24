@@ -2,25 +2,29 @@
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
 
-## Pending Molab exploratory layer intervention
+## Completed Molab crossed-null layer intervention
 
-The old FlyWire notebook could not be opened. The
-[dedicated Molab notebook](https://molab.marimo.io/notebooks/nb_E7gGfy7N3knAfAJTd3dH1r)
-has an RTX PRO 6000, CUDA Torch 2.11.0+cu130, and PyG 2.8.1.
-The new 35-job design and both replay entry points are at public code commit
-`7a436b56f826b311d4066f2be4c32feef10b9d16`. All seven layer pairings passed
-local full-graph forward/gradient parity. The input ZIP on D and in the
-[private FlyWire Drive folder](https://drive.google.com/file/d/1tCwGrnUAVy8Ynemm6BN5xx5NjDOp6gF0/view)
-is 2,481,237 bytes, SHA-256
-`29ab5c63cbc3ee04c3cd9704513875afb0362a1b700622e1ee25cc959bcac5ab`.
+The [dedicated Molab notebook](https://molab.marimo.io/notebooks/nb_E7gGfy7N3knAfAJTd3dH1r)
+completed both the original exploratory experiment and the time-bounded
+crossed donor bank on RTX PRO 6000. The original run completed 35 training
+jobs, a 36-fit PCA replay and a 40-fit decoder replay. All three archives
+passed read-back in the private Drive folder `exploratory-layer-v1-molab`.
 
-At the last check the Drive cell was waiting for the researcher's OAuth
-response. No new GPU training or PCA replay had started. The first notebook
-cell contains the launcher. Resume by running `launch_flywire()` in that
-cell after `FLYWIRE_INPUT_READY` appears. Check
-`/marimo/flywire-layer-study.log`, then verify all result manifests and
-transfer the results safely. Layer swap can resume from its last valid
-128-trial checkpoint under `/marimo/flywire-layer-outputs/layer-swap/`.
+The crossed bank ran from `a81e94a6ca35b7e99030e96db7f4aceeb62b0a6f`. Its
+restart excluded the initial engineering wave, used a separate float64
+parity check, and charged the earlier attempt against the wall-time budget.
+The runner closed at 370 jobs (five complete panels, seeds 4901–4910)
+because the remaining budget was shorter than the next complete panel's
+engineering forecast. There are 65 durable wave receipts and a final
+summary archive in `exploratory-crossed-layer-bank/retry-01/9088bc885a3b`.
+
+All six final archives have been downloaded to D and checked against their
+SHA-256 names and member manifests. Independent recomputation verified all
+284,160 trial rows, endpoints, contrasts and persistence counts. Start
+result review with `results/exploratory/crossed_layer_bank_molab_v1/AUDIT.md`.
+To rerun the audit only, use
+`python analysis/audit_crossed_layer_bank.py --archives results/exploratory/crossed_layer_bank_molab_v1/archive --output results/exploratory/crossed_layer_bank_molab_v1`.
+The exploration has reached its planned time boundary.
 
 ## Completed frozen decoder diagnostics
 
