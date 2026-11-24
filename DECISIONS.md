@@ -321,3 +321,12 @@ the seed median descriptively. A positive interaction alone is insufficient
 for a local-rule advantage. Inspect both the local topology contrast and
 the near/far components. Verify absence of an unreinforced update and the
 exact one-pair local prediction from the activity at plastic synapses.
+
+### 2026-11-24 · PROPOSED · Differential conditioning on Molab
+
+Freeze the cognitive predictions, omission-sensitive and pulse-only rules,
+supervised reference, reciprocal assignments, wiring contrasts and 48-cycle
+budget in reports/COGNITIVE_REVIEW.md and configs/exploratory_differential.json.
+Reuse all 12 earlier control masks. Use 7101–7120 for the exploratory assay
+and 7999 solely to check execution and pulse-rule invariance. Run scientific
+conditions only after preparation. Rank no candidate by its advantage to real.
