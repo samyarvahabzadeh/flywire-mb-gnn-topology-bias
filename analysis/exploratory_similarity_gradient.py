@@ -93,6 +93,46 @@ def summarize(data):
     contrasts = real.join(control, on=control_keys, how="inner").with_columns(
         (pl.col("real_effect") - pl.col("control_median_effect")).alias("real_minus_control")
     )
+    rng = np.random.default_rng(20261124)
+    specificity_rows = []
+    for train_level in sorted(contrasts["train_shared_pns"].unique().to_list()):
+        q36 = (
+            contrasts.filter(
+                (pl.col("train_shared_pns") == train_level) & (pl.col("probe_shared_pns") == 36)
+            )
+            .select(["seed", "real_effect", "control_median_effect", "real_minus_control"])
+            .rename({
+                "real_effect": "real_q36",
+                "control_median_effect": "control_q36",
+                "real_minus_control": "topology_q36",
+            })
+        )
+        q0 = (
+            contrasts.filter(
+                (pl.col("train_shared_pns") == train_level) & (pl.col("probe_shared_pns") == 0)
+            )
+            .select(["seed", "real_effect", "control_median_effect", "real_minus_control"])
+            .rename({
+                "real_effect": "real_q0",
+                "control_median_effect": "control_q0",
+                "real_minus_control": "topology_q0",
+            })
+        )
+        paired_probe = q36.join(q0, on="seed", how="inner").with_columns(
+            (pl.col("real_q36") - pl.col("real_q0")).alias("real_specificity_gradient"),
+            (pl.col("control_q36") - pl.col("control_q0")).alias("control_specificity_gradient"),
+            (pl.col("topology_q36") - pl.col("topology_q0")).alias("topology_specificity_interaction"),
+        )
+        row = {"train_shared_pns": train_level, "n_layouts": paired_probe.height}
+        for col in (
+            "real_specificity_gradient",
+            "control_specificity_gradient",
+            "topology_specificity_interaction",
+        ):
+            mean, low, high = bootstrap_mean_ci(paired_probe[col].to_numpy(), rng)
+            row.update({f"{col}_mean": mean, f"{col}_ci_low": low, f"{col}_ci_high": high})
+        specificity_rows.append(row)
+    probe_specificity = pl.DataFrame(specificity_rows).sort("train_shared_pns")
     marginal = paired.group_by(["seed", "mask", "train_shared_pns", "rule"]).agg(
         pl.col("schedule_effect").mean().alias("probe_averaged_effect")
     )
@@ -104,7 +144,6 @@ def summarize(data):
         .group_by(["seed", "train_shared_pns", "rule"])
         .agg(pl.col("probe_averaged_effect").median().alias("probe_averaged_effect"))
     )
-    rng = np.random.default_rng(20261124)
     summaries = []
     for row in contrasts.group_by(["rule", "train_shared_pns", "probe_shared_pns"], maintain_order=True):
         group_key, frame = row
@@ -156,15 +195,16 @@ def summarize(data):
     pulse = paired.filter(pl.col("rule") == "pulse").select(pl.col("schedule_effect").abs().max()).item()
     if pulse != 0.0:
         raise ValueError(f"pulse schedule invariance failed: max absolute difference={pulse}")
-    return paired, contrasts, surface, marginal_summary, rule_differences, pulse
+    return paired, contrasts, surface, probe_specificity, marginal_summary, rule_differences, pulse
 
 
-def write_report(data, manifest, paired, contrasts, surface, marginal_summary, rule_differences, pulse, output_dir):
+def write_report(data, manifest, paired, contrasts, surface, probe_specificity, marginal_summary, rule_differences, pulse, output_dir):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     paired.write_parquet(output_dir / "paired_schedule_effects.parquet")
     contrasts.write_parquet(output_dir / "seed_level_topology_contrasts.parquet")
     surface.write_csv(output_dir / "similarity_surface_summary.csv")
+    probe_specificity.write_csv(output_dir / "paired_probe_specificity.csv")
     marginal_summary.write_csv(output_dir / "probe_averaged_rule_summary.csv")
     rule_differences.write_csv(output_dir / "paired_rule_differences.csv")
 
@@ -205,6 +245,24 @@ def write_report(data, manifest, paired, contrasts, surface, marginal_summary, r
     ax.set_ylabel("Differential minus absolute held-out discrimination")
     ax.legend(frameon=False, fontsize=8, ncol=2)
     fig.savefig(output_dir / "rule_similarity_gradient.png", dpi=180)
+    plt.close(fig)
+
+    fig, ax = plt.subplots(figsize=(7, 4.5), constrained_layout=True)
+    x = probe_specificity["train_shared_pns"].to_numpy()
+    for population, color, prefix in (
+        ("real partner mask", "#1769aa", "real_specificity_gradient"),
+        ("median input control", "#e07a19", "control_specificity_gradient"),
+    ):
+        mean = probe_specificity[f"{prefix}_mean"].to_numpy()
+        low = probe_specificity[f"{prefix}_ci_low"].to_numpy()
+        high = probe_specificity[f"{prefix}_ci_high"].to_numpy()
+        ax.plot(x, mean, marker="o", color=color, label=population)
+        ax.fill_between(x, low, high, color=color, alpha=0.15)
+    ax.axhline(0, color="black", linewidth=0.8)
+    ax.set_xlabel("Training CS+/CS− overlap (PN identities out of 40)")
+    ax.set_ylabel("Safe-cue schedule effect at probe overlap 36 − 0")
+    ax.legend(frameon=False)
+    fig.savefig(output_dir / "probe_specificity_gradient.png", dpi=180)
     plt.close(fig)
 
     global_summary = data.group_by(["mask", "rule", "schedule"]).agg(
@@ -275,6 +333,17 @@ def write_report(data, manifest, paired, contrasts, surface, marginal_summary, r
             f"| {a['mean_difference']:.4f} [{a['ci_low']:.4f}, {a['ci_high']:.4f}] |"
         )
     pattern_table = "\n".join(pattern_rows)
+    specificity_rows = []
+    for row in probe_specificity.iter_rows(named=True):
+        specificity_rows.append(
+            f"| {row['train_shared_pns']}/40 | {row['real_specificity_gradient_mean']:.4f} "
+            f"[{row['real_specificity_gradient_ci_low']:.4f}, {row['real_specificity_gradient_ci_high']:.4f}] "
+            f"| {row['control_specificity_gradient_mean']:.4f} "
+            f"[{row['control_specificity_gradient_ci_low']:.4f}, {row['control_specificity_gradient_ci_high']:.4f}] "
+            f"| {row['topology_specificity_interaction_mean']:.4f} "
+            f"[{row['topology_specificity_interaction_ci_low']:.4f}, {row['topology_specificity_interaction_ci_high']:.4f}] |"
+        )
+    specificity_table = "\n".join(specificity_rows)
     report = f"""# Exploratory graded-similarity assay
 
 This report describes a new exploratory computation only. It does not reopen the confirmatory dataset or analysis, and it does not test a behavioral effect in flies.
@@ -282,59 +351,4 @@ This report describes a new exploratory computation only. It does not reopen the
 ## Data and controls
 
 - Molab runner commit: `{manifest['git_commit']}`
-- Config SHA-256: `{manifest['config_sha256']}`; runner SHA-256: `{manifest['runner_sha256']}`
-- Verified rows: {data.height:,}; cue-layout seeds: {data['seed'].n_unique()}; masks: {data['mask'].n_unique()} (one real mask and twelve fixed-capacity input-mask controls)
-- Rules: {', '.join(sorted(data['rule'].unique().to_list()))}; schedules: {', '.join(sorted(data['schedule'].unique().to_list()))}
-- Training/probe overlap levels: {', '.join(map(str, train_levels))} active PN identities out of 40
-- Pulse-rule schedule invariance: maximum absolute paired change = {pulse:.12g} (must equal zero)
-- Uncertainty bands in the surface figure are percentile bootstrap intervals over cue-layout seeds. There is one connectome; these are not biological confidence intervals.
-
-## Descriptive topology-by-rule surface
-
-The table `similarity_surface_summary.csv` reports, for each learning rule and train/probe overlap, the mean differential-minus-absolute held-out discrimination for the real mask, the median of the twelve control effects, and their difference. Its intervals resample the 64 cue layouts. This is a descriptive model contrast, not a confirmatory test.
-
-![Real-minus-control similarity surface](similarity_surface.png)
-
-The most negative and positive cell means were {low['real_minus_control_mean']:.6g} ({low['rule']}, train overlap {low['train_shared_pns']}, probe overlap {low['probe_shared_pns']}) and {high['real_minus_control_mean']:.6g} ({high['rule']}, train overlap {high['train_shared_pns']}, probe overlap {high['probe_shared_pns']}). These extremes are shown for audit and must not be treated as selected discoveries.
-
-## Exploratory learning-rule pattern
-
-After the first surface was inspected, a post-run descriptive summary was added to average the five held-out probe-overlap levels within each cue layout. The real-mask prediction-error effect was highest at 10/40 shared PNs (0.0667) and remained similar at 0/40 (0.0629), then declined to 0.0157 at 36/40. It is not monotonic across the first 0-to-10 interval, but is much smaller for the most-overlapping cues than at 0/10. Control-mask medians closely track the real-mask values. The table gives the real-mask effect and paired rule contrasts with 95% layout-bootstrap intervals.
-
-| Training cue overlap | Real: prediction-error schedule effect [95% interval] | Control median effect | Real: prediction error − pulse [95% interval] | Real: prediction error − Adam/BCE [95% interval] |
-|---:|---:|---:|---:|---:|
-{pattern_table}
-
-The largest absolute Adam/BCE marginal mean across the five overlap levels was {adam_max:.4f}; pulse effects are exactly zero by construction. Bootstrap intervals describe variation over simulated cue layouts on a single connectome, not biological uncertainty or a confirmatory test. See `probe_averaged_rule_summary.csv` and `paired_rule_differences.csv` for every level and control-mask comparison.
-
-![Probe-averaged schedule effect by learning rule and mask population](rule_similarity_gradient.png)
-
-This is a candidate model mechanism: an omission-sensitive update produces a larger modeled benefit of explicit safe-cue training at low-to-moderate PN overlap, with much less incremental benefit when trained cues are highly overlapping. All twelve fixed-capacity input controls show nearly the same schedule effect, so this run does not support a claim that the real KCγ→MBON11 partner mask causes the rule effect. It does not establish that flies use this rule.
-
-## Interpretation limits
-
-The controls replace KC partners while preserving the fixed connection count; they are not full graph rewires. The readout is a reduced local KC→MBON11 model, not a complete mushroom-body circuit. Cue similarity is operationalized only by PN identity overlap. Any apparent rule-by-mask pattern therefore motivates a targeted follow-up; it does not establish that the fly uses this rule or that real topology is optimal.
-"""
-    (output_dir / "REPORT.md").write_text(report)
-    record["files"]["REPORT.md"] = {"sha256": sha256(output_dir / "REPORT.md"), "bytes": (output_dir / "REPORT.md").stat().st_size}
-    (output_dir / "MANIFEST.json").write_text(json.dumps(record, indent=2, sort_keys=True))
-    return record
-
-
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--input", type=Path, required=True)
-    parser.add_argument("--output", type=Path, required=True)
-    args = parser.parse_args()
-    data, manifest = verify_and_load(args.input)
-    manifest["_manifest_path"] = str(args.input / "MANIFEST.json")
-    manifest["_analysis_script_path"] = str(Path(__file__).resolve())
-    paired, contrasts, surface, marginal_summary, rule_differences, pulse = summarize(data)
-    out_manifest = write_report(
-        data, manifest, paired, contrasts, surface, marginal_summary, rule_differences, pulse, args.output
-    )
-    print(json.dumps({"analysis": str(args.output), "rows": data.height, "pulse_invariance": pulse, "manifest": out_manifest}, sort_keys=True))
-
-
-if __name__ == "__main__":
-    main()
+- Config SHA-256: `{manifest['config_sha256']}`; runner SHA-256: `{manifest['runner_s
