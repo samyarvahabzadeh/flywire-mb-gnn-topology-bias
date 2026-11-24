@@ -1,6 +1,14 @@
-# Resume state — 2026-11-19 (Asia/Tehran)
+# Resume state — 2026-11-24 (Asia/Tehran)
 
 Workspace: D:/icss/acc2/flywire-mb-gnn-topology-bias
+
+## Completed matched edge-rule follow-up
+
+The 40-job exploratory comparison and the separate frozen-body GNN check are
+complete. Read `results/exploratory/matched_edge_rules_v1/summary/REPORT.md`
+and `results/exploratory/matched_edge_rules_v1/gnn/REPORT.md`. The latest
+integrity check verified all 320 checkpoint rows, split and mask checks, and
+all listed SHA-256 digests. There is no pending run.
 
 ## Completed exploratory learning-rule screen
 

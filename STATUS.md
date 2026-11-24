@@ -1,4 +1,15 @@
-# Overnight status — 2026-11-19 (Asia/Tehran)
+# Research status — 2026-11-24 (Asia/Tehran)
+
+## Exploratory matched KCγ→MBON11 follow-up
+
+**Complete.** Ten real runs and thirty input-set control runs produced 320
+checkpoint rows. The local audit verified all four manifests, the frozen cue
+hashes, equal input capacity and one train-derived numeric cut shared by both
+rules within each graph, seed and checkpoint. See
+`results/exploratory/matched_edge_rules_v1/summary/REPORT.md` for the eight
+checkpoints, learning curves and CPU timings. The separate seed-4301 frozen
+GNN readout diagnostic selected both heads by validation BCE before scoring
+held-out. See `results/exploratory/matched_edge_rules_v1/gnn/REPORT.md`.
 
 ## Exploratory readability and real-edge control
 
