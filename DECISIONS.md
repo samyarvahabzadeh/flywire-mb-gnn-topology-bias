@@ -238,3 +238,31 @@ NN−NR−RN+RR in that order, with all trajectories and no seed or null
 selection by performance. The null sample is one fixed graph per variant.
 Re-execute the earlier decoder and PCA diagnostics on Molab using their
 original seeds as computational reproductions.
+
+## 2026-11-24 · Exploratory crossed-null replication of the layer intervention
+
+**PROPOSED, frozen before any crossed-bank training.** The first Molab
+intervention can establish whether a layer contrast occurs for A-00 and B-00.
+To assess whether it repeats across donor rewires, cross each new seed with
+12 donors, fixed by instance number before looking at results: A-101 to
+A-106 and B-201 to B-206. These instance IDs are outside both the original
+null bank and the exploratory decoder bank. Each seed contributes an RR
+baseline and NR, RN and NN for every donor (37 jobs). Keep the fixed
+real PN→KC sensory projection, original BCE/Adam, MBON readout,
+independent held-out cues, 768-trial horizon and frozen paired contrasts.
+
+Run deterministic panels of two seeds in ascending order from 4901 to 4916.
+The session is capped at 118 minutes, with reserve for the final write.
+Decide whether to start each further panel only from elapsed wall time,
+measured panel duration and storage health. Do not select donors, seeds,
+or panels from outcomes. Report completed panels and any incomplete panel
+inventory separately. Estimate contrasts by donor and seed and report their
+spread without treating all jobs as independent observations.
+
+Discriminate first crossing from persistence. In addition to fixed-budget
+AUC, report first single-trial and first rolling-20 threshold crossings at
+0.75 with the 768 horizon, and the fraction of the next 100 held-out scores
+above threshold when the first crossing occurs by trial 668. Show eligibility
+counts by condition; comparisons involving that fraction are conditional.
+All outputs are exploratory, and the protocol for the closed confirmatory
+study is outside this run.

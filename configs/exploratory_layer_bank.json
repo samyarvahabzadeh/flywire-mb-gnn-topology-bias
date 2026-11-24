@@ -1,0 +1,19 @@
+{
+  "scope": "EXPLORATORY_GRAPHSAGE_LAYER_SWAP_CROSSED_NULL_BANK_V1",
+  "seeds": [4901, 4902, 4903, 4904, 4905, 4906, 4907, 4908, 4909, 4910, 4911, 4912, 4913, 4914, 4915, 4916],
+  "null_instances_by_variant": {
+    "A": [101, 102, 103, 104, 105, 106],
+    "B": [201, 202, 203, 204, 205, 206]
+  },
+  "graph_cache_scope": "exploratory_layer_bank_v1",
+  "trials": 768,
+  "seeds_per_panel": 2,
+  "wave_width": 6,
+  "checkpoint_every_trials": 128,
+  "session_minutes": 118,
+  "archive_reserve_seconds": 60,
+  "persistence_window": 100,
+  "primary": "Paired fixed-budget AUC contrasts by seed and null identity",
+  "secondary": "First single and rolling crossings, right censoring, and next-100-trial persistence after an eligible first crossing",
+  "contrast_order": ["NN - RR", "NR - RR", "RN - RR", "NN - NR - RN + RR"]
+}

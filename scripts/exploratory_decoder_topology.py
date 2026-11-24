@@ -36,8 +36,10 @@ def graphs(bundle, plan):
     real = bundle["task"]["source_manifest"]
     _, _, original = load_source(ROOT, real)
     paths = {"real": real}
+    roster = plan.get("null_instances_by_variant")
     for variant in "AB":
-        for index in plan["null_instances_per_variant"]:
+        indexes = roster[variant] if roster is not None else plan["null_instances_per_variant"]
+        for index in indexes:
             label = f"{variant}-{index:02d}"
             which = (
                 f"data/smoke_nulls/4bfaf9e768c6/{label}/MANIFEST.json"
@@ -49,7 +51,7 @@ def graphs(bundle, plan):
                     index,
                     Progress(),
                     None,
-                    scope="decoder_topology_nulls_v1",
+                    scope=plan.get("graph_cache_scope", "decoder_topology_nulls_v1"),
                 )
             )
             info, _, matrix = load_source(ROOT, which)

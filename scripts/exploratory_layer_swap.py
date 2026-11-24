@@ -21,7 +21,11 @@ from torch import nn
 from mbtopology import runner
 from mbtopology.benchmark_models import make_benchmark_model
 from mbtopology.binary_protocol import add_observation
-from mbtopology.experiment_io import load_training_checkpoint, save_training_checkpoint
+from mbtopology.experiment_io import (
+    SessionYield,
+    load_training_checkpoint,
+    save_training_checkpoint,
+)
 from mbtopology.runtime import atomic_json, fingerprint, now, read_json, require, sha256
 
 PLAN = ROOT / "configs/exploratory_layer_swap.json"
@@ -78,11 +82,13 @@ class Job:
         )
 
 
-def conditions(data):
+def conditions(data, *, retain_null_id=False):
     real = data["real"]
     result = {"RR": real}
-    for variant in ("A", "B"):
-        null = data[f"{variant}-00"]
+    for donor, null in data.items():
+        if donor == "real":
+            continue
+        key = donor if retain_null_id else donor.split("-")[0]
         for code, first, final in (("NR", null, real), ("RN", real, null), ("NN", null, null)):
             layers = gather_layers(
                 first["neighbors"],
@@ -90,7 +96,7 @@ def conditions(data):
                 len(real["roles"]),
                 final_neighbors=final["neighbors"],
             )
-            result[f"{variant}-{code}"] = {**first, "layers": layers}
+            result[f"{key}-{code}"] = {**first, "layers": layers}
     return result
 
 
@@ -117,7 +123,7 @@ def verify(model, inputs, first, final, drive, presentations):
         torch.testing.assert_close(a, b, atol=2e-6, rtol=1e-4)
 
 
-def train_wave(jobs, config, every, device):
+def train_wave(jobs, config, every, device, *, deadline=None):
     labels = torch.tensor([1.0, 0.0] * config["pairs_per_trial"], device=device)
     default = torch.cuda.current_stream() if device == "cuda" else None
     started = monotonic()
@@ -128,6 +134,10 @@ def train_wave(jobs, config, every, device):
     require(all(len(j.history) <= config["trials"] for j in jobs), "checkpoint above fixed cap")
     last_save = monotonic()
     for t in range(min(len(j.history) for j in jobs), config["trials"]):
+        if deadline is not None and monotonic() >= deadline:
+            for job in jobs:
+                job.save()
+            raise SessionYield(f"layer panel checkpointed at {t} trials due to the session budget")
         active = [j for j in jobs if len(j.history) == t]
         queued = []
         for job in active:
